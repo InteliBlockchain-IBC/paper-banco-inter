@@ -22,17 +22,19 @@ A escolha foi tratada como uma decisão multicritério: as cinco redes candidata
 **Rede recomendada:** `[B6]`, por `[principais razões, 1 frase, conforme B6]`.
 
 ## Robustez da recomendação (análise de sensibilidade)
-`[B6]` Descrever, sem fórmulas: variações de pesos testadas (ex.: ±X%) e se a rede recomendada permanece em 1º lugar. Se houver cenário em que muda, dizer qual e o que o provoca.
+A Matriz v3.0 prevê quatro cenários de pesos: Base, Regulatório, Econômico e Estresse. `[B6]` Informar, sem fórmulas, se a rede recomendada permanece em 1º lugar em cada um. Se houver cenário em que muda, dizer qual e o que o provoca.
 
 ## Limitações
 Alinhar com a Pessoa A (A7). Pontos já conhecidos pelo trabalho de coleta:
 - Os testes ocorreram em testnets, não em produção; latência e taxas de testnet podem não refletir a mainnet, e o token de teste não tem valor (o custo foi convertido por cotação em `[data/fonte, B6]`).
 - Condições variam entre redes: provedor de acesso, número de nós e data das rodadas (registradas por A e B) `[A7]`.
 - Os testes de desempenho usaram `[transferências simples / chamadas ao contrato — confirmar]`, que podem diferir do comportamento do contrato final.
+- A Canton só pôde ser testada em ambiente local (LocalNet), não em rede pública, o que limita a comparação direta com as demais.
+- Stellar, Solana e Miden foram analisadas e descartadas na etapa de pesquisa; a Ethereum Mainnet serviu apenas de referência.
 - `[outras ameaças à validade, A7]`
 
 ## Próximos passos
-- `[definir com o parceiro/orientação]` Ex.: repetir os testes com chamadas aos smart contracts do projeto, validar a rede recomendada em condições mais próximas da produção e avaliar requisitos regulatórios e de privacidade.
+- `[confirmar com o parceiro/orientação]` Proposta: repetir os testes com chamadas aos smart contracts do projeto, validar a rede recomendada em condições mais próximas da produção e avaliar requisitos regulatórios e de privacidade.
 
 ---
 *Checklist antes de circular:* números idênticos ao paper · uma página · sem fórmulas · limitações revisadas pela Pessoa A · sem placeholders restantes.
