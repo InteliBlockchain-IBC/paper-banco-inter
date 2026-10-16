@@ -1,0 +1,7 @@
+node_modules/
+.env
+redes-locais/besu/.env
+redes-locais/besu/rede/
+redes-locais/canton/.daml/
+__pycache__/
+.pytest_cache/

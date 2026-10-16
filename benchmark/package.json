@@ -1,0 +1,21 @@
+{
+  "name": "paper-banco-inter-benchmark",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coleta de dados do roteiro de medição (T1 e T2) do protocolo de crédito interfinanceiro em redes EVM e Canton",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "carteiras": "node coleta/carteiras.mjs",
+    "implantar": "node coleta/implantar.mjs",
+    "coletar": "node coleta/coletar-evm.mjs",
+    "coletar:canton": "node coleta/coletar-canton.mjs",
+    "precos": "node coleta/precos-referencia.mjs",
+    "analisar": "python3 analise/analisar.py --projecao config/projecao.json --projetar-custo-com besu",
+    "test": "node --test testes/*.test.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "viem": "^2.21.0"
+  }
+}
