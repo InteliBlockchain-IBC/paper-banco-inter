@@ -46,7 +46,11 @@ const MARGEM = 2n;
 async function orcamento(rede, plano, c) {
   const { leitura } = clientes(rede);
   const f = await taxas(leitura, rede);
-  const porGas = (gas) => (gas * BigInt(Math.round(MULTIPLICADOR_GAS * 100)) * f.maxFeePerGas * MARGEM) / 100n;
+  // O preço da testnet oscila durante a coleta: orça pelo maior entre o preço atual (com margem) e um
+  // piso por rede (config/redes.json, pisoOrcamentoGwei), para nenhuma conta ficar sem saldo no meio.
+  const piso = BigInt(Math.round((rede.pisoOrcamentoGwei ?? 0) * 1e9));
+  const preco = f.maxFeePerGas * MARGEM > piso ? f.maxFeePerGas * MARGEM : piso;
+  const porGas = (gas) => (gas * BigInt(Math.round(MULTIPLICADOR_GAS * 100)) * preco) / 100n;
   const gp = gasPorPapel(plano, c.tomadoresT2.length);
   const linhas = [
     { papel: 'admin', conta: c.admin, gas: gp.admin },
@@ -55,7 +59,7 @@ async function orcamento(rede, plano, c) {
     ...c.tomadoresT2.map((t, k) => ({ papel: `tomador_t2_${k + 1}`, conta: t, gas: gp.tomadorT2 })),
   ];
   for (const l of linhas) l.necessario = porGas(l.gas);
-  return { linhas, maxFeePerGas: f.maxFeePerGas, total: linhas.reduce((s, l) => s + l.necessario, 0n) };
+  return { linhas, maxFeePerGas: f.maxFeePerGas, precoOrcado: preco, total: linhas.reduce((s, l) => s + l.necessario, 0n) };
 }
 
 async function main() {
@@ -84,7 +88,7 @@ async function main() {
 
   if (cmd === 'orcamento' || cmd === 'saldos') {
     const o = await orcamento(rede, plano, c);
-    console.log(`${rede.nome}: maxFeePerGas atual ${o.maxFeePerGas} wei, margem ${MARGEM}x, multiplicador de gas ${MULTIPLICADOR_GAS}`);
+    console.log(`${rede.nome}: preço atual ${o.maxFeePerGas} wei; orçado a ${Number(o.precoOrcado) / 1e9} gwei (maior entre 2x o atual e o piso de ${rede.pisoOrcamentoGwei ?? 0} gwei); multiplicador de gas ${MULTIPLICADOR_GAS}`);
     let falta = 0n;
     for (const l of o.linhas) {
       const saldo = await leitura.getBalance({ address: l.conta.address });

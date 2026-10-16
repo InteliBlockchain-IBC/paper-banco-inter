@@ -18,7 +18,8 @@
       "rpcEnv": "ETH_MAINNET_RPC_URL",
       "rpcPadrao": "https://ethereum-rpc.publicnode.com",
       "coingeckoId": "ethereum"
-    }
+    },
+    "pisoOrcamentoGwei": 1
   },
   "fuji": {
     "nome": "Avalanche Fuji (C-Chain)",
@@ -38,7 +39,8 @@
       "rpcEnv": "AVAX_MAINNET_RPC_URL",
       "rpcPadrao": "https://api.avax.network/ext/bc/C/rpc",
       "coingeckoId": "avalanche-2"
-    }
+    },
+    "pisoOrcamentoGwei": 1
   },
   "monad": {
     "nome": "Monad Testnet",
@@ -57,7 +59,8 @@
       "rpcEnv": "MONAD_MAINNET_RPC_URL",
       "rpcPadrao": "https://rpc.monad.xyz",
       "coingeckoId": "monad"
-    }
+    },
+    "pisoOrcamentoGwei": 100
   },
   "besu": {
     "nome": "Hyperledger Besu (QBFT local, 4 validadores)",
@@ -68,7 +71,8 @@
     "faucets": [],
     "intervaloConsultaMs": 100,
     "cobrancaGas": "gratis",
-    "validadores": 4
+    "validadores": 4,
+    "pisoOrcamentoGwei": 0
   },
   "anvil": {
     "nome": "Anvil (ensaio local, fora do benchmark)",
@@ -79,7 +83,8 @@
     "faucets": [],
     "intervaloConsultaMs": 50,
     "cobrancaGas": "gasUsed",
-    "ensaio": true
+    "ensaio": true,
+    "pisoOrcamentoGwei": 0
   },
   "canton": {
     "nome": "Canton (LocalNet)",
