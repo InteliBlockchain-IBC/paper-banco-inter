@@ -1,0 +1,86 @@
+-- Testes do modelo Daml com Daml Script: ciclo completo, privacidade e falhas nomeadas.
+--   dpm test   (ou `daml test` no SDK 2.x)
+module Test where
+
+import Daml.Script
+import DA.Time (days)
+import CreditInterbank
+
+data Cenario = Cenario with
+  admin : Party
+  bancoA : Party
+  bancoB : Party
+  bancoC : Party
+  limiteB : ContractId CreditLimit
+  saldoA : ContractId BRLHolding
+
+preparar : Script Cenario
+preparar = do
+  admin <- allocateParty "Admin"
+  bancoA <- allocateParty "BancoA"
+  bancoB <- allocateParty "BancoB"
+  bancoC <- allocateParty "BancoC"
+  limiteB <- submit admin do createCmd CreditLimit with admin; borrower = bancoB; available = 500000000
+  saldoA <- submit admin do createCmd BRLHolding with admin; owner = bancoA; amount = 1000000000; spender = None
+  pure Cenario with ..
+
+ofertar : Cenario -> ContractId BRLHolding -> Script (ContractId Offer, Optional (ContractId BRLHolding))
+ofertar c saldo = do
+  agora <- getTime
+  (aprovado, resto) <- submit c.bancoA do exerciseCmd saldo Approve with borrower = c.bancoB; value = 100
+  oferta <- submit c.bancoA do
+    createCmd Offer with
+      admin = c.admin; lender = c.bancoA; borrower = c.bancoB
+      amount = 100; rateCDI = 10000; term = 1
+      expiresAt = addRelTime agora (days 1); fundsCid = aprovado
+  pure (oferta, resto)
+
+-- Ciclo completo: o BRLt vai para o tomador, a posição nasce para o ofertante e o limite cai.
+cicloCompleto : Script ()
+cicloCompleto = do
+  c <- preparar
+  (oferta, _) <- ofertar c c.saldoA
+  (pago, posicao, novoLimite) <- submit c.bancoB do exerciseCmd oferta AcceptOffer with limitCid = c.limiteB
+  Some p <- queryContractId c.bancoB pago
+  p.owner === c.bancoB
+  p.amount === 100
+  Some pos <- queryContractId c.bancoA posicao
+  pos.lender === c.bancoA
+  Some l <- queryContractId c.bancoB novoLimite
+  l.available === 500000000 - 100
+
+-- Privacidade: um terceiro banco não vê a oferta nem a posição.
+privacidade : Script ()
+privacidade = do
+  c <- preparar
+  (oferta, _) <- ofertar c c.saldoA
+  (_, posicao, _) <- submit c.bancoB do exerciseCmd oferta AcceptOffer with limitCid = c.limiteB
+  nada <- queryContractId c.bancoC posicao
+  nada === None
+  ofertasC <- query @Offer c.bancoC
+  ofertasC === []
+
+-- Limite insuficiente: o aceite falha inteiro (nem o BRLt nem a posição saem).
+limiteInsuficiente : Script ()
+limiteInsuficiente = do
+  c <- preparar
+  limiteZero <- submit c.admin do exerciseCmd c.limiteB SetCreditLimit with newLimit = 50
+  (oferta, _) <- ofertar c c.saldoA
+  submitMustFail c.bancoB do exerciseCmd oferta AcceptOffer with limitCid = limiteZero
+  posicoes <- query @CDIPosition c.bancoA
+  posicoes === []
+
+-- Só o tomador indicado aceita (NotEligibleBorrower no Solidity).
+outroTomador : Script ()
+outroTomador = do
+  c <- preparar
+  (oferta, _) <- ofertar c c.saldoA
+  submitMustFail c.bancoC do exerciseCmd oferta AcceptOffer with limitCid = c.limiteB
+
+-- Cancelamento pelo ofertante; depois dele o aceite falha.
+cancelamento : Script ()
+cancelamento = do
+  c <- preparar
+  (oferta, _) <- ofertar c c.saldoA
+  submit c.bancoA do exerciseCmd oferta CancelOffer
+  submitMustFail c.bancoB do exerciseCmd oferta AcceptOffer with limitCid = c.limiteB

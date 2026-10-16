@@ -1,0 +1,90 @@
+{
+  "sepolia": {
+    "nome": "Ethereum Sepolia",
+    "chainId": 11155111,
+    "rpcEnv": "SEPOLIA_RPC_URL",
+    "rpcPadrao": "https://ethereum-sepolia-rpc.publicnode.com",
+    "simbolo": "SepoliaETH",
+    "explorer": "https://sepolia.etherscan.io",
+    "faucets": [
+      "https://cloud.google.com/application/web3/faucet/ethereum/sepolia",
+      "https://www.alchemy.com/faucets/ethereum-sepolia",
+      "https://sepolia-faucet.pk910.de"
+    ],
+    "intervaloConsultaMs": 500,
+    "cobrancaGas": "gasUsed",
+    "mainnet": {
+      "chainId": 1,
+      "rpcEnv": "ETH_MAINNET_RPC_URL",
+      "rpcPadrao": "https://ethereum-rpc.publicnode.com",
+      "coingeckoId": "ethereum"
+    }
+  },
+  "fuji": {
+    "nome": "Avalanche Fuji (C-Chain)",
+    "chainId": 43113,
+    "rpcEnv": "FUJI_RPC_URL",
+    "rpcPadrao": "https://api.avax-test.network/ext/bc/C/rpc",
+    "simbolo": "AVAX",
+    "explorer": "https://testnet.snowtrace.io",
+    "faucets": [
+      "https://build.avax.network/console/primary-network/faucet",
+      "https://core.app/tools/testnet-faucet/?subnet=c&token=c"
+    ],
+    "intervaloConsultaMs": 150,
+    "cobrancaGas": "gasUsed",
+    "mainnet": {
+      "chainId": 43114,
+      "rpcEnv": "AVAX_MAINNET_RPC_URL",
+      "rpcPadrao": "https://api.avax.network/ext/bc/C/rpc",
+      "coingeckoId": "avalanche-2"
+    }
+  },
+  "monad": {
+    "nome": "Monad Testnet",
+    "chainId": 10143,
+    "rpcEnv": "MONAD_RPC_URL",
+    "rpcPadrao": "https://testnet-rpc.monad.xyz",
+    "simbolo": "MON",
+    "explorer": "https://testnet.monadvision.com",
+    "faucets": [
+      "https://faucet.monad.xyz"
+    ],
+    "intervaloConsultaMs": 150,
+    "cobrancaGas": "gasLimit",
+    "mainnet": {
+      "chainId": 143,
+      "rpcEnv": "MONAD_MAINNET_RPC_URL",
+      "rpcPadrao": "https://rpc.monad.xyz",
+      "coingeckoId": "monad"
+    }
+  },
+  "besu": {
+    "nome": "Hyperledger Besu (QBFT local, 4 validadores)",
+    "chainId": 13371,
+    "rpcEnv": "BESU_RPC_URL",
+    "rpcPadrao": "http://127.0.0.1:8545",
+    "simbolo": "ETH (gas grátis)",
+    "faucets": [],
+    "intervaloConsultaMs": 100,
+    "cobrancaGas": "gratis",
+    "validadores": 4
+  },
+  "anvil": {
+    "nome": "Anvil (ensaio local, fora do benchmark)",
+    "chainId": 31337,
+    "rpcEnv": "ANVIL_RPC_URL",
+    "rpcPadrao": "http://127.0.0.1:8546",
+    "simbolo": "ETH",
+    "faucets": [],
+    "intervaloConsultaMs": 50,
+    "cobrancaGas": "gasUsed",
+    "ensaio": true
+  },
+  "canton": {
+    "nome": "Canton (LocalNet)",
+    "cobrancaGas": "conferir",
+    "faucets": [],
+    "ledger": "daml"
+  }
+}

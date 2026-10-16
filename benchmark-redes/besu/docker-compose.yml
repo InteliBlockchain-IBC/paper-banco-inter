@@ -1,0 +1,46 @@
+# Rede Besu QBFT local: 4 validadores. Só o nó 1 expõe o RPC para a máquina (porta 8545).
+x-besu: &besu
+  image: ${BESU_IMAGEM:-hyperledger/besu:26.8.1}
+  user: root
+  restart: unless-stopped
+  entrypoint:
+    - /opt/besu/bin/besu
+    - --data-path=/data
+    - --genesis-file=/config/genesis.json
+    - --min-gas-price=0
+    - --rpc-http-enabled
+    - --rpc-http-host=0.0.0.0
+    - --rpc-http-api=ETH,NET,QBFT,WEB3,TXPOOL
+    - --host-allowlist=*
+    - --rpc-http-cors-origins=all
+    - --rpc-http-max-active-connections=200
+    - --sync-min-peers=3
+    - --logging=INFO
+
+services:
+  no1:
+    <<: *besu
+    command: ["--p2p-host=172.16.239.11"]
+    volumes: ["./rede/no1/data:/data", "./rede/genesis.json:/config/genesis.json:ro"]
+    ports: ["8545:8545"]
+    networks: { besu: { ipv4_address: 172.16.239.11 } }
+  no2:
+    <<: *besu
+    command: ["--p2p-host=172.16.239.12", "--bootnodes=${BOOTNODE}"]
+    volumes: ["./rede/no2/data:/data", "./rede/genesis.json:/config/genesis.json:ro"]
+    networks: { besu: { ipv4_address: 172.16.239.12 } }
+  no3:
+    <<: *besu
+    command: ["--p2p-host=172.16.239.13", "--bootnodes=${BOOTNODE}"]
+    volumes: ["./rede/no3/data:/data", "./rede/genesis.json:/config/genesis.json:ro"]
+    networks: { besu: { ipv4_address: 172.16.239.13 } }
+  no4:
+    <<: *besu
+    command: ["--p2p-host=172.16.239.14", "--bootnodes=${BOOTNODE}"]
+    volumes: ["./rede/no4/data:/data", "./rede/genesis.json:/config/genesis.json:ro"]
+    networks: { besu: { ipv4_address: 172.16.239.14 } }
+
+networks:
+  besu:
+    driver: bridge
+    ipam: { config: [{ subnet: 172.16.239.0/24 }] }

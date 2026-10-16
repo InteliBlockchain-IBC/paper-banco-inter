@@ -2,7 +2,7 @@
 
 **Projeto:** Protocolo de concessão de crédito interfinanceiro (Mockchain)
 **Trilha:** Pesquisa Acadêmica
-**Atualizado em:** 14/10/2026
+**Atualizado em:** 16/10/2026
 **Função deste arquivo:** fonte única das decisões da pesquisa. Quando algo for decidido ou mudar, atualize este arquivo primeiro e depois o paper.
 
 ---
@@ -11,6 +11,8 @@
 
 - Ele resume **o que está decidido** e **o que falta** para terminar o paper.
 - Os detalhes de medição (testes, planilhas, falhas) estão em `docs/roteiro-medicao.md`.
+- Os números medidos, o ranking atual e a sensibilidade estão em `docs/resultados.md`, gerado pelos scripts de `benchmark-redes/`.
+- As pesquisas exploratórias de setembro, que levaram à lista de redes, estão em `docs/pesquisa-redes/`.
 - O texto do artigo está em `paper/template_cotb2027.tex`.
 - Cada afirmação técnica aponta uma fonte entre colchetes, como [R3]. Os links estão na seção 15.
 - Ao mudar algo: atualizar a data no topo e registrar a mudança na seção 14 (Histórico).
@@ -92,9 +94,9 @@ A lista está **fechada**. Incluir ou retirar uma rede depois do cálculo pode i
 |---|---|---|---|---|---|
 | Ethereum | Pública | Sim (rede de origem da EVM) | Testnet Sepolia | Cerca de 16 min após a inclusão no bloco [VERIFICAR título e autoria da nota] | [R23] |
 | Avalanche (C-Chain) | Pública | Sim, executa contratos em Solidity | Testnet Fuji | Probabilística, menos de 1 s | [R17, R24] |
-| Monad | Pública | Declara compatibilidade total com o bytecode da EVM | Testnet pública [CONFERIR] | Declara 800 ms, com bloco a cada 400 ms | [R25] |
-| Hyperledger Besu | Privada (permissionada), montada pela equipe | Sim | Rede local QBFT com 4 validadores | Imediata | [R26] |
-| Canton | [CONFERIR na INTER-17] | Não; contratos em Daml | [CONFERIR na INTER-13] | [CONFERIR] | [R28] |
+| Monad | Pública | Declara compatibilidade total com o bytecode da EVM | Testnet pública, chain ID 10143, no ar em 14/10/2026 [R35] | Declara 600 ms (2 slots), com bloco mínimo de 300 ms; consulta de 14/10/2026 [R36]. Versões anteriores da documentação diziam 800 ms e 400 ms | [R25, R36] |
+| Hyperledger Besu | Privada (permissionada), montada pela equipe | Sim; implantada sem alteração em 14/10/2026 (Besu 26.8.1) | Rede local QBFT com 4 validadores, período de bloco de 2 s, gas grátis [R34] | Imediata | [R26] |
+| Canton | Permissionada: DevNet e TestNet exigem patrocínio de um Super Validator [CONFERIR na INTER-17] | Não; contratos em Daml | [PROPOSTA] LocalNet do `cn-quickstart` (Docker, 8 GB de memória), sem aprovação externa [R39]; confirmar na INTER-13 | [CONFERIR] | [R28, R39] |
 
 **Redes que saíram da lista:** Solana e Stellar (candidatas iniciais) e Miden (sugerida pelo parceiro). [A REGISTRAR: o motivo de cada descarte. Se o paper citar essas redes, o motivo precisa estar escrito.]
 
@@ -235,6 +237,14 @@ Empate (máx = mín): todas as redes recebem r = 1
 
 Evidência para a Sepolia: o guia de integração do time de Web3 registra que qualquer pessoa lê os eventos e que esconder as ofertas é feito só na aplicação [R31].
 
+**Notas atribuídas nessas escalas [PROPOSTA, conferir nas INTER-16 e INTER-17]:**
+
+| Medida | Ethereum | Avalanche | Monad | Besu | Canton | Fonte |
+|---|---|---|---|---|---|---|
+| C2-M1 Verificação formal | 1,0 | 1,0 | 1,0 | 1,0 | 0,5 | Solidity: SMTChecker faz parte do compilador oficial [R37]. Daml: `daml-lf-verify` é experimental, não lançado e só verifica a conservação de um campo [R38] |
+| C2-M3 Confidencialidade | 0,0 | 0,0 | 0,0 | 0,5 | 1,0 | Pública nas três primeiras; Besu permissionada com todos vendo tudo; Canton com privacidade por subtransação [R28] |
+| C5 Compatibilidade EVM | 1,0 | 1,0 [CONFERIR na implantação] | 1,0 [CONFERIR na implantação] | 1,0 (confirmado em 14/10) | 0,0 | Implantações do experimento [R34] |
+
 ### 7.3 Notas dentro de C2 e C4 [PROPOSTA]
 
 ```
@@ -272,9 +282,21 @@ Detalhes completos em `docs/roteiro-medicao.md` (v2).
 | Falhas | Classificadas pelo nome do erro; só falhas da rede (categoria D) contam | [PROPOSTA] | 5 |
 | Latência | Do envio real (depois da estimativa de gas) até o recibo; mediana do T1 entra na matriz | [PROPOSTA] | 3.2, 7 |
 | Custo por transação (EVM) | Gas medido na testnet × preço do gas na mainnet × cotação do token | [PROPOSTA] | 3.3 |
+| Custo na Monad | A Monad cobra o gas limit, e não o gas usado [R35]. O custo da Monad usa o limite enviado (estimativa × 1,2, igual em todas as redes) | [PROPOSTA] | 3.3 |
 | Complexidade | Complexidade ciclomática do código da equipe em `src/`, sem OpenZeppelin; contam `if`, laços, ternário, `&&` e `\|\|`; não contam modificadores | Regra [DECIDIDO C]; métrica [PROPOSTA] | 3.4 |
-| Contagem preliminar | 49 na versão Solidity (24 funções e 25 pontos de decisão) | [CONFERIR na INTER-15] | 3.4 |
+| Contagem Solidity | 49 (24 funções e 25 pontos de decisão), igual à contagem manual; conferida por script em 14/10 [R34] | Conferida; falta o aceite da INTER-15 | 3.4 |
+| Contagem Daml | 24 (9 funções e 15 pontos de decisão) na versão provisória do benchmark; contam `if`, `assert`, `assertMsg`, `ensure`, guardas, alternativas de `case`, `&&` e `\|\|` [R34] | [PROPOSTA]; refazer sobre o código da INTER-13 | 3.4 |
 | Infraestrutura | Três participantes (duas instituições e o admin); 1 nó por participante nas redes públicas; 4 validadores no Besu | Participantes [DECIDIDO E]; nós [PROPOSTA] | 8.4 |
+
+### 8.1 Dados já coletados (14/10/2026)
+
+Scripts, dados brutos e gráficos em `benchmark-redes/` [R34]. Resultados completos e sempre atualizados em `docs/resultados.md`.
+
+| Rede | T1: mediana do `acceptOffer` | T1: p95 e máximo | T1: até 30 s | T2: taxa de sucesso | Gas médio do ciclo | Custo do ciclo |
+|---|---|---|---|---|---|---|
+| Besu (QBFT local, 4 validadores) | 1,96 s | 2,06 s e 2,07 s | 100% | 100% (255 de 255, nenhuma falha) | 422.312 | Zero (gas grátis) |
+
+O gas médio do ciclo (422.312) é menor que o da demonstração na Sepolia (455.420) porque a primeira oferta grava posições vazias do armazenamento [R30]; a média de 30 ciclos já reflete o estado comum. Preço de referência da mainnet às 14:23 UTC: Ethereum 1,106 gwei a US$ 2.433,21; Avalanche 7,544 gwei a US$ 9,85; Monad 103 gwei a US$ 0,0236. Sepolia, Fuji, Monad e Canton ainda não foram medidas.
 
 ---
 
@@ -310,6 +332,10 @@ Reportar a posição de cada rede em cada cenário e se o primeiro lugar muda.
 | 11 | Dados declarados pelas próprias redes (por exemplo, os números da Monad) não foram verificados por terceiros. Gramoli et al. apontam que esses números costumam não ser reproduzíveis | Seção 3; [R17] |
 | 12 | Se Canton ou Monad ficarem sem ambiente de teste, parte dos dados será declarada, e não medida | Roteiro 10 |
 | 13 | O estudo avalia um único protocolo; os resultados valem para este caso de uso | Geral |
+| 14 | A latência do Besu reflete o período de bloco escolhido pela equipe (2 s); outro período mudaria C3 | Seção 8.1 |
+| 15 | Na Monad o custo depende do gas limit que o cliente envia, e não só do trabalho executado | Seção 8 |
+| 16 | O LocalNet da Canton roda numa só máquina, sem rede entre participantes; a latência medida lá é um piso | Seção 3 |
+| 17 | A versão Daml muda o desenho em dois pontos por causa da privacidade: o limite do tomador só é checado no aceite, e a posição é um contrato assinado pelas duas partes. Aceites simultâneos do mesmo tomador disputam o mesmo contrato de limite | Seção 8 |
 
 ---
 
@@ -381,7 +407,7 @@ Template do COTB 2027, trilha de artigo completo.
 | Parâmetros de C1 | 3.2 | Roteiro 4.3 |
 | Escalas de M1 e M3, métrica de M2 e combinação de C2 | 3.2 | Seções 7.2 e 7.3; roteiro 3.4 |
 | Repetições e estatísticas de C3 | 3.2 | Roteiro 4.2 e 7 |
-| Exemplo do Hyperledger Fabric em C4 | 3.2 | Fabric não está na lista. Trocar por uma rede da lista (por exemplo, Besu sem cobrança de gas), com fonte própria [VERIFICAR fonte] |
+| Exemplo do Hyperledger Fabric em C4 | 3.2 | Fabric não está na lista. Trocar pelo Besu sem cobrança de gas, que é a configuração usada no experimento [R40] |
 | Combinação de M1 e M2 em C4 | 3.2 | Seção 7.3 |
 | Nota de cada nível de C5 | 3.2 | Seção 7.2 |
 | Fonte do RI e do limite de 0,10 | 3.2 | Buscar e citar |
@@ -409,6 +435,8 @@ Template do COTB 2027, trilha de artigo completo.
 | Data | Mudança |
 |---|---|
 | 14/10/2026 | Criado. Consolida o rascunho de metodologia, os pesos com cinco critérios, o roteiro de medição v2, a leitura do código do time de Web3 e as decisões A a E. Substitui `contexto-trilha-pesquisa.md` (setembro), `pesos-criterios.md` (seis critérios) e `resumo-equipe-matriz.md` |
+| 14/10/2026 | Incorpora o benchmark (`benchmark-redes/`): finalidade da Monad atualizada pela documentação atual (600 ms, bloco de 300 ms); Monad cobra o gas limit; ambiente proposto para a Canton (LocalNet); notas propostas de C2-M1, C2-M3 e C5 com fontes; contagem Solidity conferida por script (49) e contagem Daml provisória (24); dados medidos do Besu (seção 8.1); ameaças 14 a 17; fonte para o exemplo de rede sem cobrança de gas |
+| 16/10/2026 | Benchmark movido para este repositório (`benchmark-redes/`); pesquisas de setembro movidas para `docs/pesquisa-redes/`; resultados passam a ser gerados em `docs/resultados.md` |
 
 ---
 
@@ -488,3 +516,13 @@ Template do COTB 2027, trilha de artigo completo.
 - [R31] Repositório do time de Web3, `projeto-inter-web3`, commit `3347bf2` (12/10/2026). https://github.com/anacampos-crypto/projeto-inter-web3
 - [R32] Transações da demonstração na Sepolia (06/10/2026): `approve` https://sepolia.etherscan.io/tx/0xac5f8c4b2678129920ef2c91fb677d6c4d3324dc62dc9d63afe23934ecfeb3aa ; `createOffer` https://sepolia.etherscan.io/tx/0x1fcfa5db23515922b644a39fa15cec2dc7203a5d01dddbda212025f6a911467d ; `acceptOffer` https://sepolia.etherscan.io/tx/0xe503d1c3f1dddf19cb0de517e291be9b8be34539c0963243414899782658084f
 - [R33] TAP e cronograma de entregas, no repositório geral do projeto. https://github.com/InteliBlockchain-IBC/projeto-banco-inter
+- [R34] Scripts e dados do benchmark (coletor EVM, rede Besu, modelo Daml, análise), pasta `benchmark-redes/`, 14/10/2026.
+
+**Fontes acrescentadas em 14/10/2026**
+
+- [R35] Monad. Gas Pricing e Testnets. https://docs.monad.xyz/developer-essentials/gas-pricing ; https://docs.monad.xyz/developer-essentials/testnets
+- [R36] Monad. MonadBFT. https://docs.monad.xyz/monad-arch/consensus/monad-bft
+- [R37] Solidity 0.8.24. SMTChecker and Formal Verification. https://docs.soliditylang.org/en/v0.8.24/smtchecker.html
+- [R38] Daml Forum. Formal Verification (ferramenta `daml-lf-verify`). https://discuss.daml.com/t/formal-verification/665
+- [R39] Digital Asset. `cn-quickstart` (LocalNet da Canton). https://github.com/digital-asset/cn-quickstart
+- [R40] Hyperledger Besu. Free gas networks. https://besu.hyperledger.org/private-networks/how-to/configure/free-gas

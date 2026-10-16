@@ -1,0 +1,119 @@
+-- Versão Daml do protocolo de crédito interfinanceiro overnight, para a rodada na Canton (INTER-13).
+-- Espelha src/CreditInterbankOffer.sol com o mesmo ciclo medido: aprovar + ofertar + aceitar.
+-- Os textos das asserções reaproveitam os nomes dos erros do Solidity, para que a classificação de
+-- falhas da seção 5 do roteiro funcione igual nas duas versões.
+--
+-- Diferenças em relação ao Solidity, por causa do modelo de privacidade da Canton:
+--   * O limite do tomador só é checado no aceite. Checar na criação exigiria que o ofertante
+--     visse o limite do tomador, que é justamente o dado que a Canton esconde.
+--   * O cadastro de instituições é o próprio CreditLimit (só o admin cria).
+--   * O NFT de posição é um contrato assinado pelas duas partes, com o admin como observador.
+module CreditInterbank where
+
+-- BRL tokenizado (BRLt), emitido pelo admin, que simula o Banco Central. Valores em centavos.
+template BRLHolding
+  with
+    admin : Party
+    owner : Party
+    amount : Int
+    spender : Optional Party
+  where
+    signatory admin
+    observer owner, spender
+    ensure amount > 0
+
+    -- Equivalente ao approve do ERC-20: separa `value` num contrato que o tomador pode ver e usar.
+    choice Approve : (ContractId BRLHolding, Optional (ContractId BRLHolding))
+      with
+        borrower : Party
+        value : Int
+      controller owner
+      do
+        assertMsg "ERC20InsufficientBalance" (value <= amount)
+        approved <- create this with amount = value; spender = Some borrower
+        rest <- if value < amount
+          then Some <$> create this with amount = amount - value; spender = None
+          else pure None
+        pure (approved, rest)
+
+    choice Transfer : ContractId BRLHolding
+      with
+        newOwner : Party
+      controller owner
+      do create this with owner = newOwner; spender = None
+
+-- Limite de crédito do tomador. Consumido a cada aceite; só o admin recompõe.
+template CreditLimit
+  with
+    admin : Party
+    borrower : Party
+    available : Int
+  where
+    signatory admin
+    observer borrower
+    ensure available >= 0
+
+    choice ConsumeLimit : ContractId CreditLimit
+      with
+        value : Int
+      controller borrower
+      do
+        assertMsg "InsufficientLimit" (value <= available)
+        create this with available = available - value
+
+    choice SetCreditLimit : ContractId CreditLimit
+      with
+        newLimit : Int
+      controller admin
+      do create this with available = newLimit
+
+-- Oferta dirigida a um tomador. Só ofertante e tomador veem a oferta.
+template Offer
+  with
+    admin : Party
+    lender : Party
+    borrower : Party
+    amount : Int
+    rateCDI : Int
+    term : Int
+    expiresAt : Time
+    fundsCid : ContractId BRLHolding
+  where
+    signatory lender
+    observer borrower
+    ensure amount > 0 && rateCDI > 0 && term > 0 && lender /= borrower
+
+    -- DvP: limite, perna financeira e posição na mesma transação; se uma falhar, nada acontece.
+    choice AcceptOffer : (ContractId BRLHolding, ContractId CDIPosition, ContractId CreditLimit)
+      with
+        limitCid : ContractId CreditLimit
+      controller borrower
+      do
+        now <- getTime
+        assertMsg "OfferHasExpired" (now < expiresAt)
+        limit <- fetch limitCid
+        assertMsg "NotRegisteredInstitution" (limit.admin == admin && limit.borrower == borrower)
+        funds <- fetch fundsCid
+        assertMsg "ERC20InsufficientAllowance" (funds.owner == lender && funds.spender == Some borrower && funds.amount == amount)
+        newLimit <- exercise limitCid ConsumeLimit with value = amount
+        paid <- exercise fundsCid Transfer with newOwner = borrower
+        position <- create CDIPosition with admin; lender; borrower; amount; rateCDI; term; settledAt = now
+        pure (paid, position, newLimit)
+
+    choice CancelOffer : ()
+      controller lender
+      do pure ()
+
+-- Posição do ofertante (equivale ao NFT CDIPositionToken).
+template CDIPosition
+  with
+    admin : Party
+    lender : Party
+    borrower : Party
+    amount : Int
+    rateCDI : Int
+    term : Int
+    settledAt : Time
+  where
+    signatory lender, borrower
+    observer admin

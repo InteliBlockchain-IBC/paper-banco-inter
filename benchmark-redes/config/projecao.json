@@ -1,0 +1,17 @@
+{
+  "_leia": "Projeção para as células ainda não medidas. Cada valor é declarado (fonte ao lado) e marcado como tal na matriz. Substituído automaticamente quando a rede é medida.",
+  "fallback_declarado": {
+    "C3_latencia_s": {
+      "sepolia": { "valor": 12.0, "fonte": "https://ethereum.org/developers/docs/consensus-mechanisms/pos/ (slot de 12 s; inclusão em pelo menos um bloco)" },
+      "fuji": { "valor": 1.0, "fonte": "https://docs.avax.network/solutions/performance (finalidade da C-Chain menor que 1 s; no Snowman inclusão = finalidade)" },
+      "monad": { "valor": 0.3, "fonte": "https://docs.monad.xyz/monad-arch/consensus/monad-bft (bloco mínimo de 300 ms)" }
+    },
+    "C1_taxa_sucesso": {
+      "sepolia": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" },
+      "fuji": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" },
+      "monad": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" },
+      "canton": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" }
+    },
+    "C4_M1_ciclo_usd": {}
+  }
+}

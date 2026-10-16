@@ -1,0 +1,45 @@
+{
+  "_leia": "Dados declarados (seção 8.2 do roteiro) e pesos da matriz. Cada nota traz a fonte. Campos com 'conferir' dependem das tarefas INTER-16 e INTER-17.",
+  "pesos": { "C1": 0.2978, "C2": 0.2978, "C3": 0.1578, "C4": 0.1578, "C5": 0.0888 },
+  "redes": ["sepolia", "fuji", "monad", "besu", "canton"],
+  "nomes": {
+    "sepolia": "Ethereum Sepolia",
+    "fuji": "Avalanche Fuji",
+    "monad": "Monad",
+    "besu": "Hyperledger Besu",
+    "canton": "Canton"
+  },
+  "versao_codigo": { "sepolia": "solidity", "fuji": "solidity", "monad": "solidity", "besu": "solidity", "canton": "daml" },
+  "C2_M1_verificacao_formal": {
+    "solidity": { "nota": 1.0, "nivel": "Alto", "fonte": "https://docs.soliditylang.org/en/v0.8.24/smtchecker.html", "nota_fonte": "SMTChecker faz parte do compilador oficial, documentado e mantido" },
+    "daml": { "nota": 0.5, "nivel": "Médio", "fonte": "https://discuss.daml.com/t/formal-verification/665", "nota_fonte": "daml-lf-verify é experimental, não lançado e limitado à conservação de um campo" }
+  },
+  "C2_M3_confidencialidade": {
+    "sepolia": { "nota": 0.0, "nivel": "Baixo", "fonte": "docs/guia-integracao.md do projeto: qualquer pessoa lê os eventos na Sepolia" },
+    "fuji": { "nota": 0.0, "nivel": "Baixo", "fonte": "C-Chain pública" },
+    "monad": { "nota": 0.0, "nivel": "Baixo", "fonte": "docs/pesquisa-redes/pesquisa-monad-canton-miden.md, seção 3.4" },
+    "besu": { "nota": 0.5, "nivel": "Médio", "fonte": "https://besu.hyperledger.org/private-networks/concepts/permissioning; Tessera marcado como deprecated (docs/pesquisa-redes/pesquisa-solana-besu-ethereum.md)" },
+    "canton": { "nota": 1.0, "nivel": "Alto", "fonte": "https://www.canton.network/developer-resources (privacidade por subtransação)" }
+  },
+  "C5_compatibilidade_evm": {
+    "sepolia": { "nota": 1.0, "fonte": "implantação de 05/10/2026 e nova implantação do experimento" },
+    "fuji": { "nota": 1.0, "fonte": "confirmar na implantação (decisão D)", "conferir": true },
+    "monad": { "nota": 1.0, "fonte": "confirmar na implantação (decisão D)", "conferir": true },
+    "besu": { "nota": 1.0, "fonte": "implantado sem alteração em 14/10/2026 (Besu 26.8.1, QBFT, Cancun no gênesis)" },
+    "canton": { "nota": 0.0, "fonte": "contrato reescrito em Daml (Zenith EVM ainda em testnet permissionada)" }
+  },
+  "C2_M2_complexidade": {
+    "solidity": { "m_total": 49, "fonte": "analise/complexidade.py sobre src/ do commit 3347bf2" },
+    "daml": { "m_total": null, "fonte": "analise/complexidade.py sobre canton/daml (versão provisória; contar a da INTER-13)", "conferir": true }
+  },
+  "C4_M2_infra_usd_mes": {
+    "_leia": "custo mensal = preço por hora × 730 × número de nós (seção 8.4). Preencher na INTER-16/17 com provedor, instância, região e data.",
+    "sepolia": null, "fuji": null, "monad": null, "besu": null, "canton": null
+  },
+  "fallback_declarado": {
+    "_leia": "Usados só quando a rede não foi medida (plano alternativo, seção 10). Cada valor marca a célula como 'declarado'.",
+    "C3_latencia_s": {},
+    "C4_M1_ciclo_usd": {},
+    "C1_taxa_sucesso": {}
+  }
+}
