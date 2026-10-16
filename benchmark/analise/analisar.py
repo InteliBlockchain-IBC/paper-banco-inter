@@ -121,14 +121,17 @@ def main(argv=None):
 
     saida = Path(a.saida)
     saida.mkdir(parents=True, exist_ok=True)
-    lider = sens[0]["ordem"][0]
+    medidas = {r for r in redes if detalhes[r]["latencia_t1"].get("n") or detalhes[r]["taxa_sucesso_t2"].get("n")}
+    projetadas = {r for r in redes if brutos["C3"].get(r) is not None and brutos["C4M1"].get(r) is not None}
+    origem = {r: bm.origem_rede(r, r in medidas, r in projetadas) for r in redes}
+    ambiente = {r: bm.AMBIENTE.get(r, "local") for r in redes}
     pasta_graficos = saida / "graficos"
     pasta_graficos.mkdir(parents=True, exist_ok=True)
-    graficos.latencia_t1({r: bm.latencias_aceite_t1(df, r) for r in redes} if not df.empty else {}, nomes, lider, pasta_graficos / "latencia_t1.png")
-    graficos.custo_ciclo(brutos["C4M1"], origens["C4M1"], nomes, pasta_graficos / "custo_ciclo.png")
-    graficos.sucesso_por_lote({r: detalhes[r]["taxa_por_lote"] for r in redes}, nomes, pasta_graficos / "sucesso_t2.png")
-    graficos.ranking(pontos, nomes, pesos, pasta_graficos / "ranking.png")
-    graficos.sensibilidade(sens, nomes, pasta_graficos / "sensibilidade.png")
+    graficos.latencia_t1({r: bm.latencias_aceite_t1(df, r) if not df.empty else [] for r in redes}, nomes, origem, pasta_graficos / "latencia_t1.png")
+    graficos.custo_ciclo(brutos["C4M1"], origens["C4M1"], ambiente, nomes, pasta_graficos / "custo_ciclo.png")
+    graficos.sucesso_por_lote({r: detalhes[r]["taxa_por_lote"] for r in redes}, nomes, origem, pasta_graficos / "sucesso_t2.png")
+    graficos.ranking(pontos, nomes, origem, pasta_graficos / "ranking.png")
+    graficos.sensibilidade(sens, nomes, origem, pasta_graficos / "sensibilidade.png")
 
     resumo = {
         "gerado_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -140,6 +143,7 @@ def main(argv=None):
         "medidas": {k: {r: {"valor": v.valor, "origem": v.origem} for r, v in cel.items()} for k, cel in matriz.medidas.items()},
         "pontuacao": pontos,
         "sensibilidade": [{k: v for k, v in l.items() if k != "pesos"} for l in sens],
+        "origem_por_rede": origem,
         "detalhes": detalhes,
     }
     (saida / "resumo.json").write_text(json.dumps(resumo, indent=2, ensure_ascii=False, default=float))
@@ -147,7 +151,7 @@ def main(argv=None):
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(relatorio.gerar(
         redes=redes, nomes=nomes, detalhes=detalhes, matriz=matriz, pontos=pontos, sens=sens, precos=precos,
-        origens=origens, pesos=pesos, projecao=projecao, pasta_dados=Path(a.dados), pasta_imagens=pasta_graficos, destino=destino,
+        origens=origens, origem_rede=origem, pesos=pesos, projecao=projecao, pasta_dados=Path(a.dados), pasta_imagens=pasta_graficos, destino=destino,
     ))
     lider = sens[0]["ordem"]
     print(f"Ranking: " + " > ".join(f"{nomes[r]} {(pontos[r]['minimo'] + pontos[r]['maximo']) / 2:.1f}" for r in lider))

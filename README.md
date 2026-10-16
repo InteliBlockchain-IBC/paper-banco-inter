@@ -47,21 +47,40 @@ benchmark espera encontrar ao lado deste.
 
 ## Situação em 16/10/2026
 
+Todo número do projeto diz de onde veio:
+
+| Etiqueta | Origem | Redes hoje |
+|---|---|---|
+| `LOCAL` | Medido em rede local, montada pela equipe na própria máquina (Docker) | Hyperledger Besu |
+| `TESTNET` | Medido em testnet pública | nenhuma ainda (Sepolia, Fuji e Monad aguardam coleta) |
+| `PROJEÇÃO` | Sem teste: documentação oficial, custo calculado com o gas da rede local e hipótese de 100% de sucesso | Ethereum, Avalanche, Monad |
+| `A MEDIR` | Sem teste nem valor provisório; pontuação em faixa | Canton |
+
 | Etapa | Situação |
 |---|---|
 | Critérios, pesos e método | Decididos |
 | Roteiro de medição | Pronto (v2) |
 | Código de coleta e análise | Pronto e testado (27 testes) |
-| Hyperledger Besu | Medido em 14/10 |
-| Sepolia, Fuji e Monad | Aguardando coleta (precisa da chave com faucet em `benchmark/.env`) |
-| Canton | Aguardando LocalNet; modelo Daml escrito, ainda não compilado |
+| Hyperledger Besu (rede local) | `LOCAL` medido em 14/10 |
+| Canton (rede local) | `A MEDIR`: aguardando LocalNet; modelo Daml escrito, ainda não compilado |
+| Sepolia, Fuji e Monad (testnets) | `PROJEÇÃO` até a coleta; precisa da chave com faucet em `benchmark/.env` |
 | Custo de infraestrutura (C4-M2) | Não levantado (INTER-16 e INTER-17) |
-| Resumo executivo | Rascunho, aguardando o ranking final |
+| Resumo executivo | Versão preliminar, com lugares marcados para os dados de testnet |
 | Prazos | Paper em 17/10/2026 · demo day em 21/10/2026 |
 
-**Resultado preliminar:** Hyperledger Besu em 1º (82,9 pontos), Monad 80,1, Avalanche 78,8 e
-Ethereum 48,6. A Canton fica entre 54,6 e 86,2 até ser medida. Só o Besu tem dados medidos; as
-demais redes usam valores declarados.
+**Resultado preliminar:**
+
+| Posição | Rede | Origem | Pontuação |
+|---|---|---|---|
+| 1 | Hyperledger Besu | `LOCAL` | 82,9 |
+| 2 | Monad | `PROJEÇÃO` | 80,1 |
+| 3 | Avalanche | `PROJEÇÃO` | 78,8 |
+| 4 | Canton | `A MEDIR` | 54,6 a 86,2 |
+| 5 | Ethereum | `PROJEÇÃO` | 48,6 |
+
+Só o Besu tem números medidos. O ranking muda para todas as redes quando qualquer uma é coletada,
+porque as notas são relativas entre as cinco. Detalhes em
+[`pesquisa/3-resultados/resultados.md`](pesquisa/3-resultados/resultados.md).
 
 ## Próximos passos
 

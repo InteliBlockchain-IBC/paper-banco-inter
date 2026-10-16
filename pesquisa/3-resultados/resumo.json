@@ -1,5 +1,5 @@
 {
-  "gerado_utc": "2026-10-16T13:57:28+00:00",
+  "gerado_utc": "2026-10-16T14:06:42+00:00",
   "pesos": {
     "C1": 0.2978,
     "C2": 0.2978,
@@ -699,6 +699,13 @@
       "primeiro_mudou": false
     }
   ],
+  "origem_por_rede": {
+    "sepolia": "projetado",
+    "fuji": "projetado",
+    "monad": "projetado",
+    "besu": "local",
+    "canton": "pendente"
+  },
   "detalhes": {
     "sepolia": {
       "latencia_t1": {

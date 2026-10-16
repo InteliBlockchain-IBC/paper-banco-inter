@@ -288,15 +288,30 @@ Detalhes completos em `pesquisa/2-metodo/roteiro-medicao.md` (v2).
 | Contagem Daml | 24 (9 funções e 15 pontos de decisão) na versão provisória do benchmark; contam `if`, `assert`, `assertMsg`, `ensure`, guardas, alternativas de `case`, `&&` e `\|\|` [R34] | [PROPOSTA]; refazer sobre o código da INTER-13 | 3.4 |
 | Infraestrutura | Três participantes (duas instituições e o admin); 1 nó por participante nas redes públicas; 4 validadores no Besu | Participantes [DECIDIDO E]; nós [PROPOSTA] | 8.4 |
 
-### 8.1 Dados já coletados (14/10/2026)
+### 8.1 Dados coletados e origem de cada número
 
 Scripts em `benchmark/`, dados brutos em `dados/` e gráficos em `pesquisa/3-resultados/graficos/` [R34]. Resultados completos e sempre atualizados em `pesquisa/3-resultados/resultados.md`.
 
-| Rede | T1: mediana do `acceptOffer` | T1: p95 e máximo | T1: até 30 s | T2: taxa de sucesso | Gas médio do ciclo | Custo do ciclo |
-|---|---|---|---|---|---|---|
-| Besu (QBFT local, 4 validadores) | 1,96 s | 2,06 s e 2,07 s | 100% | 100% (255 de 255, nenhuma falha) | 422.312 | Zero (gas grátis) |
+Todo número do paper precisa dizer de onde veio. São quatro origens:
 
-O gas médio do ciclo (422.312) é menor que o da demonstração na Sepolia (455.420) porque a primeira oferta grava posições vazias do armazenamento [R30]; a média de 30 ciclos já reflete o estado comum. Preço de referência da mainnet às 14:23 UTC: Ethereum 1,106 gwei a US$ 2.433,21; Avalanche 7,544 gwei a US$ 9,85; Monad 103 gwei a US$ 0,0236. Sepolia, Fuji, Monad e Canton ainda não foram medidas.
+| Etiqueta | Origem | O que significa |
+|---|---|---|
+| `LOCAL` | Medido em rede local | A equipe rodou o contrato numa rede montada na própria máquina (Docker): Besu e, depois, o LocalNet da Canton. Mede o protocolo, mas sem tráfego de terceiros nem latência de internet |
+| `TESTNET` | Medido em testnet | A equipe rodou o contrato na testnet pública: Sepolia, Fuji e Monad |
+| `PROJEÇÃO` | Projeção, sem teste | Valor da documentação oficial, custo calculado com o gas medido na rede local, ou hipótese (100% de sucesso), usado no lugar da medição |
+| `A MEDIR` | A medir | Sem teste e sem valor provisório; a pontuação aparece como faixa |
+
+| Rede | Ambiente | Origem hoje | T1: mediana do `acceptOffer` | T1: p95 e máximo | T1: até 30 s | T2: taxa de sucesso | Gas médio do ciclo | Custo do ciclo | Coletado em |
+|---|---|---|---|---|---|---|---|---|---|
+| Hyperledger Besu | Rede local (QBFT, 4 validadores) | `LOCAL` | 1,96 s | 2,06 s e 2,07 s | 100% | 100% (255 de 255) | 422.312 | Zero (gas grátis) | 14/10/2026 |
+| Canton | Rede local (LocalNet) | `A MEDIR` | — | — | — | — | sem gas | — | aguardando |
+| Ethereum Sepolia | Testnet pública | `PROJEÇÃO` | — | — | — | — | — | — | aguardando |
+| Avalanche Fuji | Testnet pública | `PROJEÇÃO` | — | — | — | — | — | — | aguardando |
+| Monad | Testnet pública | `PROJEÇÃO` | — | — | — | — | — (gas limit) | — | aguardando |
+
+As linhas com "—" recebem os números da coleta; até lá, a matriz usa os valores provisórios listados em cada ficha de `pesquisa/3-resultados/resultados.md`.
+
+O gas médio do ciclo (422.312) é menor que o da demonstração na Sepolia (455.420) porque a primeira oferta grava posições vazias do armazenamento [R30]; a média de 30 ciclos já reflete o estado comum. Preço de referência da mainnet às 14:23 UTC de 14/10/2026: Ethereum 1,106 gwei a US$ 2.433,21; Avalanche 7,544 gwei a US$ 9,85; Monad 103 gwei a US$ 0,0236.
 
 ---
 
@@ -438,6 +453,7 @@ Template do COTB 2027, trilha de artigo completo.
 | 14/10/2026 | Incorpora o benchmark (`benchmark-redes/`): finalidade da Monad atualizada pela documentação atual (600 ms, bloco de 300 ms); Monad cobra o gas limit; ambiente proposto para a Canton (LocalNet); notas propostas de C2-M1, C2-M3 e C5 com fontes; contagem Solidity conferida por script (49) e contagem Daml provisória (24); dados medidos do Besu (seção 8.1); ameaças 14 a 17; fonte para o exemplo de rede sem cobrança de gas |
 | 16/10/2026 | Benchmark movido para este repositório (`benchmark-redes/`); pesquisas de setembro movidas para `docs/pesquisa-redes/`; resultados passam a ser gerados em `docs/resultados.md` |
 | 16/10/2026 | Repositório reorganizado por função: `pesquisa/` (1-redes-candidatas, 2-metodo com este arquivo e o roteiro, 3-resultados), `entregas/` (resumo executivo), `dados/` (coletas brutas) e `benchmark/` (código) |
+| 16/10/2026 | Seção 8.1 passa a marcar a origem de cada número (rede local, testnet, projeção ou a medir), com linhas reservadas para as testnets e a Canton |
 
 ---
 

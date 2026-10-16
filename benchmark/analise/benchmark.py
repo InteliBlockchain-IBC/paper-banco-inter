@@ -38,6 +38,28 @@ NOMES_CRITERIOS = {
     "C4": "Custo",
     "C5": "Compatibilidade EVM",
 }
+# Tipo de ambiente de cada rede no experimento.
+AMBIENTE = {"sepolia": "testnet", "fuji": "testnet", "monad": "testnet", "besu": "local", "canton": "local", "anvil": "local"}
+
+# Origem dos números de uma rede, do mais forte para o mais fraco.
+#   local      medido pela equipe numa rede montada na própria máquina (Besu, LocalNet da Canton)
+#   testnet    medido pela equipe numa testnet pública (Sepolia, Fuji, Monad)
+#   projetado  sem teste: valores da documentação oficial e hipóteses, no lugar da medição
+#   pendente   sem teste e sem valor provisório: entra na pontuação como faixa
+ROTULO_ORIGEM = {
+    "local": "medido em rede local",
+    "testnet": "medido em testnet",
+    "projetado": "projeção, sem teste",
+    "pendente": "a medir",
+}
+
+
+def origem_rede(rede: str, medido: bool, tem_projecao: bool) -> str:
+    if medido:
+        return AMBIENTE.get(rede, "local")
+    return "projetado" if tem_projecao else "pendente"
+
+
 LIMITE_RNF02_S = 30.0
 MARCA_HORARIO_BLOCO = "horário do bloco"
 FUNCOES_CICLO = ["approve", "createOffer", "acceptOffer"]

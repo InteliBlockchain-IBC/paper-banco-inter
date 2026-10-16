@@ -116,6 +116,12 @@ Lê tudo o que está em `../dados/`, usa valores medidos onde existem e, nas red
 os valores de `config/projecao.json` (marcados como declarados, projetados ou hipótese). Regera
 `../pesquisa/3-resultados/` (resultados.md, resumo.json e graficos/). Rode depois de cada coleta.
 
+Gráficos e relatório marcam a origem de cada rede: `LOCAL` (medido em rede local: Besu e Canton),
+`TESTNET` (medido em testnet: Sepolia, Fuji e Monad), `PROJEÇÃO` (sem teste: documentação oficial e
+hipóteses de `config/projecao.json`) e `A MEDIR` (faixa de pontuação). Nos gráficos, barra sólida =
+medido; clara e hachurada = projeção; contorno tracejado = a medir. Quando uma testnet é coletada,
+os valores medidos substituem a projeção automaticamente, sem mexer na configuração.
+
 ## Testes
 
 ```bash
