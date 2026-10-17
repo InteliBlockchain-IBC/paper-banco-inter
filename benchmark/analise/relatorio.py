@@ -117,7 +117,7 @@ def _ficha(r, nome, d, meta, matriz, origens, origem, projecao, dados_rel) -> li
     return L
 
 
-def gerar(*, redes, nomes, detalhes, matriz, pontos, sens, precos, origens, origem_rede, pesos, projecao, pasta_dados, pasta_imagens, destino: Path) -> str:
+def gerar(*, redes, nomes, detalhes, matriz, pontos, sens, precos, origens, origem_rede, pesos, projecao, pasta_dados, pasta_imagens, destino: Path, alternativas=None) -> str:
     meta = carregar_metadados(pasta_dados)
     img = os.path.relpath(pasta_imagens, destino.parent)
     dados_rel = os.path.relpath(pasta_dados, destino.parent)
@@ -180,6 +180,18 @@ def gerar(*, redes, nomes, detalhes, matriz, pontos, sens, precos, origens, orig
           f"O primeiro lugar muda em {len(mudou)} de {len(sens)} cenários" + (f": {', '.join(mudou)}." if mudou else ".") +
           " Enquanto houver projeção, a sensibilidade também é preliminar.", ""]
 
+    if alternativas:
+        meio = lambda p: (p["minimo"] + p["maximo"]) / 2
+        fmt_p = lambda p: _n(p["minimo"], 1) if p["completo"] else f"{_n(p['minimo'], 1)} a {_n(p['maximo'], 1)}"
+        base = sorted(redes, key=lambda r: -meio(pontos[r]))
+        L += ["## Escolhas de método que podem mudar a conclusão", "",
+              "O ranking refeito com cada alternativa (pesos do cenário base):", "",
+              "| Escolha | 1º lugar | Pontuação por rede |", "|---|---|---|",
+              f"| **Adotada** (roteiro) | {nomes[base[0]]} | " + "; ".join(f"{nomes[r]} {fmt_p(pontos[r])}" for r in base) + " |"]
+        for alt in alternativas:
+            ordem = sorted(redes, key=lambda r: -meio(alt["pontos"][r]))
+            L.append(f"| {alt['descricao']} | {nomes[ordem[0]]} | " + "; ".join(f"{nomes[r]} {fmt_p(alt['pontos'][r])}" for r in ordem) + " |")
+        L.append("")
     L += ["## Custo por ciclo a preços da mainnet (C4-M1)", "", f"![Custo por ciclo]({img}/custo_ciclo.png)", "",
           "| Rede | Origem do custo | Gas cobrado por ciclo | Preço de referência | Cotação | Custo do ciclo |", "|---|---|---|---|---|---|"]
     for r in redes:
@@ -189,13 +201,35 @@ def gerar(*, redes, nomes, detalhes, matriz, pontos, sens, precos, origens, orig
         rot = (f"{MARCA[bm.AMBIENTE.get(r, 'local')]} {bm.ROTULO_ORIGEM[bm.AMBIENTE.get(r, 'local')]}" if oc == "medido"
                else f"{MARCA['projetado']} projeção (gas medido em {c.get('projetado_com_gas_de', 'outra rede')})" if oc == "projetado"
                else f"{MARCA['pendente']} a medir")
-        L.append(f"| {nomes[r]} | {rot} | {_n(c.get('ciclo_gas_medio'), 0)} | {_n(p['gas_preco_wei'] / 1e9, 3) + ' gwei' if p else '—'} | "
+        gas_ciclo = "sem gas" if r == "canton" else _n(c.get("ciclo_gas_medio"), 0)
+        L.append(f"| {nomes[r]} | {rot} | {gas_ciclo} | {_n(p['gas_preco_wei'] / 1e9, 3) + ' gwei' if p else '—'} | "
                  f"{'US$ ' + _n(p['cotacao_usd'], 2 if p['cotacao_usd'] >= 1 else 4) if p.get('cotacao_usd') else '—'} | "
                  f"{'US$ ' + _n(matriz.brutos['C4M1'].get(r), 5) if matriz.brutos['C4M1'].get(r) is not None else '—'} |")
     janela = next(iter(precos.values()), {}).get("janela") if precos else None
     if janela:
         L += ["", f"Preços: mediana de {next(iter(precos.values()))['amostras']} amostra(s) entre {janela[0][:16]} e {janela[1][:16]} UTC (eth_feeHistory e CoinGecko)."]
 
+    # Sepolia pós-Glamsterdam: gas da testnet × gas pelas regras atuais da mainnet (medido no Besu).
+    cs, cb = detalhes.get("sepolia", {}).get("custo") or {}, detalhes.get("besu", {}).get("custo") or {}
+    ps = precos.get("sepolia") or {}
+    if cs.get("gas_por_funcao") and not cs.get("projetado_com_gas_de") and cb.get("gas_por_funcao") and ps.get("cotacao_usd"):
+        usd = lambda g: g * ps["gas_preco_wei"] / 1e18 * ps["cotacao_usd"]
+        L += ["", "### Ethereum: gas da Sepolia × regras atuais da mainnet", "",
+              "A Sepolia ativou o Glamsterdam em 06/10/2026, que encarece a criação de estado (contas, posições de "
+              "armazenamento e código). A mainnet ainda usa as regras anteriores. O roteiro (seção 3.3) supõe o mesmo gas "
+              "na testnet e na mainnet; para a Ethereum essa premissa deixou de valer durante este estudo.", "",
+              "| Função | Gas na Sepolia (Glamsterdam) | Gas pelas regras atuais da mainnet (Besu) | Razão |", "|---|---|---|---|"]
+        for f in ["approve", "createOffer", "acceptOffer", "cancelOffer"]:
+            gs, gb = cs["gas_por_funcao"].get(f), cb["gas_por_funcao"].get(f)
+            if gs and gb:
+                L.append(f"| `{f}` | {_n(gs, 0)} | {_n(gb, 0)} | {_n(gs / gb, 2)}× |")
+        gs, gb = cs.get("ciclo_gas_medio"), cb.get("ciclo_gas_medio")
+        if gs and gb:
+            L += [f"| **Ciclo completo** | **{_n(gs, 0)}** | **{_n(gb, 0)}** | **{_n(gs / gb, 2)}×** |", "",
+                  f"Custo do ciclo a preços da mainnet: US$ {_n(usd(gs), 4)} com o gas da Sepolia (valor usado na matriz, como manda o roteiro) "
+                  f"e US$ {_n(usd(gb), 4)} com as regras atuais da mainnet. A Ethereum é a rede mais cara nos dois casos, então "
+                  "a nota dela em C4-M1 é 0 nos dois e a ordem do ranking não muda; mudam o valor absoluto citado no artigo e, um pouco, "
+                  "as notas de custo das outras redes (ver \"Escolhas de método\")."]
     L += ["", "## Latência e taxa de sucesso medidas", "",
           f"![Latência no T1]({img}/latencia_t1.png)", "", f"![Taxa de sucesso no T2]({img}/sucesso_t2.png)", "",
           "Os dois gráficos só mostram redes medidas; as testnets e a Canton entram neles depois da coleta.", ""]

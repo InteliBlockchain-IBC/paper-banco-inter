@@ -1,0 +1,36 @@
+{
+  "rede": "canton",
+  "nome": "Canton",
+  "ambiente": "dpm sandbox: participante, sequencer e mediator num processo local",
+  "api": "http://localhost:3975",
+  "tipo_rpc": "JSON Ledger API v2 local, sem autenticação",
+  "versao_cliente": "Canton 3.6.1",
+  "maquina": {
+    "hostname": "cryptovictor-ThinkPad-E16-Gen-1",
+    "plataforma": "linux 6.17.0-14-generic",
+    "cpus": 12
+  },
+  "pacote": "#credit-interbank",
+  "plano": {
+    "ciclosT1": 30,
+    "cancelamentosT1": 10,
+    "lotesT2": [
+      10,
+      25,
+      50
+    ],
+    "rodadasT2": 3
+  },
+  "tempo_limite_s": 300,
+  "janelas": {
+    "T1": {
+      "inicio_utc": "2026-10-16T22:54:23.382Z",
+      "fim_utc": "2026-10-16T22:55:06.707Z"
+    },
+    "T2": {
+      "inicio_utc": "2026-10-16T22:58:10.305Z",
+      "fim_utc": "2026-10-16T22:58:33.991Z"
+    }
+  },
+  "n_tomadores_t2": 50
+}

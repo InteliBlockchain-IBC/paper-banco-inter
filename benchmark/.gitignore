@@ -5,3 +5,5 @@ redes-locais/besu/rede/
 redes-locais/canton/.daml/
 __pycache__/
 .pytest_cache/
+.env.*
+!.env.example

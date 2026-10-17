@@ -1,0 +1,77 @@
+{
+  "rede": "fuji",
+  "nome": "Avalanche Fuji (C-Chain)",
+  "chainId": 43113,
+  "rpc": "https://api.avax-test.network/ext/bc/C/rpc",
+  "tipo_rpc": "público gratuito",
+  "maquina": {
+    "hostname": "cryptovictor-ThinkPad-E16-Gen-1",
+    "plataforma": "linux 6.17.0-14-generic",
+    "cpus": 12,
+    "regiao": ""
+  },
+  "contratos": {
+    "BRLToken": "0x5E4A24118CF20679A3D7a8edEb8F872abCFB1348",
+    "CDIPositionToken": "0x056ba509FBEC12c41efe1B821111cE11FdE76491",
+    "CreditInterbankOffer": "0x16b1f7937096C80F715b84F96E97e42d33507A3c",
+    "bloco_implantacao": 59573609
+  },
+  "codigo": {
+    "commit": "3347bf2",
+    "solc": "0.8.24",
+    "otimizador_runs": 200,
+    "openzeppelin": "5.4.0",
+    "config": "script/config/fuji.json"
+  },
+  "contas": {
+    "admin": "0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f",
+    "ofertante": "0x0714384FEEd16A7b9F04abD52aAfE65A27E8bA73",
+    "tomador": "0x0E30bA2027EC5B941323cf1A2780aafE1Fe46062",
+    "tomadores_t2": [
+      "0xC1Ec116739229107999088eB223f9F5205312F04",
+      "0x638f296941eA48eC43707B5770bF7abe2c1fd6E7",
+      "0xf0436Dd0B4de002560b32eFB7C2B9EdCcc6676f3",
+      "0x454f2a44597F69BD9e3AA03a460Ee1E9fA9E3f70",
+      "0x50205908901F23867fd14FF40438de8d5Dc2bf72",
+      "0xCAD137c7E4416C5970dFe413940f6953B50c426D",
+      "0x872CcB39319094aA19b264d755356E280acE8B37",
+      "0x71D64314BFDFb315Ecf49336d1b896221e560bf0",
+      "0xffB0E4cE56cEc041E9bF52Df50c56785175b47a9",
+      "0x1B5E0e65B1F401377d4c0BD16C0d357Cd41dc62d"
+    ]
+  },
+  "n_tomadores_t2": 10,
+  "versao_cliente": "avalanchego/1.15.1 [database=v1.4.5, rpcchainvm=46, commit=fdb2c1b9b02ef357b5867d5ababb6acc83837a01, go=1.26.8]",
+  "validadores": null,
+  "plano": {
+    "ciclosT1": 30,
+    "cancelamentosT1": 10,
+    "lotesT2": [
+      10,
+      25,
+      50
+    ],
+    "rodadasT2": 3
+  },
+  "multiplicador_gas": 1.2,
+  "tempo_limite_s": 300,
+  "intervalo_consulta_ms": 150,
+  "cobranca_gas": "gasUsed",
+  "janelas": {
+    "T1": {
+      "inicio_utc": "2026-10-16T22:41:55.804Z",
+      "fim_utc": "2026-10-16T22:49:03.214Z"
+    },
+    "T2": {
+      "inicio_utc": "2026-10-16T22:50:47.477Z",
+      "fim_utc": "2026-10-16T22:52:44.808Z"
+    }
+  },
+  "erros_consulta_blocos": 0,
+  "pausas_observador": [
+    {
+      "de": "2026-10-16T22:51:28.154Z",
+      "ate": "2026-10-16T22:52:34.202Z"
+    }
+  ]
+}

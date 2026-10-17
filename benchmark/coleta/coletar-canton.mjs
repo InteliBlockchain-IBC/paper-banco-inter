@@ -12,17 +12,20 @@
 //   3. Variáveis no .env: CANTON_API (ex.: http://localhost:3975), CANTON_TOKEN, CANTON_USER_ID.
 // Uso:
 //   node coleta/coletar-canton.mjs [--teste T1|T2|todos] [--reduzida]
+import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { ArquivoCsv, PASTA_DADOS, argumentos, dataUtc, esperar, isoMs } from './lib/comum.mjs';
 import { PLANOS, totalAceitesT2 } from './coletar-evm.mjs';
 import { ERROS_CONTRATO } from './lib/falhas.mjs';
 
-const API = process.env.CANTON_API ?? 'http://localhost:3975';
-const TOKEN = process.env.CANTON_TOKEN ?? '';
-const USUARIO = process.env.CANTON_USER_ID ?? 'participant_admin';
-const PACOTE = process.env.CANTON_PACOTE ?? '#credit-interbank';
-const TEMPO_LIMITE_MS = Number(process.env.TEMPO_LIMITE_S ?? 300) * 1000;
+const API = process.env.CANTON_API || 'http://localhost:3975';
+const TOKEN = process.env.CANTON_TOKEN || '';
+const USUARIO = process.env.CANTON_USER_ID || 'participant_admin';
+// Atenção: no .env o valor precisa de aspas ("#credit-interbank"); sem elas o dotenv lê o # como comentário.
+const PACOTE = process.env.CANTON_PACOTE || '#credit-interbank';
+const TEMPO_LIMITE_MS = Number(process.env.TEMPO_LIMITE_S || 300) * 1000;
 const tpl = (nome) => `${PACOTE}:CreditInterbank:${nome}`;
 
 // Categorias da seção 5 a partir do código de erro da Canton.
@@ -33,7 +36,10 @@ export function classificarCanton(status, corpo) {
     return { categoria: 'A', nome: texto.match(/[A-Z_]{8,}/)?.[0] ?? 'contrato inativo' };
   }
   if (status === 429 || /RESOURCE_EXHAUSTED|PARTICIPANT_BACKPRESSURE/.test(texto)) return { categoria: 'C', nome: texto.match(/[A-Z_]{8,}/)?.[0] ?? `HTTP ${status}` };
-  if (status === 401 || status === 403 || /PERMISSION_DENIED|UNAUTHENTICATED|INVALID_ARGUMENT/.test(texto)) return { categoria: 'B', nome: texto.match(/[A-Z_]{8,}/)?.[0] ?? `HTTP ${status}` };
+  if (status === 401 || status === 403 || /PERMISSION_DENIED|UNAUTHENTICATED|INVALID_ARGUMENT/.test(texto)) {
+    const causa = typeof corpo === 'object' && corpo?.cause ? `: ${String(corpo.cause).slice(0, 120)}` : '';
+    return { categoria: 'B', nome: `${texto.match(/[A-Z_]{8,}/)?.[0] ?? `HTTP ${status}`}${causa}` };
+  }
   if (/SUBMISSION_TIMEOUT|REQUEST_TIME_OUT|TIMEOUT|SEQUENCER_.*UNAVAILABLE|NOT_SEQUENCED/i.test(texto)) return { categoria: 'D', nome: texto.match(/[A-Z_]{8,}/)?.[0] ?? 'tempo limite' };
   return { categoria: 'X', nome: texto.slice(0, 160) };
 }
@@ -129,6 +135,23 @@ async function main() {
   const preparo = new ArquivoCsv(path.join(a.saida ?? PASTA_DADOS, `preparo_canton_${dia}.csv`));
   const versao = await chamar('/v2/version', undefined, 'GET');
   console.log('Ledger API:', versao.status, JSON.stringify(versao.json).slice(0, 120));
+  const arquivoMeta = path.join(a.saida ?? PASTA_DADOS, `metadados_canton_${dia}.json`);
+  const janelas = {};
+  const gravarMeta = (extra = {}) => fs.writeFileSync(arquivoMeta, `${JSON.stringify({
+    rede: 'canton',
+    nome: 'Canton',
+    ambiente: process.env.CANTON_AMBIENTE || 'dpm sandbox: participante, sequencer e mediator num processo local',
+    api: API,
+    tipo_rpc: 'JSON Ledger API v2 local, sem autenticação',
+    versao_cliente: `Canton ${versao.json?.version ?? '?'}`,
+    maquina: { hostname: os.hostname(), plataforma: `${os.platform()} ${os.release()}`, cpus: os.cpus().length },
+    pacote: PACOTE,
+    plano: plano,
+    tempo_limite_s: TEMPO_LIMITE_MS / 1000,
+    janelas,
+    ...extra,
+  }, null, 2)}\n`);
+  gravarMeta();
 
   // Partes e estado inicial iguais aos das redes EVM: limite de R$ 5 milhões, saldo de R$ 10 milhões.
   // Um tomador por aceite simultâneo no T2: aceites do mesmo tomador disputariam o mesmo CreditLimit.
@@ -148,6 +171,7 @@ async function main() {
   let saldo = criados(m.json, 'BRLHolding')[0];
 
   if (teste === 'T1' || teste === 'TODOS') {
+    const iniT1 = Date.now();
     for (let i = 1; i <= plano.ciclosT1; i++) {
       const base = { rede: 'canton', teste: 'T1', lote: '', rodada: i };
       const c = await cicloOferta({ partes, saldo, tomador: partes.tomador, base, csv });
@@ -166,6 +190,8 @@ async function main() {
       const ca = await submeter({ actAs: partes.ofertante, funcao: 'cancelOffer', base: { ...base, offer_id: c.oferta }, comando: exercer(tpl('Offer'), c.oferta, 'CancelOffer', {}) });
       csv.escrever(ca.linha);
     }
+    janelas.T1 = { inicio_utc: isoMs(iniT1), fim_utc: isoMs(Date.now()) };
+    gravarMeta();
   }
 
   if (teste === 'T2' || teste === 'TODOS') {
@@ -178,6 +204,7 @@ async function main() {
       if (c.oferta) ofertas.push({ id: c.oferta, tomador });
     }
     let cursor = 0;
+    const iniT2 = Date.now();
     for (const lote of plano.lotesT2) {
       for (let rodada = 1; rodada <= plano.rodadasT2; rodada++) {
         const fatia = ofertas.slice(cursor, cursor + lote);
@@ -194,6 +221,8 @@ async function main() {
         await esperar(2000);
       }
     }
+    janelas.T2 = { inicio_utc: isoMs(iniT2), fim_utc: isoMs(Date.now()) };
+    gravarMeta({ n_tomadores_t2: nT2 });
   }
   console.log(`Dados em ${csv.arquivo}`);
 }

@@ -1,0 +1,10 @@
+{
+  "BRLToken": "0x4954385822412e0C9C8a4114a5E54FbE181d84AA",
+  "CDIPositionToken": "0x3B332b491B817420f77938b8d23f1139d7a89a3d",
+  "CreditInterbankOffer": "0x6cb50B1d20082e1982F6a165a5281f20E74008F8",
+  "admin": "0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f",
+  "chainId": 11155111,
+  "deployer": "0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f",
+  "environment": "bench-sepolia",
+  "startBlock": 11930240
+}

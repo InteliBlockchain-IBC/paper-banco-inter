@@ -111,10 +111,19 @@ export function carregarAbis() {
   return { oferta, brl, posicao, erros: unicos };
 }
 
+/** Nome da implantação do benchmark no repositório do contrato (separado da implantação oficial). */
+export function nomeImplantacao(redeId) {
+  return `bench-${redeId}`;
+}
+
 export function carregarImplantacao(redeId) {
-  const arquivo = path.join(REPO_WEB3, 'deployments', `${redeId}.json`);
-  if (!fs.existsSync(arquivo)) throw new Error(`Sem implantação para ${redeId}. Rode \`npm run implantar -- --rede ${redeId}\`.`);
-  return JSON.parse(fs.readFileSync(arquivo, 'utf8'));
+  // bench-<rede> é o padrão; <rede>.json só vale para redes locais implantadas antes da mudança (besu, anvil).
+  const candidatos = [nomeImplantacao(redeId), ...(['besu', 'anvil'].includes(redeId) ? [redeId] : [])];
+  for (const nome of candidatos) {
+    const arquivo = path.join(REPO_WEB3, 'deployments', `${nome}.json`);
+    if (fs.existsSync(arquivo)) return JSON.parse(fs.readFileSync(arquivo, 'utf8'));
+  }
+  throw new Error(`Sem implantação para ${redeId}. Rode \`npm run implantar -- --rede ${redeId}\`.`);
 }
 
 // ---------------------------------------------------------------------------

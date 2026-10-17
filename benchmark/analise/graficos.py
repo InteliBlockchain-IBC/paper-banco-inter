@@ -89,7 +89,7 @@ def latencia_t1(lat: dict[str, np.ndarray], nomes: dict, origem: dict[str, str],
     ax.set_yticks([m for m in marcas if m >= min(0.8, todos.min() * 0.7)], [f"{_br(m, 1 if m < 1 else 0)} s" for m in marcas if m >= min(0.8, todos.min() * 0.7)])
     ax.minorticks_off()
     ax.set_xlim(-0.6, max(len(redes), 1) - 0.4)
-    ax.set_xticks(range(len(redes)), [_rotulo(nomes[r], origem[r]) for r in redes])
+    ax.set_xticks(range(len(redes)), [_rotulo(nomes[r], origem[r], curto=True) for r in redes], fontsize=8.5)
     ax.set_ylabel("Latência do acceptOffer (escala log)")
     ax.set_title("Latência do aceite no T1, só redes medidas (traço = mediana)", loc="left", fontsize=11, color=TEXTO)
     faltam = [nomes[r] for r in lat if not len(lat[r])]
@@ -114,7 +114,8 @@ def custo_ciclo(custo: dict[str, float], origem_custo: dict[str, str], ambiente:
             ax.barh(i, custo[r], left=piso, **ESTILO[o])
             ax.text(custo[r] * 1.2, i, f"US$ {_br(custo[r], 4)}", va="center", fontsize=9, color=TEXTO)
         else:
-            ax.text(piso * 1.3, i, "US$ 0 por transação (gas grátis; o custo dessa rede está na infraestrutura)", va="center", fontsize=9, color=TEXTO)
+            motivo = "sem taxa por transação no sandbox" if r == "canton" else "gas grátis"
+            ax.text(piso * 1.3, i, f"US$ 0 por transação ({motivo}; o custo dessa rede está na infraestrutura)", va="center", fontsize=9, color=TEXTO)
     ax.set_xscale("log")
     ax.set_xlim(piso, max(positivos) * 8)
     ax.set_ylim(-0.6, len(redes) - 0.4)
@@ -129,24 +130,30 @@ def custo_ciclo(custo: dict[str, float], origem_custo: dict[str, str], ambiente:
 
 
 def sucesso_por_lote(taxas: dict[str, dict[int, float]], nomes: dict, origem: dict[str, str], arquivo: Path) -> None:
+    """Grade rede × lote com a taxa de sucesso; células abaixo de 100% em destaque."""
     redes = [r for r in taxas if taxas[r]]
     lotes = sorted({l for r in redes for l in taxas[r]}) or [10, 25, 50]
-    fig, ax = plt.subplots(figsize=(7.5, 3.6))
-    largura = 0.8 / max(len(redes), 1)
-    for k, r in enumerate(redes):
-        xs = [i + k * largura for i in range(len(lotes))]
-        ys = [taxas[r].get(l) or 0 for l in lotes]
-        ax.bar(xs, ys, width=largura * 0.9, label=f"{nomes[r]} ({ROTULO_ORIGEM[origem[r]]})", **{k2: v for k2, v in ESTILO[origem[r]].items() if k2 != "linestyle"})
-        for x, y in zip(xs, ys):
-            ax.text(x, y + 1.5, f"{_br(y, 0)}%", ha="center", fontsize=8.5, color=TEXTO)
-    ax.set_xticks([i + 0.4 - largura / 2 for i in range(len(lotes))], [f"lote de {l}" for l in lotes])
-    ax.set_ylim(0, 110)
-    ax.set_ylabel("Taxa de sucesso (%)")
-    ax.legend(frameon=False, fontsize=8.5, loc="lower center", bbox_to_anchor=(0.5, -0.3), ncols=min(max(len(redes), 1), 3))
-    ax.set_title("C1: taxa de sucesso no T2 por tamanho de lote, só redes medidas", loc="left", fontsize=11, color=TEXTO)
+    fig, ax = plt.subplots(figsize=(7.5, 0.5 * max(len(redes), 1) + 1.6))
+    for j, r in enumerate(redes):
+        for i, l in enumerate(lotes):
+            v = taxas[r].get(l)
+            cheio = v is not None and v >= 99.95
+            ax.add_patch(plt.Rectangle((i - 0.45, j - 0.4), 0.9, 0.8, color="#eef0f3" if cheio else "#f6d7d2", zorder=1))
+            ax.text(i, j, "—" if v is None else f"{_br(v, 1)}%", ha="center", va="center", fontsize=9.5, color=TEXTO, zorder=2)
+    ax.set_xlim(-0.5, len(lotes) - 0.5)
+    ax.set_ylim(len(redes) - 0.5, -0.5)
+    ax.set_xticks(range(len(lotes)), [f"lote de {l} aceites simultâneos" for l in lotes], fontsize=8.5)
+    ax.xaxis.tick_top()
+    ax.set_yticks(range(len(redes)), [_rotulo(nomes[r], origem[r], curto=True) for r in redes], fontsize=8.5)
+    for lado in ["left", "bottom", "top", "right"]:
+        ax.spines[lado].set_visible(False)
+    ax.tick_params(length=0)
+    todas = all(v >= 99.95 for r in redes for v in taxas[r].values())
+    titulo = "C1: todas as redes confirmaram 100% dos aceites no T2" if redes and todas else "C1: taxa de sucesso no T2 por tamanho de lote"
+    ax.set_title(titulo, loc="left", fontsize=11, color=TEXTO, pad=28)
     faltam = [nomes[r] for r in taxas if not taxas[r]]
     if faltam:
-        _rodape(fig, "Ainda sem T2 (entram aqui depois da coleta): " + ", ".join(faltam) + ".", y=-0.1)
+        _rodape(fig, "Ainda sem T2 (entram aqui depois da coleta): " + ", ".join(faltam) + ".", y=-0.02)
     fig.savefig(arquivo)
     plt.close(fig)
 
@@ -169,8 +176,9 @@ def ranking(pontos: dict[str, dict], nomes: dict, origem: dict[str, str], arquiv
     ax.set_xlabel("Pontuação ponderada (0 a 100)")
     ax.set_title("Pontuação por rede e origem dos dados", loc="left", fontsize=11, color=TEXTO)
     _legenda_origem(ax, set(origem.values()), loc="upper center", bbox_to_anchor=(0.5, -0.14), ncols=4)
-    _rodape(fig, "Projeção: valores da documentação oficial e hipótese de 100% de sucesso, no lugar da coleta. "
-                 "Faixa tracejada: critérios ainda sem valor, de 0 a 1.", y=-0.06)
+    if {"projetado", "pendente"} & set(origem.values()):
+        _rodape(fig, "Projeção: valores da documentação oficial e hipótese de 100% de sucesso, no lugar da coleta. "
+                     "Faixa tracejada: critérios ainda sem valor, de 0 a 1.", y=-0.06)
     fig.savefig(arquivo)
     plt.close(fig)
 

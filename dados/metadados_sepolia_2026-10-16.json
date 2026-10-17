@@ -1,0 +1,72 @@
+{
+  "rede": "sepolia",
+  "nome": "Ethereum Sepolia",
+  "chainId": 11155111,
+  "rpc": "https://ethereum-sepolia-rpc.publicnode.com",
+  "tipo_rpc": "público gratuito",
+  "maquina": {
+    "hostname": "cryptovictor-ThinkPad-E16-Gen-1",
+    "plataforma": "linux 6.17.0-14-generic",
+    "cpus": 12,
+    "regiao": ""
+  },
+  "contratos": {
+    "BRLToken": "0x4954385822412e0C9C8a4114a5E54FbE181d84AA",
+    "CDIPositionToken": "0x3B332b491B817420f77938b8d23f1139d7a89a3d",
+    "CreditInterbankOffer": "0x6cb50B1d20082e1982F6a165a5281f20E74008F8",
+    "bloco_implantacao": 11930240
+  },
+  "codigo": {
+    "commit": "3347bf2",
+    "solc": "0.8.24",
+    "otimizador_runs": 200,
+    "openzeppelin": "5.4.0",
+    "config": "script/config/sepolia.json"
+  },
+  "contas": {
+    "admin": "0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f",
+    "ofertante": "0x0714384FEEd16A7b9F04abD52aAfE65A27E8bA73",
+    "tomador": "0x0E30bA2027EC5B941323cf1A2780aafE1Fe46062",
+    "tomadores_t2": [
+      "0xC1Ec116739229107999088eB223f9F5205312F04",
+      "0x638f296941eA48eC43707B5770bF7abe2c1fd6E7",
+      "0xf0436Dd0B4de002560b32eFB7C2B9EdCcc6676f3",
+      "0x454f2a44597F69BD9e3AA03a460Ee1E9fA9E3f70",
+      "0x50205908901F23867fd14FF40438de8d5Dc2bf72",
+      "0xCAD137c7E4416C5970dFe413940f6953B50c426D",
+      "0x872CcB39319094aA19b264d755356E280acE8B37",
+      "0x71D64314BFDFb315Ecf49336d1b896221e560bf0",
+      "0xffB0E4cE56cEc041E9bF52Df50c56785175b47a9",
+      "0x1B5E0e65B1F401377d4c0BD16C0d357Cd41dc62d"
+    ]
+  },
+  "n_tomadores_t2": 10,
+  "versao_cliente": "reth/v2.7.0-3d592ec/x86_64-unknown-linux-gnu",
+  "validadores": null,
+  "plano": {
+    "ciclosT1": 30,
+    "cancelamentosT1": 10,
+    "lotesT2": [
+      10,
+      25,
+      50
+    ],
+    "rodadasT2": 3
+  },
+  "multiplicador_gas": 1.2,
+  "tempo_limite_s": 300,
+  "intervalo_consulta_ms": 500,
+  "cobranca_gas": "gasUsed",
+  "janelas": {
+    "T1": {
+      "inicio_utc": "2026-10-16T22:52:25.868Z",
+      "fim_utc": "2026-10-16T23:15:25.589Z"
+    },
+    "T2": {
+      "inicio_utc": "2026-10-16T23:20:25.946Z",
+      "fim_utc": "2026-10-16T23:22:15.558Z"
+    }
+  },
+  "erros_consulta_blocos": 4,
+  "pausas_observador": []
+}

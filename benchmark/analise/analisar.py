@@ -119,6 +119,29 @@ def main(argv=None):
     pontos = bm.pontuar(matriz, pesos)
     sens = bm.sensibilidade(matriz, pesos)
 
+    # Escolhas de método que podem mudar a conclusão: o ranking é refeito com cada alternativa.
+    alternativas = []
+
+    def refazer(descricao, ajuste):
+        b2 = {k: dict(v) for k, v in brutos.items()}
+        o2 = {k: dict(v) for k, v in origens.items()}
+        ajuste(b2, o2)
+        m2 = bm.montar_matriz(redes, b2, o2, declarados)
+        p2 = bm.pontuar(m2, pesos)
+        alternativas.append({"descricao": descricao, "pontos": p2})
+
+    if brutos["C4M1"].get("canton") is not None:
+        def sem_custo_canton(b2, o2):
+            b2["C4M1"].pop("canton", None)
+            o2["C4M1"].pop("canton", None)
+        refazer("Custo por transação da Canton a definir (modelo de tráfego, INTER-6), em vez de zero como no sandbox", sem_custo_canton)
+    cs, cb = detalhes.get("sepolia", {}).get("custo") or {}, detalhes.get("besu", {}).get("custo") or {}
+    if origens["C4M1"].get("sepolia") == "medido" and cb.get("ciclo_gas_medio") and precos.get("sepolia", {}).get("cotacao_usd"):
+        def ethereum_regras_mainnet(b2, o2):
+            ps = precos["sepolia"]
+            b2["C4M1"]["sepolia"] = cb["ciclo_gas_medio"] * ps["gas_preco_wei"] / 1e18 * ps["cotacao_usd"]
+        refazer("Custo da Ethereum com o gas das regras atuais da mainnet (pré-Glamsterdam), em vez do gas medido na Sepolia", ethereum_regras_mainnet)
+
     saida = Path(a.saida)
     saida.mkdir(parents=True, exist_ok=True)
     medidas = {r for r in redes if detalhes[r]["latencia_t1"].get("n") or detalhes[r]["taxa_sucesso_t2"].get("n")}
@@ -143,6 +166,7 @@ def main(argv=None):
         "medidas": {k: {r: {"valor": v.valor, "origem": v.origem} for r, v in cel.items()} for k, cel in matriz.medidas.items()},
         "pontuacao": pontos,
         "sensibilidade": [{k: v for k, v in l.items() if k != "pesos"} for l in sens],
+        "alternativas": alternativas,
         "origem_por_rede": origem,
         "detalhes": detalhes,
     }
@@ -151,7 +175,7 @@ def main(argv=None):
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(relatorio.gerar(
         redes=redes, nomes=nomes, detalhes=detalhes, matriz=matriz, pontos=pontos, sens=sens, precos=precos,
-        origens=origens, origem_rede=origem, pesos=pesos, projecao=projecao, pasta_dados=Path(a.dados), pasta_imagens=pasta_graficos, destino=destino,
+        origens=origens, origem_rede=origem, pesos=pesos, projecao=projecao, alternativas=alternativas, pasta_dados=Path(a.dados), pasta_imagens=pasta_graficos, destino=destino,
     ))
     lider = sens[0]["ordem"]
     print(f"Ranking: " + " > ".join(f"{nomes[r]} {(pontos[r]['minimo'] + pontos[r]['maximo']) / 2:.1f}" for r in lider))

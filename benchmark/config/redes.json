@@ -19,7 +19,9 @@
       "rpcPadrao": "https://ethereum-rpc.publicnode.com",
       "coingeckoId": "ethereum"
     },
-    "pisoOrcamentoGwei": 1
+    "pisoOrcamentoGwei": 1,
+    "multiplicadorGasImplantacao": 1000,
+    "nota": "Glamsterdam ativo na Sepolia desde 06/10/2026 (reprecificação de criação de estado, EIP-8037/8038); a mainnet ainda usa as regras anteriores. A simulação local do forge usa as regras antigas, por isso a implantação usa multiplicador de gas maior."
   },
   "fuji": {
     "nome": "Avalanche Fuji (C-Chain)",
@@ -88,8 +90,9 @@
   },
   "canton": {
     "nome": "Canton (LocalNet)",
-    "cobrancaGas": "conferir",
+    "cobrancaGas": "gratis",
     "faucets": [],
-    "ledger": "daml"
+    "ledger": "daml",
+    "nota": "Sandbox local sem cobrança por transação (como o Besu com gas grátis); na Canton Network o tráfego é pago ao synchronizer, custo a tratar em C4-M2 (INTER-6)."
   }
 }

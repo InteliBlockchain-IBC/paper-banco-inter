@@ -85,26 +85,29 @@ Cada coleta grava em `../dados/`: `medicoes_<rede>_<data>.csv` (seção 6.1 do r
 
 ### Canton
 
+A coleta de 16/10/2026 usou o sandbox do SDK oficial do Daml: participante, sequencer e mediator
+da Canton num só processo, sem `sudo`, Nix ou conta no Docker Hub.
+
 ```bash
-# 1. LocalNet (pré-requisitos: Nix, direnv, docker login)
-git clone https://github.com/digital-asset/cn-quickstart.git && cd cn-quickstart && direnv allow
-cd quickstart && make setup && make build && make start
-#    para zerar o ledger antes de cada rodada: make clean-docker && make start
+# 1. SDK do Daml (instala em ~/.dpm, sem sudo)
+curl -sSL https://get.digitalasset.com/install/install.sh | sh
+export PATH="$HOME/.dpm/bin:$PATH"
 
 # 2. Modelo Daml (dentro de benchmark/redes-locais/canton)
-dpm build && dpm test
+dpm build && dpm test        # 5 testes de Daml Script
 
-# 3. Enviar o DAR ao participante
-curl -X POST -H "Authorization: Bearer $CANTON_TOKEN" -H 'content-type: application/octet-stream' \
-  --data-binary @.daml/dist/credit-interbank-1.0.0.dar "$CANTON_API/v2/packages"
+# 3. Sandbox limpo, já com o DAR, na porta do .env (CANTON_API)
+dpm sandbox --json-api-port 3975 --dar .daml/dist/credit-interbank-1.0.0.dar
 
-# 4. Coletar (variáveis CANTON_* no .env)
-npm run coletar:canton
+# 4. Coletar (outro terminal, dentro de benchmark/)
+systemd-inhibit --what=sleep:idle npm run coletar:canton
 ```
 
-O coletor cria sozinho o estado inicial, com as mesmas contas e valores das redes EVM. Os caminhos da
-JSON Ledger API v2 estão marcados como [CONFERIR] em `coleta/coletar-canton.mjs`; compare com o
-Swagger do LocalNet (`make open-swagger-ui`) antes da rodada.
+O sandbox roda sem autenticação, então `CANTON_TOKEN` fica vazio. No `.env`, `CANTON_PACOTE`
+precisa de aspas (`"#credit-interbank"`): sem elas o `#` é lido como comentário. Para um ambiente
+com vários validadores, o LocalNet do
+[cn-quickstart](https://github.com/digital-asset/cn-quickstart) também funciona com o mesmo
+coletor (precisa de Nix, direnv e `docker login`).
 
 ## Análise
 

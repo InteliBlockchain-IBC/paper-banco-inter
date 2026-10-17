@@ -3,7 +3,8 @@
 module Test where
 
 import Daml.Script
-import DA.Time (days)
+import DA.Assert ((===))
+import DA.Time (addRelTime, days)
 import CreditInterbank
 
 data Cenario = Cenario with

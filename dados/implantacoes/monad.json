@@ -1,0 +1,10 @@
+{
+  "BRLToken": "0x5E4A24118CF20679A3D7a8edEb8F872abCFB1348",
+  "CDIPositionToken": "0x056ba509FBEC12c41efe1B821111cE11FdE76491",
+  "CreditInterbankOffer": "0x16b1f7937096C80F715b84F96E97e42d33507A3c",
+  "admin": "0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f",
+  "chainId": 10143,
+  "deployer": "0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f",
+  "environment": "bench-monad",
+  "startBlock": 71656872
+}

@@ -1,0 +1,238 @@
+ofertante      +0.0862475352 SepoliaETH  0xfb78c6f7d95398d97ceabbc8c30385a3bc02852dccda798d25f2b264f59a5328
+tomador        +0.0061938 SepoliaETH  0xcedf25de2e0ddbcca67206c22df83e39ddb46cc65248175b9682390564ff9779
+tomador_t2_1   +0.00536796 SepoliaETH  0xcfa2b89a63c5cda14ed4cd9fe1f6cfe51cc2c2559bdf2ffaa7f847662c9531af
+tomador_t2_2   +0.00536796 SepoliaETH  0x9102d454f30d8a69f222b4f1d4a3f2c8d56d7c21aac9fbd8f66307790b02aa14
+tomador_t2_3   +0.00536796 SepoliaETH  0x7a2f32c3cc0d8da5b91f97d8506d1a5318c092d13f949d7ddb5f5fc5c25a6af5
+tomador_t2_4   +0.00536796 SepoliaETH  0xd26caa47dc2211574cc8ccfc3900771d8c5dc8d07176d06de9b4d9fa6b329232
+tomador_t2_5   +0.00536796 SepoliaETH  0x05cd005be84bcc549f1d6c6ee9b31e3c498ea4788336ab223473a8db93e1ff69
+tomador_t2_6   +0.00536796 SepoliaETH  0xefaa29d1f62cd8ec04c57a47896081cad4d6e28b75d4acd214e268fc89951594
+tomador_t2_7   +0.00536796 SepoliaETH  0xaf71972d2433846bc86fba030be67310562217c3a187d3d9efc908a99044e7f5
+tomador_t2_8   +0.00536796 SepoliaETH  0xb63fe16ed66103aeb98aa0e55071768937611b572b33547d30a10dcbd411619c
+tomador_t2_9   +0.00536796 SepoliaETH  0x990309f733bf52e1db01e7aba34da1c0438cfa66ea76f86281982691489f54b7
+tomador_t2_10  +0.00536796 SepoliaETH  0x73ea901d842e8d6d41f664a7080843677725c600b6a8f487e3e318958e9d6fd3
+Distribuição concluída. Confira com `saldos`.
+Ethereum Sepolia: preço atual 1000033 wei; orçado a 1 gwei (maior entre 2x o atual e o piso de 1 gwei); multiplicador de gas 1.2
+admin          0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f  precisa  0.006180786  saldo 1.937344838717914677  ok
+ofertante      0x0714384FEEd16A7b9F04abD52aAfE65A27E8bA73  precisa 0.0862475352  saldo 0.0862475352  ok
+tomador        0x0E30bA2027EC5B941323cf1A2780aafE1Fe46062  precisa    0.0061938  saldo    0.0061938  ok
+tomador_t2_1   0xC1Ec116739229107999088eB223f9F5205312F04  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_2   0x638f296941eA48eC43707B5770bF7abe2c1fd6E7  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_3   0xf0436Dd0B4de002560b32eFB7C2B9EdCcc6676f3  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_4   0x454f2a44597F69BD9e3AA03a460Ee1E9fA9E3f70  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_5   0x50205908901F23867fd14FF40438de8d5Dc2bf72  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_6   0xCAD137c7E4416C5970dFe413940f6953B50c426D  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_7   0x872CcB39319094aA19b264d755356E280acE8B37  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_8   0x71D64314BFDFb315Ecf49336d1b896221e560bf0  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_9   0xffB0E4cE56cEc041E9bF52Df50c56785175b47a9  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_10  0x1B5E0e65B1F401377d4c0BD16C0d357Cd41dc62d  precisa   0.00536796  saldo   0.00536796  ok
+
+Total necessário: 0.1523017212 SepoliaETH. Falta no conjunto: 0 SepoliaETH.
+Faucets: https://cloud.google.com/application/web3/faucet/ethereum/sepolia  https://www.alchemy.com/faucets/ethereum-sepolia  https://sepolia-faucet.pk910.de
+Configuração gravada em ../../projeto-inter-web3/script/config/bench-sepolia.json
+No files changed, compilation skipped
+Script ran successfully.
+
+== Return ==
+d: struct Deploy.Deployment Deployment({ offerContract: 0x3B332b491B817420f77938b8d23f1139d7a89a3d, brl: 0xEFf4AB136c9d960927BC0241Eeb99Dda46061f81, position: 0x4954385822412e0C9C8a4114a5E54FbE181d84AA })
+
+== Logs ==
+  BRLToken: 0xEFf4AB136c9d960927BC0241Eeb99Dda46061f81
+  CDIPositionToken: 0x4954385822412e0C9C8a4114a5E54FbE181d84AA
+  CreditInterbankOffer: 0x3B332b491B817420f77938b8d23f1139d7a89a3d
+  Admin: 0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 11155111
+
+Estimated gas price: 0.001000056 gwei
+
+Estimated total gas used for script: 6866886
+
+Estimated amount required: 0.000006867270545616 ETH
+
+==========================
+
+Transactions saved to: /home/cryptovictor/Trabalhos/testes-ana/paper-banco-inter/dados/implantacoes/broadcast/Deploy.s.sol/11155111/run-latest.json
+
+Sensitive values saved to: /home/cryptovictor/Trabalhos/testes-ana/projeto-inter-web3/cache/Deploy.s.sol/11155111/run-latest.json
+
+Error: Transaction Failure: 0x8c46498e8e16c0f0f0e27c8267af514bbc473b09d5760c0783c33194e15f0894
+bash failed with exit status 1.
+Configuração gravada em ../../projeto-inter-web3/script/config/bench-sepolia.json
+No files changed, compilation skipped
+Script ran successfully.
+
+== Return ==
+d: struct Deploy.Deployment Deployment({ offerContract: 0x6cb50B1d20082e1982F6a165a5281f20E74008F8, brl: 0x4954385822412e0C9C8a4114a5E54FbE181d84AA, position: 0x3B332b491B817420f77938b8d23f1139d7a89a3d })
+
+== Logs ==
+  BRLToken: 0x4954385822412e0C9C8a4114a5E54FbE181d84AA
+  CDIPositionToken: 0x3B332b491B817420f77938b8d23f1139d7a89a3d
+  CreditInterbankOffer: 0x6cb50B1d20082e1982F6a165a5281f20E74008F8
+  Admin: 0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 11155111
+
+Estimated gas price: 0.001000056 gwei
+
+Estimated total gas used for script: 52822400
+
+Estimated amount required: 0.0000528253580544 ETH
+
+==========================
+
+
+==========================
+
+ONCHAIN EXECUTION COMPLETE & SUCCESSFUL.
+
+Transactions saved to: /home/cryptovictor/Trabalhos/testes-ana/paper-banco-inter/dados/implantacoes/broadcast/Deploy.s.sol/11155111/run-latest.json
+
+Sensitive values saved to: /home/cryptovictor/Trabalhos/testes-ana/projeto-inter-web3/cache/Deploy.s.sol/11155111/run-latest.json
+
+Endereços em /home/cryptovictor/Trabalhos/testes-ana/projeto-inter-web3/deployments/bench-sepolia.json e em dados/implantacoes/sepolia.json
+[2026-10-16T22:52:25.868Z] T1 em Ethereum Sepolia: 30 ciclos + 10 cancelamentos
+[2026-10-16T22:52:37.484Z] T1 ciclo 1 approve     confirmada 10.583s 
+[2026-10-16T22:52:49.687Z] T1 ciclo 1 createOffer confirmada 11.386s 
+[2026-10-16T22:53:00.894Z] T1 ciclo 1 acceptOffer confirmada 10.265s 
+[2026-10-16T22:53:14.021Z] T1 ciclo 2 approve     confirmada 12.177s 
+[2026-10-16T22:53:26.585Z] T1 ciclo 2 createOffer confirmada 11.685s 
+[2026-10-16T22:53:37.947Z] T1 ciclo 2 acceptOffer confirmada 10.527s 
+[2026-10-16T22:53:49.503Z] T1 ciclo 3 approve     confirmada 10.806s 
+[2026-10-16T22:54:01.324Z] T1 ciclo 3 createOffer confirmada 11.043s 
+[2026-10-16T22:54:13.694Z] T1 ciclo 3 acceptOffer confirmada 11.540s 
+[2026-10-16T22:54:25.980Z] T1 ciclo 4 approve     confirmada 11.503s 
+[2026-10-16T22:54:37.451Z] T1 ciclo 4 createOffer confirmada 10.377s 
+[2026-10-16T22:54:50.165Z] T1 ciclo 4 acceptOffer confirmada 11.814s 
+[2026-10-16T22:55:01.776Z] T1 ciclo 5 approve     confirmada 10.855s 
+[2026-10-16T22:55:15.837Z] T1 ciclo 5 createOffer confirmada 13.278s 
+[2026-10-16T22:55:25.615Z] T1 ciclo 5 acceptOffer confirmada 8.738s 
+[2026-10-16T22:55:37.537Z] T1 ciclo 6 approve     confirmada 10.869s 
+[2026-10-16T22:55:50.262Z] T1 ciclo 6 createOffer confirmada 11.796s 
+[2026-10-16T22:56:01.989Z] T1 ciclo 6 acceptOffer confirmada 10.811s 
+[2026-10-16T22:56:14.054Z] T1 ciclo 7 approve     confirmada 11.094s 
+[2026-10-16T22:56:25.755Z] T1 ciclo 7 createOffer confirmada 10.730s 
+[2026-10-16T22:56:37.892Z] T1 ciclo 7 acceptOffer confirmada 11.150s 
+[2026-10-16T22:56:49.586Z] T1 ciclo 8 approve     confirmada 10.713s 
+[2026-10-16T22:57:01.585Z] T1 ciclo 8 createOffer confirmada 10.937s 
+[2026-10-16T22:57:14.267Z] T1 ciclo 8 acceptOffer confirmada 11.726s 
+[2026-10-16T22:57:26.264Z] T1 ciclo 9 approve     confirmada 10.961s 
+[2026-10-16T22:57:38.827Z] T1 ciclo 9 createOffer confirmada 11.575s 
+[2026-10-16T22:57:49.757Z] T1 ciclo 9 acceptOffer confirmada 10.004s 
+[2026-10-16T22:58:01.224Z] T1 ciclo 10 approve     confirmada 10.633s 
+[2026-10-16T22:58:14.025Z] T1 ciclo 10 createOffer confirmada 11.885s 
+[2026-10-16T22:58:25.606Z] T1 ciclo 10 acceptOffer confirmada 10.709s 
+[2026-10-16T22:58:37.089Z] T1 ciclo 11 approve     confirmada 10.631s 
+[2026-10-16T22:58:50.274Z] T1 ciclo 11 createOffer confirmada 12.302s 
+[2026-10-16T22:59:13.313Z] T1 ciclo 11 acceptOffer confirmada 22.017s 
+[2026-10-16T22:59:25.691Z] T1 ciclo 12 approve     confirmada 11.489s 
+[2026-10-16T22:59:37.497Z] T1 ciclo 12 createOffer confirmada 10.739s 
+[2026-10-16T22:59:49.664Z] T1 ciclo 12 acceptOffer confirmada 11.263s 
+[2026-10-16T23:00:01.896Z] T1 ciclo 13 approve     confirmada 11.232s 
+[2026-10-16T23:00:13.538Z] T1 ciclo 13 createOffer confirmada 10.516s 
+[2026-10-16T23:00:26.225Z] T1 ciclo 13 acceptOffer confirmada 11.839s 
+[2026-10-16T23:00:37.282Z] T1 ciclo 14 approve     confirmada 10.067s 
+[2026-10-16T23:00:50.082Z] T1 ciclo 14 createOffer confirmada 11.777s 
+[2026-10-16T23:01:01.781Z] T1 ciclo 14 acceptOffer confirmada 10.929s 
+[2026-10-16T23:01:13.778Z] T1 ciclo 15 approve     confirmada 11.179s 
+[2026-10-16T23:01:25.480Z] T1 ciclo 15 createOffer confirmada 10.957s 
+[2026-10-16T23:01:37.618Z] T1 ciclo 15 acceptOffer confirmada 11.199s 
+[2026-10-16T23:01:50.242Z] T1 ciclo 16 approve     confirmada 11.815s 
+[2026-10-16T23:02:01.788Z] T1 ciclo 16 createOffer confirmada 10.606s 
+[2026-10-16T23:02:13.513Z] T1 ciclo 16 acceptOffer confirmada 10.919s 
+[2026-10-16T23:02:26.047Z] T1 ciclo 17 approve     confirmada 11.735s 
+[2026-10-16T23:02:38.626Z] T1 ciclo 17 createOffer confirmada 11.579s 
+[2026-10-16T23:02:49.479Z] T1 ciclo 17 acceptOffer confirmada 9.858s 
+[2026-10-16T23:03:13.489Z] T1 ciclo 18 approve     confirmada 23.217s 
+[2026-10-16T23:03:25.835Z] T1 ciclo 18 createOffer confirmada 11.641s 
+[2026-10-16T23:03:37.298Z] T1 ciclo 18 acceptOffer confirmada 10.711s 
+[2026-10-16T23:03:49.176Z] T1 ciclo 19 approve     confirmada 11.021s 
+[2026-10-16T23:04:01.527Z] T1 ciclo 19 createOffer confirmada 11.560s 
+[2026-10-16T23:04:13.548Z] T1 ciclo 19 acceptOffer confirmada 11.356s 
+[2026-10-16T23:04:26.245Z] T1 ciclo 20 approve     confirmada 11.917s 
+[2026-10-16T23:04:37.048Z] T1 ciclo 20 createOffer confirmada 10.048s 
+[2026-10-16T23:04:49.497Z] T1 ciclo 20 acceptOffer confirmada 11.437s 
+[2026-10-16T23:05:01.621Z] T1 ciclo 21 approve     confirmada 11.367s 
+[2026-10-16T23:05:13.657Z] T1 ciclo 21 createOffer confirmada 10.973s 
+[2026-10-16T23:05:25.963Z] T1 ciclo 21 acceptOffer confirmada 11.543s 
+[2026-10-16T23:05:37.863Z] T1 ciclo 22 approve     confirmada 11.152s 
+[2026-10-16T23:05:49.945Z] T1 ciclo 22 createOffer confirmada 11.348s 
+[2026-10-16T23:06:01.057Z] T1 ciclo 22 acceptOffer confirmada 10.367s 
+[2026-10-16T23:06:14.691Z] T1 ciclo 23 approve     confirmada 12.736s 
+[2026-10-16T23:06:25.131Z] T1 ciclo 23 createOffer confirmada 9.398s 
+[2026-10-16T23:06:37.725Z] T1 ciclo 23 acceptOffer confirmada 11.782s 
+[2026-10-16T23:06:49.316Z] T1 ciclo 24 approve     confirmada 10.652s 
+[2026-10-16T23:07:01.512Z] T1 ciclo 24 createOffer confirmada 11.308s 
+[2026-10-16T23:07:13.370Z] T1 ciclo 24 acceptOffer confirmada 10.849s 
+[2026-10-16T23:07:25.564Z] T1 ciclo 25 approve     confirmada 11.268s 
+[2026-10-16T23:07:37.115Z] T1 ciclo 25 createOffer confirmada 10.665s 
+[2026-10-16T23:07:50.038Z] T1 ciclo 25 acceptOffer confirmada 12.087s 
+[2026-10-16T23:08:01.617Z] T1 ciclo 26 approve     confirmada 10.596s 
+[2026-10-16T23:08:13.598Z] T1 ciclo 26 createOffer confirmada 11.059s 
+[2026-10-16T23:08:25.244Z] T1 ciclo 26 acceptOffer confirmada 10.768s 
+[2026-10-16T23:08:37.563Z] T1 ciclo 27 approve     confirmada 11.119s 
+[2026-10-16T23:08:49.771Z] T1 ciclo 27 createOffer confirmada 11.479s 
+[2026-10-16T23:09:01.254Z] T1 ciclo 27 acceptOffer confirmada 10.773s 
+[2026-10-16T23:09:13.268Z] T1 ciclo 28 approve     confirmada 11.043s 
+[2026-10-16T23:09:26.071Z] T1 ciclo 28 createOffer confirmada 11.981s 
+[2026-10-16T23:09:37.906Z] T1 ciclo 28 acceptOffer confirmada 10.894s 
+[2026-10-16T23:09:50.354Z] T1 ciclo 29 approve     confirmada 11.335s 
+[2026-10-16T23:10:01.527Z] T1 ciclo 29 createOffer confirmada 10.315s 
+[2026-10-16T23:10:13.753Z] T1 ciclo 29 acceptOffer confirmada 11.251s 
+[2026-10-16T23:10:26.121Z] T1 ciclo 30 approve     confirmada 11.644s 
+[2026-10-16T23:10:37.974Z] T1 ciclo 30 createOffer confirmada 11.078s 
+[2026-10-16T23:10:50.093Z] T1 ciclo 30 acceptOffer confirmada 11.251s 
+[2026-10-16T23:11:01.506Z] T1 cancelamento 1 createOffer confirmada 10.260s 
+[2026-10-16T23:11:13.692Z] T1 cancelamento 1 cancelOffer confirmada 11.245s 
+[2026-10-16T23:11:25.463Z] T1 cancelamento 2 createOffer confirmada 10.758s 
+[2026-10-16T23:11:37.911Z] T1 cancelamento 2 cancelOffer confirmada 11.557s 
+[2026-10-16T23:11:50.041Z] T1 cancelamento 3 createOffer confirmada 11.190s 
+[2026-10-16T23:12:00.996Z] T1 cancelamento 3 cancelOffer confirmada 9.800s 
+[2026-10-16T23:12:13.915Z] T1 cancelamento 4 createOffer confirmada 11.792s 
+[2026-10-16T23:12:37.553Z] T1 cancelamento 4 cancelOffer confirmada 22.734s 
+[2026-10-16T23:12:49.000Z] T1 cancelamento 5 createOffer confirmada 10.582s 
+[2026-10-16T23:13:01.344Z] T1 cancelamento 5 cancelOffer confirmada 11.653s 
+[2026-10-16T23:13:13.701Z] T1 cancelamento 6 createOffer confirmada 11.685s 
+[2026-10-16T23:13:26.132Z] T1 cancelamento 6 cancelOffer confirmada 11.612s 
+[2026-10-16T23:13:37.466Z] T1 cancelamento 7 createOffer confirmada 10.564s 
+[2026-10-16T23:13:49.185Z] T1 cancelamento 7 cancelOffer confirmada 10.932s 
+[2026-10-16T23:14:13.110Z] T1 cancelamento 8 createOffer confirmada 22.883s 
+[2026-10-16T23:14:38.094Z] T1 cancelamento 8 cancelOffer confirmada 24.006s 
+[2026-10-16T23:14:49.563Z] T1 cancelamento 9 createOffer confirmada 10.660s 
+[2026-10-16T23:15:01.345Z] T1 cancelamento 9 cancelOffer confirmada 10.894s 
+[2026-10-16T23:15:12.992Z] T1 cancelamento 10 createOffer confirmada 10.938s 
+[2026-10-16T23:15:25.588Z] T1 cancelamento 10 cancelOffer confirmada 11.681s 
+[2026-10-16T23:15:25.589Z] T2 em Ethereum Sepolia: preparando 255 ofertas
+[2026-10-16T23:15:49.667Z] T2 preparo: 16/255 ofertas criadas
+[2026-10-16T23:16:01.478Z] T2 preparo: 32/255 ofertas criadas
+[2026-10-16T23:16:13.676Z] T2 preparo: 48/255 ofertas criadas
+[2026-10-16T23:16:37.874Z] T2 preparo: 64/255 ofertas criadas
+[2026-10-16T23:16:49.913Z] T2 preparo: 80/255 ofertas criadas
+[2026-10-16T23:17:01.855Z] T2 preparo: 96/255 ofertas criadas
+[2026-10-16T23:17:25.714Z] T2 preparo: 112/255 ofertas criadas
+[2026-10-16T23:17:37.807Z] T2 preparo: 128/255 ofertas criadas
+[2026-10-16T23:17:49.299Z] T2 preparo: 144/255 ofertas criadas
+[2026-10-16T23:18:01.751Z] T2 preparo: 160/255 ofertas criadas
+[2026-10-16T23:18:13.554Z] T2 preparo: 176/255 ofertas criadas
+[2026-10-16T23:18:25.784Z] T2 preparo: 192/255 ofertas criadas
+[2026-10-16T23:18:37.610Z] T2 preparo: 208/255 ofertas criadas
+[2026-10-16T23:19:37.127Z] T2 preparo: 224/255 ofertas criadas
+[2026-10-16T23:20:05.157Z] T2 preparo: 240/255 ofertas criadas
+[2026-10-16T23:20:25.946Z] T2 preparo: 255/255 ofertas criadas
+[2026-10-16T23:20:37.017Z] T2 lote 10 rodada 1: 10/10 confirmadas em 8.6s
+[2026-10-16T23:20:49.966Z] T2 lote 10 rodada 2: 10/10 confirmadas em 10.2s
+[2026-10-16T23:21:02.071Z] T2 lote 10 rodada 3: 10/10 confirmadas em 9.6s
+[2026-10-16T23:21:14.162Z] T2 lote 25 rodada 1: 25/25 confirmadas em 9.6s
+[2026-10-16T23:21:25.618Z] T2 lote 25 rodada 2: 25/25 confirmadas em 8.9s
+[2026-10-16T23:21:38.798Z] T2 lote 25 rodada 3: 25/25 confirmadas em 10.7s
+[2026-10-16T23:21:49.481Z] T2 lote 50 rodada 1: 50/50 confirmadas em 8.2s
+[2026-10-16T23:22:02.828Z] T2 lote 50 rodada 2: 50/50 confirmadas em 10.8s
+[2026-10-16T23:22:13.557Z] T2 lote 50 rodada 3: 50/50 confirmadas em 8.2s
+[2026-10-16T23:22:16.100Z] Dados em /home/cryptovictor/Trabalhos/testes-ana/paper-banco-inter/dados/medicoes_sepolia_2026-10-16.csv

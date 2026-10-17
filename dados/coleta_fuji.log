@@ -1,0 +1,205 @@
+ofertante      +0.0862475352 AVAX  0x6aaadb7b0e8919dd3d5418ecd7b3708d9cd30bcf6cc985bb8bf18b03c7962b2e
+tomador        +0.0061938 AVAX  0xab8a50675dcab921b7db6eb1aed28168f6c3f17998959fcad13d42536b06fec7
+tomador_t2_1   +0.00536796 AVAX  0x512d78df4637f49ae40296136c5ea7ab7db03feb81ba07e65176f740a8a11202
+tomador_t2_2   +0.00536796 AVAX  0x041eed5effdb993475864be585bd69b5fb4b88672003815486b3f5dc7010d31f
+tomador_t2_3   +0.00536796 AVAX  0x0ce46452499b5623f428c8f888d8efa5e682fafa03fd4c991a52978b9acd9eb0
+tomador_t2_4   +0.00536796 AVAX  0xd2cf36fe6bad80948fae82667d3adfd6f7f5d6e55ef8328a2814c109b219747f
+tomador_t2_5   +0.00536796 AVAX  0xc78c09138292f5ffa67174a8bf0368181976e380c11c49e5731285172f57e725
+tomador_t2_6   +0.00536796 AVAX  0x559be77e6068e2e0382a12903382c5192693a8a6455dd5232fa554bc4b50738b
+tomador_t2_7   +0.00536796 AVAX  0xe3fdc0bab2e9a8c69ab59f6d815aff4012bad94a51cd6f02c68534e1fa597e4e
+tomador_t2_8   +0.00536796 AVAX  0x27e8e392694379b39a11449fa6d42e38fa0437b5682dead58ed8ebfe64445638
+tomador_t2_9   +0.00536796 AVAX  0xbb149e83dbefadeef25b9c56c4fd5cd3290296fdc5f9e399d357d56ff5e40018
+tomador_t2_10  +0.00536796 AVAX  0x7bf45974142234003ba0ef09b0992f431e81abb1152ac3b0804ef115876816fd
+Distribuição concluída. Confira com `saldos`.
+Avalanche Fuji (C-Chain): preço atual 162 wei; orçado a 1 gwei (maior entre 2x o atual e o piso de 1 gwei); multiplicador de gas 1.2
+admin          0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f  precisa  0.006180786  saldo 0.35387906475968  ok
+ofertante      0x0714384FEEd16A7b9F04abD52aAfE65A27E8bA73  precisa 0.0862475352  saldo 0.0862475352  ok
+tomador        0x0E30bA2027EC5B941323cf1A2780aafE1Fe46062  precisa    0.0061938  saldo    0.0061938  ok
+tomador_t2_1   0xC1Ec116739229107999088eB223f9F5205312F04  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_2   0x638f296941eA48eC43707B5770bF7abe2c1fd6E7  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_3   0xf0436Dd0B4de002560b32eFB7C2B9EdCcc6676f3  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_4   0x454f2a44597F69BD9e3AA03a460Ee1E9fA9E3f70  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_5   0x50205908901F23867fd14FF40438de8d5Dc2bf72  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_6   0xCAD137c7E4416C5970dFe413940f6953B50c426D  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_7   0x872CcB39319094aA19b264d755356E280acE8B37  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_8   0x71D64314BFDFb315Ecf49336d1b896221e560bf0  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_9   0xffB0E4cE56cEc041E9bF52Df50c56785175b47a9  precisa   0.00536796  saldo   0.00536796  ok
+tomador_t2_10  0x1B5E0e65B1F401377d4c0BD16C0d357Cd41dc62d  precisa   0.00536796  saldo   0.00536796  ok
+
+Total necessário: 0.1523017212 AVAX. Falta no conjunto: 0 AVAX.
+Faucets: https://build.avax.network/console/primary-network/faucet  https://core.app/tools/testnet-faucet/?subnet=c&token=c
+Configuração gravada em ../../projeto-inter-web3/script/config/bench-fuji.json
+No files changed, compilation skipped
+Script ran successfully.
+
+== Return ==
+d: struct Deploy.Deployment Deployment({ offerContract: 0x16b1f7937096C80F715b84F96E97e42d33507A3c, brl: 0x5E4A24118CF20679A3D7a8edEb8F872abCFB1348, position: 0x056ba509FBEC12c41efe1B821111cE11FdE76491 })
+
+== Logs ==
+  BRLToken: 0x5E4A24118CF20679A3D7a8edEb8F872abCFB1348
+  CDIPositionToken: 0x056ba509FBEC12c41efe1B821111cE11FdE76491
+  CreditInterbankOffer: 0x16b1f7937096C80F715b84F96E97e42d33507A3c
+  Admin: 0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 43113
+
+Estimated gas price: 0.00000017 gwei
+
+Estimated total gas used for script: 6866886
+
+Estimated amount required: 0.00000000116737062 ETH
+
+==========================
+
+
+==========================
+
+ONCHAIN EXECUTION COMPLETE & SUCCESSFUL.
+
+Transactions saved to: /home/cryptovictor/Trabalhos/testes-ana/paper-banco-inter/dados/implantacoes/broadcast/Deploy.s.sol/43113/run-latest.json
+
+Sensitive values saved to: /home/cryptovictor/Trabalhos/testes-ana/projeto-inter-web3/cache/Deploy.s.sol/43113/run-latest.json
+
+Endereços em /home/cryptovictor/Trabalhos/testes-ana/projeto-inter-web3/deployments/bench-fuji.json e em dados/implantacoes/fuji.json
+[2026-10-16T22:41:55.804Z] T1 em Avalanche Fuji (C-Chain): 30 ciclos + 10 cancelamentos
+[2026-10-16T22:42:00.207Z] T1 ciclo 1 approve     confirmada 2.762s 
+[2026-10-16T22:42:03.894Z] T1 ciclo 1 createOffer confirmada 2.429s 
+[2026-10-16T22:42:08.398Z] T1 ciclo 1 acceptOffer confirmada 2.980s 
+[2026-10-16T22:42:12.431Z] T1 ciclo 2 approve     confirmada 2.650s 
+[2026-10-16T22:42:17.567Z] T1 ciclo 2 createOffer confirmada 3.548s 
+[2026-10-16T22:42:21.421Z] T1 ciclo 2 acceptOffer confirmada 2.575s 
+[2026-10-16T22:42:25.672Z] T1 ciclo 3 approve     confirmada 2.869s 
+[2026-10-16T22:42:30.006Z] T1 ciclo 3 createOffer confirmada 2.761s 
+[2026-10-16T22:42:33.520Z] T1 ciclo 3 acceptOffer confirmada 2.292s 
+[2026-10-16T22:42:37.104Z] T1 ciclo 4 approve     confirmada 2.214s 
+[2026-10-16T22:42:40.580Z] T1 ciclo 4 createOffer confirmada 2.156s 
+[2026-10-16T22:42:44.752Z] T1 ciclo 4 acceptOffer confirmada 2.662s 
+[2026-10-16T22:42:49.076Z] T1 ciclo 5 approve     confirmada 3.027s 
+[2026-10-16T22:42:52.606Z] T1 ciclo 5 createOffer confirmada 2.435s 
+[2026-10-16T22:42:56.629Z] T1 ciclo 5 acceptOffer confirmada 2.761s 
+[2026-10-16T22:43:00.128Z] T1 ciclo 6 approve     confirmada 2.170s 
+[2026-10-16T22:43:04.376Z] T1 ciclo 6 createOffer confirmada 2.951s 
+[2026-10-16T22:43:08.520Z] T1 ciclo 6 acceptOffer confirmada 2.929s 
+[2026-10-16T22:43:12.196Z] T1 ciclo 7 approve     confirmada 2.513s 
+[2026-10-16T22:43:16.323Z] T1 ciclo 7 createOffer confirmada 2.851s 
+[2026-10-16T22:43:20.512Z] T1 ciclo 7 acceptOffer confirmada 2.971s 
+[2026-10-16T22:43:25.218Z] T1 ciclo 8 approve     confirmada 3.058s 
+[2026-10-16T22:43:28.509Z] T1 ciclo 8 createOffer confirmada 2.013s 
+[2026-10-16T22:43:32.163Z] T1 ciclo 8 acceptOffer confirmada 2.377s 
+[2026-10-16T22:43:36.209Z] T1 ciclo 9 approve     confirmada 2.791s 
+[2026-10-16T22:43:40.149Z] T1 ciclo 9 createOffer confirmada 2.556s 
+[2026-10-16T22:43:43.491Z] T1 ciclo 9 acceptOffer confirmada 2.149s 
+[2026-10-16T22:43:46.694Z] T1 ciclo 10 approve     confirmada 1.944s 
+[2026-10-16T22:43:49.982Z] T1 ciclo 10 createOffer confirmada 2.081s 
+[2026-10-16T22:43:53.728Z] T1 ciclo 10 acceptOffer confirmada 2.560s 
+[2026-10-16T22:43:57.168Z] T1 ciclo 11 approve     confirmada 2.286s 
+[2026-10-16T22:44:00.731Z] T1 ciclo 11 createOffer confirmada 2.254s 
+[2026-10-16T22:44:04.546Z] T1 ciclo 11 acceptOffer confirmada 2.515s 
+[2026-10-16T22:44:07.694Z] T1 ciclo 12 approve     confirmada 1.950s 
+[2026-10-16T22:44:11.235Z] T1 ciclo 12 createOffer confirmada 2.155s 
+[2026-10-16T22:44:15.302Z] T1 ciclo 12 acceptOffer confirmada 2.629s 
+[2026-10-16T22:44:19.114Z] T1 ciclo 13 approve     confirmada 2.552s 
+[2026-10-16T22:44:22.645Z] T1 ciclo 13 createOffer confirmada 2.307s 
+[2026-10-16T22:44:26.566Z] T1 ciclo 13 acceptOffer confirmada 2.691s 
+[2026-10-16T22:44:31.453Z] T1 ciclo 14 approve     confirmada 3.572s 
+[2026-10-16T22:44:35.241Z] T1 ciclo 14 createOffer confirmada 2.506s 
+[2026-10-16T22:44:39.053Z] T1 ciclo 14 acceptOffer confirmada 2.621s 
+[2026-10-16T22:44:42.578Z] T1 ciclo 15 approve     confirmada 2.368s 
+[2026-10-16T22:44:46.185Z] T1 ciclo 15 createOffer confirmada 2.460s 
+[2026-10-16T22:44:49.883Z] T1 ciclo 15 acceptOffer confirmada 2.146s 
+[2026-10-16T22:44:53.788Z] T1 ciclo 16 approve     confirmada 2.344s 
+[2026-10-16T22:44:57.581Z] T1 ciclo 16 createOffer confirmada 2.582s 
+[2026-10-16T22:45:01.894Z] T1 ciclo 16 acceptOffer confirmada 2.958s 
+[2026-10-16T22:45:05.395Z] T1 ciclo 17 approve     confirmada 2.254s 
+[2026-10-16T22:45:09.066Z] T1 ciclo 17 createOffer confirmada 2.273s 
+[2026-10-16T22:45:13.127Z] T1 ciclo 17 acceptOffer confirmada 2.754s 
+[2026-10-16T22:45:17.736Z] T1 ciclo 18 approve     confirmada 3.154s 
+[2026-10-16T22:45:21.729Z] T1 ciclo 18 createOffer confirmada 2.690s 
+[2026-10-16T22:45:26.235Z] T1 ciclo 18 acceptOffer confirmada 3.131s 
+[2026-10-16T22:45:30.253Z] T1 ciclo 19 approve     confirmada 2.602s 
+[2026-10-16T22:45:34.017Z] T1 ciclo 19 createOffer confirmada 2.439s 
+[2026-10-16T22:45:37.499Z] T1 ciclo 19 acceptOffer confirmada 2.013s 
+[2026-10-16T22:45:41.493Z] T1 ciclo 20 approve     confirmada 2.582s 
+[2026-10-16T22:45:45.308Z] T1 ciclo 20 createOffer confirmada 2.255s 
+[2026-10-16T22:45:49.448Z] T1 ciclo 20 acceptOffer confirmada 2.740s 
+[2026-10-16T22:45:53.384Z] T1 ciclo 21 approve     confirmada 2.637s 
+[2026-10-16T22:45:57.876Z] T1 ciclo 21 createOffer confirmada 3.086s 
+[2026-10-16T22:46:01.253Z] T1 ciclo 21 acceptOffer confirmada 2.071s 
+[2026-10-16T22:46:04.689Z] T1 ciclo 22 approve     confirmada 2.151s 
+[2026-10-16T22:46:08.628Z] T1 ciclo 22 createOffer confirmada 2.670s 
+[2026-10-16T22:46:12.510Z] T1 ciclo 22 acceptOffer confirmada 2.224s 
+[2026-10-16T22:46:16.409Z] T1 ciclo 23 approve     confirmada 2.632s 
+[2026-10-16T22:46:21.266Z] T1 ciclo 23 createOffer confirmada 3.488s 
+[2026-10-16T22:46:25.114Z] T1 ciclo 23 acceptOffer confirmada 2.571s 
+[2026-10-16T22:46:28.701Z] T1 ciclo 24 approve     confirmada 2.255s 
+[2026-10-16T22:46:32.078Z] T1 ciclo 24 createOffer confirmada 2.130s 
+[2026-10-16T22:46:36.173Z] T1 ciclo 24 acceptOffer confirmada 2.774s 
+[2026-10-16T22:46:40.268Z] T1 ciclo 25 approve     confirmada 2.561s 
+[2026-10-16T22:46:43.658Z] T1 ciclo 25 createOffer confirmada 1.994s 
+[2026-10-16T22:46:47.696Z] T1 ciclo 25 acceptOffer confirmada 2.660s 
+[2026-10-16T22:46:51.634Z] T1 ciclo 26 approve     confirmada 2.468s 
+[2026-10-16T22:46:55.168Z] T1 ciclo 26 createOffer confirmada 2.143s 
+[2026-10-16T22:46:58.945Z] T1 ciclo 26 acceptOffer confirmada 2.433s 
+[2026-10-16T22:47:02.795Z] T1 ciclo 27 approve     confirmada 2.365s 
+[2026-10-16T22:47:06.383Z] T1 ciclo 27 createOffer confirmada 2.285s 
+[2026-10-16T22:47:10.476Z] T1 ciclo 27 acceptOffer confirmada 2.662s 
+[2026-10-16T22:47:14.162Z] T1 ciclo 28 approve     confirmada 2.438s 
+[2026-10-16T22:47:17.848Z] T1 ciclo 28 createOffer confirmada 2.354s 
+[2026-10-16T22:47:22.253Z] T1 ciclo 28 acceptOffer confirmada 3.070s 
+[2026-10-16T22:47:26.245Z] T1 ciclo 29 approve     confirmada 2.446s 
+[2026-10-16T22:47:30.546Z] T1 ciclo 29 createOffer confirmada 2.963s 
+[2026-10-16T22:47:34.437Z] T1 ciclo 29 acceptOffer confirmada 2.675s 
+[2026-10-16T22:47:38.165Z] T1 ciclo 30 approve     confirmada 2.317s 
+[2026-10-16T22:47:42.126Z] T1 ciclo 30 createOffer confirmada 2.665s 
+[2026-10-16T22:47:45.700Z] T1 ciclo 30 acceptOffer confirmada 2.267s 
+[2026-10-16T22:47:49.202Z] T1 cancelamento 1 createOffer confirmada 2.220s 
+[2026-10-16T22:47:52.971Z] T1 cancelamento 1 cancelOffer confirmada 2.341s 
+[2026-10-16T22:47:57.271Z] T1 cancelamento 2 createOffer confirmada 2.990s 
+[2026-10-16T22:48:01.165Z] T1 cancelamento 2 cancelOffer confirmada 2.699s 
+[2026-10-16T22:48:05.096Z] T1 cancelamento 3 createOffer confirmada 2.364s 
+[2026-10-16T22:48:09.095Z] T1 cancelamento 3 cancelOffer confirmada 2.698s 
+[2026-10-16T22:48:13.041Z] T1 cancelamento 4 createOffer confirmada 2.514s 
+[2026-10-16T22:48:17.341Z] T1 cancelamento 4 cancelOffer confirmada 2.682s 
+[2026-10-16T22:48:21.706Z] T1 cancelamento 5 createOffer confirmada 2.942s 
+[2026-10-16T22:48:25.721Z] T1 cancelamento 5 cancelOffer confirmada 2.379s 
+[2026-10-16T22:48:29.014Z] T1 cancelamento 6 createOffer confirmada 2.044s 
+[2026-10-16T22:48:32.878Z] T1 cancelamento 6 cancelOffer confirmada 2.573s 
+[2026-10-16T22:48:36.695Z] T1 cancelamento 7 createOffer confirmada 2.416s 
+[2026-10-16T22:48:40.504Z] T1 cancelamento 7 cancelOffer confirmada 2.629s 
+[2026-10-16T22:48:43.966Z] T1 cancelamento 8 createOffer confirmada 2.048s 
+[2026-10-16T22:48:47.927Z] T1 cancelamento 8 cancelOffer confirmada 2.354s 
+[2026-10-16T22:48:52.075Z] T1 cancelamento 9 createOffer confirmada 2.325s 
+[2026-10-16T22:48:55.741Z] T1 cancelamento 9 cancelOffer confirmada 2.368s 
+[2026-10-16T22:48:59.530Z] T1 cancelamento 10 createOffer confirmada 2.419s 
+[2026-10-16T22:49:03.214Z] T1 cancelamento 10 cancelOffer confirmada 2.312s 
+[2026-10-16T22:49:03.215Z] T2 em Avalanche Fuji (C-Chain): preparando 255 ofertas
+[2026-10-16T22:49:14.235Z] T2 preparo: 16/255 ofertas criadas
+[2026-10-16T22:49:19.579Z] T2 preparo: 32/255 ofertas criadas
+[2026-10-16T22:49:25.243Z] T2 preparo: 48/255 ofertas criadas
+[2026-10-16T22:49:31.686Z] T2 preparo: 64/255 ofertas criadas
+[2026-10-16T22:49:38.205Z] T2 preparo: 80/255 ofertas criadas
+[2026-10-16T22:49:45.013Z] T2 preparo: 96/255 ofertas criadas
+[2026-10-16T22:49:51.857Z] T2 preparo: 112/255 ofertas criadas
+[2026-10-16T22:49:57.697Z] T2 preparo: 128/255 ofertas criadas
+[2026-10-16T22:50:03.659Z] T2 preparo: 144/255 ofertas criadas
+[2026-10-16T22:50:09.883Z] T2 preparo: 160/255 ofertas criadas
+[2026-10-16T22:50:16.846Z] T2 preparo: 176/255 ofertas criadas
+[2026-10-16T22:50:22.784Z] T2 preparo: 192/255 ofertas criadas
+[2026-10-16T22:50:29.132Z] T2 preparo: 208/255 ofertas criadas
+[2026-10-16T22:50:35.481Z] T2 preparo: 224/255 ofertas criadas
+[2026-10-16T22:50:41.011Z] T2 preparo: 240/255 ofertas criadas
+[2026-10-16T22:50:47.477Z] T2 preparo: 255/255 ofertas criadas
+[2026-10-16T22:50:53.498Z] T2 lote 10 rodada 1: 10/10 confirmadas em 2.8s
+[2026-10-16T22:50:58.525Z] T2 lote 10 rodada 2: 10/10 confirmadas em 2.6s
+[2026-10-16T22:51:04.458Z] T2 lote 10 rodada 3: 10/10 confirmadas em 3.5s
+[2026-10-16T22:51:10.641Z] T2 lote 25 rodada 1: 25/25 confirmadas em 3.8s
+[2026-10-16T22:51:16.254Z] T2 lote 25 rodada 2: 25/25 confirmadas em 3.2s
+[2026-10-16T22:51:22.035Z] T2 lote 25 rodada 3: 25/25 confirmadas em 3.4s
+[2026-10-16T22:52:29.066Z] T2 lote 50 rodada 1: 50/50 confirmadas em 64.6s
+[2026-10-16T22:52:36.162Z] T2 lote 50 rodada 2: 50/50 confirmadas em 4.8s
+[2026-10-16T22:52:42.809Z] T2 lote 50 rodada 3: 50/50 confirmadas em 4.2s
+[2026-10-16T22:52:45.150Z] Dados em /home/cryptovictor/Trabalhos/testes-ana/paper-banco-inter/dados/medicoes_fuji_2026-10-16.csv

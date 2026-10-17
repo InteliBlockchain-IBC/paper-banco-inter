@@ -47,45 +47,44 @@ benchmark espera encontrar ao lado deste.
 
 ## Situação em 16/10/2026
 
-Todo número do projeto diz de onde veio:
+As cinco redes foram medidas: 1.825 transações, nenhuma falha. Todo número diz de onde veio:
 
-| Etiqueta | Origem | Redes hoje |
+| Etiqueta | Origem | Redes |
 |---|---|---|
-| `LOCAL` | Medido em rede local, montada pela equipe na própria máquina (Docker) | Hyperledger Besu |
-| `TESTNET` | Medido em testnet pública | nenhuma ainda (Sepolia, Fuji e Monad aguardam coleta) |
-| `PROJEÇÃO` | Sem teste: documentação oficial, custo calculado com o gas da rede local e hipótese de 100% de sucesso | Ethereum, Avalanche, Monad |
-| `A MEDIR` | Sem teste nem valor provisório; pontuação em faixa | Canton |
+| `LOCAL` | Medido em rede local, montada pela equipe na própria máquina | Hyperledger Besu (4 validadores QBFT em Docker); Canton (sandbox do SDK oficial, Canton 3.6.1) |
+| `TESTNET` | Medido em testnet pública | Ethereum Sepolia, Avalanche Fuji, Monad |
 
 | Etapa | Situação |
 |---|---|
 | Critérios, pesos e método | Decididos |
 | Roteiro de medição | Pronto (v2) |
-| Código de coleta e análise | Pronto e testado (27 testes) |
-| Hyperledger Besu (rede local) | `LOCAL` medido em 14/10 |
-| Canton (rede local) | `A MEDIR`: aguardando LocalNet; modelo Daml escrito, ainda não compilado |
-| Sepolia, Fuji e Monad (testnets) | `PROJEÇÃO` até a coleta; precisa da chave com faucet em `benchmark/.env` |
+| Código de coleta e análise | Pronto e testado (27 testes; mais 5 testes do modelo Daml) |
+| Coleta | Completa: Besu em 14/10; Sepolia, Fuji, Monad e Canton em 16/10 |
 | Custo de infraestrutura (C4-M2) | Não levantado (INTER-16 e INTER-17) |
-| Resumo executivo | Versão preliminar, com lugares marcados para os dados de testnet |
+| Decisão pendente | Custo por transação da Canton: zero, como no sandbox (adotado), ou a definir (INTER-6) |
+| Resumo executivo | Atualizado; falta a decisão acima e a revisão das limitações |
 | Prazos | Paper em 17/10/2026 · demo day em 21/10/2026 |
 
-**Resultado preliminar:**
+**Resultado (pesos do cenário base):**
 
-| Posição | Rede | Origem | Pontuação |
-|---|---|---|---|
-| 1 | Hyperledger Besu | `LOCAL` | 82,9 |
-| 2 | Monad | `PROJEÇÃO` | 80,1 |
-| 3 | Avalanche | `PROJEÇÃO` | 78,8 |
-| 4 | Canton | `A MEDIR` | 54,6 a 86,2 |
-| 5 | Ethereum | `PROJEÇÃO` | 48,6 |
+| Posição | Rede | Origem | Latência mediana | Sucesso no T2 | Custo do ciclo | Pontuação |
+|---|---|---|---|---|---|---|
+| 1 | Canton | `LOCAL` | 0,37 s | 100% | US$ 0 | 86,2 |
+| 2 | Hyperledger Besu | `LOCAL` | 1,96 s | 100% | US$ 0 | 82,8 |
+| 3 | Monad | `TESTNET` | 0,99 s | 100% | US$ 0,0014 | 79,2 |
+| 4 | Avalanche | `TESTNET` | 2,64 s | 100% | US$ 0,029 | 75,2 |
+| 5 | Ethereum | `TESTNET` | 11,04 s | 100% | US$ 0,296 | 48,6 |
 
-Só o Besu tem números medidos. O ranking muda para todas as redes quando qualquer uma é coletada,
-porque as notas são relativas entre as cinco. Detalhes em
-[`pesquisa/3-resultados/resultados.md`](pesquisa/3-resultados/resultados.md).
+O 1º lugar muda em 4 dos 17 cenários de pesos (para o Besu ou a Monad). Se o custo da Canton
+ficar "a definir", o Besu passa ao 1º lugar. A Sepolia mudou de regras de gas durante o estudo
+(Glamsterdam, 06/10/2026): o ciclo gastou 3,56 vezes o gas das regras atuais da mainnet.
+Detalhes em [`pesquisa/3-resultados/resultados.md`](pesquisa/3-resultados/resultados.md).
 
 ## Próximos passos
 
-- [ ] Coletar Sepolia, Fuji e Monad no mesmo dia ([instruções](benchmark/README.md#coleta))
-- [ ] Subir o LocalNet da Canton e coletar ([instruções](benchmark/README.md#canton))
+- [x] Coletar Sepolia, Fuji e Monad no mesmo dia (16/10/2026)
+- [x] Coletar a Canton em rede local (sandbox do SDK, 16/10/2026)
+- [ ] Decidir o custo por transação da Canton (seção 8.1 da matriz)
 - [ ] Levantar o custo de infraestrutura por rede (C4-M2)
-- [ ] Rodar `npm run analisar` e copiar o ranking final para o paper e o resumo executivo
+- [ ] Copiar o ranking final para o paper e fechar o resumo executivo
 - [ ] Aprovar as propostas pendentes da seção 11.2 da matriz

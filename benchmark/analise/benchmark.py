@@ -79,11 +79,34 @@ def carregar_medicoes(pasta: Path) -> pd.DataFrame:
     return df
 
 
+def janela_coleta_testnets(pasta: Path) -> tuple[str, str] | None:
+    """Início da primeira e fim da última coleta nas testnets (metadados da seção 6.2)."""
+    inicios, fins = [], []
+    for arq in Path(pasta).glob("metadados_*.json"):
+        m = json.loads(arq.read_text())
+        if AMBIENTE.get(m.get("rede")) != "testnet":
+            continue
+        for j in (m.get("janelas") or {}).values():
+            inicios.append(j["inicio_utc"])
+            fins.append(j["fim_utc"])
+    return (min(inicios), max(fins)) if inicios else None
+
+
 def carregar_precos(pasta: Path) -> dict:
-    """Mediana das amostras de preço de gas e cotação (seção 3.3) por rede."""
-    amostras = []
-    for arq in sorted(Path(pasta).glob("precos_referencia_*.json")):
-        amostras += json.loads(arq.read_text())["amostras"]
+    """Mediana das amostras de preço de gas e cotação (seção 3.3) por rede.
+
+    Usa só o arquivo mais recente: a referência é a janela da coleta das testnets; arquivos de
+    outros dias ficam em dados/ como registro.
+    """
+    arquivos = sorted(Path(pasta).glob("precos_referencia_*.json"))
+    amostras = json.loads(arquivos[-1].read_text())["amostras"] if arquivos else []
+    # Só as amostras dentro da janela de coleta (com 5 min de folga antes, por causa da 1ª amostra).
+    janela = janela_coleta_testnets(pasta)
+    if janela:
+        from datetime import datetime, timedelta
+        ini = (datetime.fromisoformat(janela[0].replace("Z", "+00:00")) - timedelta(minutes=5)).isoformat()
+        dentro = [a for a in amostras if ini <= a["momento_utc"].replace("Z", "+00:00") <= janela[1].replace("Z", "+00:00")]
+        amostras = dentro or amostras
     por_rede: dict[str, dict] = {}
     for a in amostras:
         for rede, v in a["redes"].items():

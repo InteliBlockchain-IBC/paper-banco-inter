@@ -1,0 +1,205 @@
+ofertante      +21.0443985888 MON  0xffb205fdea4622e1cfe4571e12459c13810dd2d7732c1fbf7fdf448ecd9f9292
+tomador        +1.5112872 MON  0x09e13c39d86433f14b6f4d6fda2b902467d5ab5eee89cad2458814acd862d100
+tomador_t2_1   +1.30978224 MON  0xc91b7f2028edb32d4f7a9c7a48b789502011a3ffa5ad16cfaee440ec300aaa59
+tomador_t2_2   +1.30978224 MON  0x6f5fd3549b2f5777829703c1ced5199703ca9992b217da9c8d017e53b55d93b8
+tomador_t2_3   +1.30978224 MON  0x5107a59a307433d20b8677a833d4d5d0cdd97f94c1359aff6d0d85c81f2513dd
+tomador_t2_4   +1.30978224 MON  0xc9dfe32cdd3fd1308ba0bf2c549c923c44c891e06686a6c65eb1c076cbd7a281
+tomador_t2_5   +1.30978224 MON  0xeaa940a1b17167f199aed462d5f670c2f85fe421620d724c367609a6f86da54a
+tomador_t2_6   +1.30978224 MON  0x4da33325dd0330c6a185db291ab2334912bb47ff7e55893abed7ed690f9834bd
+tomador_t2_7   +1.30978224 MON  0xe4e45c580502b152e7445db970dd9cab01fc052595dae47ef5b6ed8141e2ca6d
+tomador_t2_8   +1.30978224 MON  0x113f536fec520bc69da3bdb998f4905ba5c239ddc1990b13a591f8e7b5dd8de3
+tomador_t2_9   +1.30978224 MON  0xd0e049c7fdbb0488cf4d637e29e374ecc5a4ef090bd1b71875f71c20874def2d
+tomador_t2_10  +1.30978224 MON  0x6c46fe5cd8fc7356eed65c0d4cbd803b43a0e57f1b261c6efd8eca93dbd4098a
+Distribuição concluída. Confira com `saldos`.
+Monad Testnet: preço atual 122000000000 wei; orçado a 244 gwei (maior entre 2x o atual e o piso de 100 gwei); multiplicador de gas 1.2
+admin          0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f  precisa  1.508111784  saldo 4.3205858512  ok
+ofertante      0x0714384FEEd16A7b9F04abD52aAfE65A27E8bA73  precisa 21.0443985888  saldo 21.0443985888  ok
+tomador        0x0E30bA2027EC5B941323cf1A2780aafE1Fe46062  precisa    1.5112872  saldo    1.5112872  ok
+tomador_t2_1   0xC1Ec116739229107999088eB223f9F5205312F04  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_2   0x638f296941eA48eC43707B5770bF7abe2c1fd6E7  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_3   0xf0436Dd0B4de002560b32eFB7C2B9EdCcc6676f3  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_4   0x454f2a44597F69BD9e3AA03a460Ee1E9fA9E3f70  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_5   0x50205908901F23867fd14FF40438de8d5Dc2bf72  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_6   0xCAD137c7E4416C5970dFe413940f6953B50c426D  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_7   0x872CcB39319094aA19b264d755356E280acE8B37  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_8   0x71D64314BFDFb315Ecf49336d1b896221e560bf0  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_9   0xffB0E4cE56cEc041E9bF52Df50c56785175b47a9  precisa   1.30978224  saldo   1.30978224  ok
+tomador_t2_10  0x1B5E0e65B1F401377d4c0BD16C0d357Cd41dc62d  precisa   1.30978224  saldo   1.30978224  ok
+
+Total necessário: 37.1616199728 MON. Falta no conjunto: 0 MON.
+Faucets: https://faucet.monad.xyz
+Configuração gravada em ../../projeto-inter-web3/script/config/bench-monad.json
+No files changed, compilation skipped
+Script ran successfully.
+
+== Return ==
+d: struct Deploy.Deployment Deployment({ offerContract: 0x16b1f7937096C80F715b84F96E97e42d33507A3c, brl: 0x5E4A24118CF20679A3D7a8edEb8F872abCFB1348, position: 0x056ba509FBEC12c41efe1B821111cE11FdE76491 })
+
+== Logs ==
+  BRLToken: 0x5E4A24118CF20679A3D7a8edEb8F872abCFB1348
+  CDIPositionToken: 0x056ba509FBEC12c41efe1B821111cE11FdE76491
+  CreditInterbankOffer: 0x16b1f7937096C80F715b84F96E97e42d33507A3c
+  Admin: 0x03f197ABD7C8AcFecE274261cA20bee0E6BB3b5f
+
+## Setting up 1 EVM.
+
+==========================
+
+Chain 10143
+
+Estimated gas price: 203 gwei
+
+Estimated total gas used for script: 5346213
+
+Estimated amount required: 1.085281239 ETH
+
+==========================
+
+
+==========================
+
+ONCHAIN EXECUTION COMPLETE & SUCCESSFUL.
+
+Transactions saved to: /home/cryptovictor/Trabalhos/testes-ana/paper-banco-inter/dados/implantacoes/broadcast/Deploy.s.sol/10143/run-latest.json
+
+Sensitive values saved to: /home/cryptovictor/Trabalhos/testes-ana/projeto-inter-web3/cache/Deploy.s.sol/10143/run-latest.json
+
+Endereços em /home/cryptovictor/Trabalhos/testes-ana/projeto-inter-web3/deployments/bench-monad.json e em dados/implantacoes/monad.json
+[2026-10-16T22:40:21.146Z] T1 em Monad Testnet: 30 ciclos + 10 cancelamentos
+[2026-10-16T22:40:22.696Z] T1 ciclo 1 approve     confirmada 0.611s 
+[2026-10-16T22:40:24.014Z] T1 ciclo 1 createOffer confirmada 0.814s 
+[2026-10-16T22:40:25.438Z] T1 ciclo 1 acceptOffer confirmada 0.773s 
+[2026-10-16T22:40:26.736Z] T1 ciclo 2 approve     confirmada 0.782s 
+[2026-10-16T22:40:27.805Z] T1 ciclo 2 createOffer confirmada 0.564s 
+[2026-10-16T22:40:29.554Z] T1 ciclo 2 acceptOffer confirmada 1.210s 
+[2026-10-16T22:40:31.454Z] T1 ciclo 3 approve     confirmada 1.282s 
+[2026-10-16T22:40:33.617Z] T1 ciclo 3 createOffer confirmada 1.560s 
+[2026-10-16T22:40:35.073Z] T1 ciclo 3 acceptOffer confirmada 0.920s 
+[2026-10-16T22:40:36.610Z] T1 ciclo 4 approve     confirmada 1.027s 
+[2026-10-16T22:40:37.825Z] T1 ciclo 4 createOffer confirmada 0.694s 
+[2026-10-16T22:40:39.277Z] T1 ciclo 4 acceptOffer confirmada 0.882s 
+[2026-10-16T22:40:40.618Z] T1 ciclo 5 approve     confirmada 0.698s 
+[2026-10-16T22:40:41.922Z] T1 ciclo 5 createOffer confirmada 0.784s 
+[2026-10-16T22:40:43.386Z] T1 ciclo 5 acceptOffer confirmada 0.963s 
+[2026-10-16T22:40:44.880Z] T1 ciclo 6 approve     confirmada 0.944s 
+[2026-10-16T22:40:46.270Z] T1 ciclo 6 createOffer confirmada 0.867s 
+[2026-10-16T22:40:48.477Z] T1 ciclo 6 acceptOffer confirmada 1.542s 
+[2026-10-16T22:40:49.825Z] T1 ciclo 7 approve     confirmada 0.854s 
+[2026-10-16T22:40:51.479Z] T1 ciclo 7 createOffer confirmada 1.075s 
+[2026-10-16T22:40:52.630Z] T1 ciclo 7 acceptOffer confirmada 0.624s 
+[2026-10-16T22:40:54.323Z] T1 ciclo 8 approve     confirmada 1.112s 
+[2026-10-16T22:40:55.779Z] T1 ciclo 8 createOffer confirmada 0.810s 
+[2026-10-16T22:40:57.368Z] T1 ciclo 8 acceptOffer confirmada 1.039s 
+[2026-10-16T22:40:58.887Z] T1 ciclo 9 approve     confirmada 0.934s 
+[2026-10-16T22:41:00.510Z] T1 ciclo 9 createOffer confirmada 0.604s 
+[2026-10-16T22:41:02.025Z] T1 ciclo 9 acceptOffer confirmada 1.020s 
+[2026-10-16T22:41:03.313Z] T1 ciclo 10 approve     confirmada 0.614s 
+[2026-10-16T22:41:04.547Z] T1 ciclo 10 createOffer confirmada 0.724s 
+[2026-10-16T22:41:06.191Z] T1 ciclo 10 acceptOffer confirmada 1.079s 
+[2026-10-16T22:41:07.753Z] T1 ciclo 11 approve     confirmada 0.932s 
+[2026-10-16T22:41:09.419Z] T1 ciclo 11 createOffer confirmada 1.143s 
+[2026-10-16T22:41:11.089Z] T1 ciclo 11 acceptOffer confirmada 1.124s 
+[2026-10-16T22:41:12.266Z] T1 ciclo 12 approve     confirmada 0.653s 
+[2026-10-16T22:41:13.610Z] T1 ciclo 12 createOffer confirmada 0.815s 
+[2026-10-16T22:41:15.130Z] T1 ciclo 12 acceptOffer confirmada 0.981s 
+[2026-10-16T22:41:16.161Z] T1 ciclo 13 approve     confirmada 0.525s 
+[2026-10-16T22:41:17.506Z] T1 ciclo 13 createOffer confirmada 0.818s 
+[2026-10-16T22:41:18.563Z] T1 ciclo 13 acceptOffer confirmada 0.554s 
+[2026-10-16T22:41:19.990Z] T1 ciclo 14 approve     confirmada 0.873s 
+[2026-10-16T22:41:21.439Z] T1 ciclo 14 createOffer confirmada 0.683s 
+[2026-10-16T22:41:22.699Z] T1 ciclo 14 acceptOffer confirmada 0.648s 
+[2026-10-16T22:41:24.572Z] T1 ciclo 15 approve     confirmada 1.053s 
+[2026-10-16T22:41:29.687Z] T1 ciclo 15 createOffer confirmada 2.244s 
+[2026-10-16T22:41:31.422Z] T1 ciclo 15 acceptOffer confirmada 1.210s 
+[2026-10-16T22:41:33.011Z] T1 ciclo 16 approve     confirmada 1.039s 
+[2026-10-16T22:41:34.469Z] T1 ciclo 16 createOffer confirmada 0.937s 
+[2026-10-16T22:41:35.932Z] T1 ciclo 16 acceptOffer confirmada 0.934s 
+[2026-10-16T22:41:37.436Z] T1 ciclo 17 approve     confirmada 0.934s 
+[2026-10-16T22:41:39.270Z] T1 ciclo 17 createOffer confirmada 1.136s 
+[2026-10-16T22:41:41.735Z] T1 ciclo 17 acceptOffer confirmada 1.581s 
+[2026-10-16T22:41:43.083Z] T1 ciclo 18 approve     confirmada 0.788s 
+[2026-10-16T22:41:44.269Z] T1 ciclo 18 createOffer confirmada 0.664s 
+[2026-10-16T22:41:45.712Z] T1 ciclo 18 acceptOffer confirmada 0.928s 
+[2026-10-16T22:41:46.911Z] T1 ciclo 19 approve     confirmada 0.670s 
+[2026-10-16T22:41:48.244Z] T1 ciclo 19 createOffer confirmada 0.745s 
+[2026-10-16T22:41:49.267Z] T1 ciclo 19 acceptOffer confirmada 0.487s 
+[2026-10-16T22:41:50.605Z] T1 ciclo 20 approve     confirmada 0.811s 
+[2026-10-16T22:41:51.949Z] T1 ciclo 20 createOffer confirmada 0.809s 
+[2026-10-16T22:41:53.488Z] T1 ciclo 20 acceptOffer confirmada 0.953s 
+[2026-10-16T22:41:54.968Z] T1 ciclo 21 approve     confirmada 0.995s 
+[2026-10-16T22:41:56.520Z] T1 ciclo 21 createOffer confirmada 0.946s 
+[2026-10-16T22:41:58.189Z] T1 ciclo 21 acceptOffer confirmada 1.028s 
+[2026-10-16T22:41:59.426Z] T1 ciclo 22 approve     confirmada 0.699s 
+[2026-10-16T22:42:01.028Z] T1 ciclo 22 createOffer confirmada 1.012s 
+[2026-10-16T22:42:02.665Z] T1 ciclo 22 acceptOffer confirmada 1.008s 
+[2026-10-16T22:42:03.995Z] T1 ciclo 23 approve     confirmada 0.745s 
+[2026-10-16T22:42:05.633Z] T1 ciclo 23 createOffer confirmada 1.018s 
+[2026-10-16T22:42:06.897Z] T1 ciclo 23 acceptOffer confirmada 0.707s 
+[2026-10-16T22:42:08.602Z] T1 ciclo 24 approve     confirmada 1.031s 
+[2026-10-16T22:42:10.470Z] T1 ciclo 24 createOffer confirmada 1.227s 
+[2026-10-16T22:42:12.114Z] T1 ciclo 24 acceptOffer confirmada 0.993s 
+[2026-10-16T22:42:13.990Z] T1 ciclo 25 approve     confirmada 1.316s 
+[2026-10-16T22:42:16.028Z] T1 ciclo 25 createOffer confirmada 0.916s 
+[2026-10-16T22:42:17.733Z] T1 ciclo 25 acceptOffer confirmada 1.117s 
+[2026-10-16T22:42:19.528Z] T1 ciclo 26 approve     confirmada 1.130s 
+[2026-10-16T22:42:20.888Z] T1 ciclo 26 createOffer confirmada 0.798s 
+[2026-10-16T22:42:22.264Z] T1 ciclo 26 acceptOffer confirmada 0.899s 
+[2026-10-16T22:42:24.076Z] T1 ciclo 27 approve     confirmada 1.214s 
+[2026-10-16T22:42:25.547Z] T1 ciclo 27 createOffer confirmada 0.919s 
+[2026-10-16T22:42:27.986Z] T1 ciclo 27 acceptOffer confirmada 1.740s 
+[2026-10-16T22:42:29.428Z] T1 ciclo 28 approve     confirmada 0.910s 
+[2026-10-16T22:42:31.083Z] T1 ciclo 28 createOffer confirmada 1.055s 
+[2026-10-16T22:42:32.797Z] T1 ciclo 28 acceptOffer confirmada 1.181s 
+[2026-10-16T22:42:34.352Z] T1 ciclo 29 approve     confirmada 1.037s 
+[2026-10-16T22:42:36.355Z] T1 ciclo 29 createOffer confirmada 1.333s 
+[2026-10-16T22:42:37.791Z] T1 ciclo 29 acceptOffer confirmada 0.677s 
+[2026-10-16T22:42:39.388Z] T1 ciclo 30 approve     confirmada 1.071s 
+[2026-10-16T22:42:40.706Z] T1 ciclo 30 createOffer confirmada 0.785s 
+[2026-10-16T22:42:42.233Z] T1 ciclo 30 acceptOffer confirmada 1.014s 
+[2026-10-16T22:42:44.158Z] T1 cancelamento 1 createOffer confirmada 1.234s 
+[2026-10-16T22:42:45.673Z] T1 cancelamento 1 cancelOffer confirmada 0.917s 
+[2026-10-16T22:42:47.222Z] T1 cancelamento 2 createOffer confirmada 0.846s 
+[2026-10-16T22:42:48.734Z] T1 cancelamento 2 cancelOffer confirmada 0.778s 
+[2026-10-16T22:42:50.588Z] T1 cancelamento 3 createOffer confirmada 0.886s 
+[2026-10-16T22:42:52.153Z] T1 cancelamento 3 cancelOffer confirmada 1.022s 
+[2026-10-16T22:42:53.305Z] T1 cancelamento 4 createOffer confirmada 0.624s 
+[2026-10-16T22:42:54.936Z] T1 cancelamento 4 cancelOffer confirmada 0.951s 
+[2026-10-16T22:42:56.629Z] T1 cancelamento 5 createOffer confirmada 1.021s 
+[2026-10-16T22:42:58.589Z] T1 cancelamento 5 cancelOffer confirmada 1.219s 
+[2026-10-16T22:43:00.328Z] T1 cancelamento 6 createOffer confirmada 1.073s 
+[2026-10-16T22:43:01.678Z] T1 cancelamento 6 cancelOffer confirmada 0.724s 
+[2026-10-16T22:43:03.119Z] T1 cancelamento 7 createOffer confirmada 0.816s 
+[2026-10-16T22:43:04.198Z] T1 cancelamento 7 cancelOffer confirmada 0.573s 
+[2026-10-16T22:43:05.694Z] T1 cancelamento 8 createOffer confirmada 0.932s 
+[2026-10-16T22:43:07.145Z] T1 cancelamento 8 cancelOffer confirmada 0.956s 
+[2026-10-16T22:43:08.653Z] T1 cancelamento 9 createOffer confirmada 1.024s 
+[2026-10-16T22:43:09.720Z] T1 cancelamento 9 cancelOffer confirmada 0.581s 
+[2026-10-16T22:43:11.068Z] T1 cancelamento 10 createOffer confirmada 0.806s 
+[2026-10-16T22:43:12.729Z] T1 cancelamento 10 cancelOffer confirmada 1.114s 
+[2026-10-16T22:43:12.729Z] T2 em Monad Testnet: preparando 255 ofertas
+[2026-10-16T22:43:17.727Z] T2 preparo: 16/255 ofertas criadas
+[2026-10-16T22:43:21.342Z] T2 preparo: 32/255 ofertas criadas
+[2026-10-16T22:43:25.000Z] T2 preparo: 48/255 ofertas criadas
+[2026-10-16T22:43:28.789Z] T2 preparo: 64/255 ofertas criadas
+[2026-10-16T22:43:32.222Z] T2 preparo: 80/255 ofertas criadas
+[2026-10-16T22:43:35.546Z] T2 preparo: 96/255 ofertas criadas
+[2026-10-16T22:43:39.391Z] T2 preparo: 112/255 ofertas criadas
+[2026-10-16T22:43:42.556Z] T2 preparo: 128/255 ofertas criadas
+[2026-10-16T22:43:45.992Z] T2 preparo: 144/255 ofertas criadas
+[2026-10-16T22:43:49.076Z] T2 preparo: 160/255 ofertas criadas
+[2026-10-16T22:43:52.677Z] T2 preparo: 176/255 ofertas criadas
+[2026-10-16T22:43:55.835Z] T2 preparo: 192/255 ofertas criadas
+[2026-10-16T22:43:59.842Z] T2 preparo: 208/255 ofertas criadas
+[2026-10-16T22:44:03.333Z] T2 preparo: 224/255 ofertas criadas
+[2026-10-16T22:44:06.612Z] T2 preparo: 240/255 ofertas criadas
+[2026-10-16T22:44:09.888Z] T2 preparo: 255/255 ofertas criadas
+[2026-10-16T22:44:12.615Z] T2 lote 10 rodada 1: 10/10 confirmadas em 0.9s
+[2026-10-16T22:44:15.828Z] T2 lote 10 rodada 2: 10/10 confirmadas em 0.9s
+[2026-10-16T22:44:19.017Z] T2 lote 10 rodada 3: 10/10 confirmadas em 0.9s
+[2026-10-16T22:44:23.024Z] T2 lote 25 rodada 1: 25/25 confirmadas em 1.7s
+[2026-10-16T22:44:27.192Z] T2 lote 25 rodada 2: 25/25 confirmadas em 1.9s
+[2026-10-16T22:44:30.476Z] T2 lote 25 rodada 3: 25/25 confirmadas em 1.0s
+[2026-10-16T22:44:34.299Z] T2 lote 50 rodada 1: 50/50 confirmadas em 1.5s
+[2026-10-16T22:44:38.027Z] T2 lote 50 rodada 2: 50/50 confirmadas em 1.3s
+[2026-10-16T22:44:41.574Z] T2 lote 50 rodada 3: 50/50 confirmadas em 1.3s
+[2026-10-16T22:44:43.871Z] Dados em /home/cryptovictor/Trabalhos/testes-ana/paper-banco-inter/dados/medicoes_monad_2026-10-16.csv

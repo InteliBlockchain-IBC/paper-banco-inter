@@ -1,0 +1,684 @@
+{
+  "amostras": [
+    {
+      "momento_utc": "2026-10-16T22:38:49.632Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "69311378",
+          "bloco_referencia": "26208142",
+          "token": "ethereum",
+          "cotacao_usd": 2421.96,
+          "cotacao_brl": 12262
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6000000000",
+          "bloco_referencia": "97745472",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.97,
+          "cotacao_brl": 50.5
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "105000000000",
+          "bloco_referencia": "114018861",
+          "token": "monad",
+          "cotacao_usd": 0.022864,
+          "cotacao_brl": 0.115757
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T22:43:51.682Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "81855011",
+          "bloco_referencia": "26208167",
+          "token": "ethereum",
+          "cotacao_usd": 2422.07,
+          "cotacao_brl": 12262.57
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "7500000225",
+          "bloco_referencia": "97745727",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.97,
+          "cotacao_brl": 50.48
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114019861",
+          "token": "monad",
+          "cotacao_usd": 0.0228886,
+          "cotacao_brl": 0.115882
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T22:48:53.215Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "94220867",
+          "bloco_referencia": "26208191",
+          "token": "ethereum",
+          "cotacao_usd": 2424.74,
+          "cotacao_brl": 12276.1
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6500000000",
+          "bloco_referencia": "97746017",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.98,
+          "cotacao_brl": 50.54
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114020859",
+          "token": "monad",
+          "cotacao_usd": 0.02290987,
+          "cotacao_brl": 0.115989
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T22:53:54.637Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "78043699",
+          "bloco_referencia": "26208216",
+          "token": "ethereum",
+          "cotacao_usd": 2422.04,
+          "cotacao_brl": 12262.45
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "7500000225",
+          "bloco_referencia": "97746264",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.97,
+          "cotacao_brl": 50.49
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114021857",
+          "token": "monad",
+          "cotacao_usd": 0.02289893,
+          "cotacao_brl": 0.115934
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T22:58:55.912Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "75390222",
+          "bloco_referencia": "26208242",
+          "token": "ethereum",
+          "cotacao_usd": 2422.33,
+          "cotacao_brl": 12263.88
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "7500000225",
+          "bloco_referencia": "97746544",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.97,
+          "cotacao_brl": 50.47
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "108000000000",
+          "bloco_referencia": "114022872",
+          "token": "monad",
+          "cotacao_usd": 0.02288692,
+          "cotacao_brl": 0.115873
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:04:02.480Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "266107782",
+          "bloco_referencia": "26208267",
+          "token": "ethereum",
+          "cotacao_usd": 2424.36,
+          "cotacao_brl": 12274.16
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6771533049",
+          "bloco_referencia": "97746813",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.98,
+          "cotacao_brl": 50.53
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114023871",
+          "token": "monad",
+          "cotacao_usd": 0.02292958,
+          "cotacao_brl": 0.116089
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:09:04.123Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "122902765",
+          "bloco_referencia": "26208292",
+          "token": "ethereum",
+          "cotacao_usd": 2421.95,
+          "cotacao_brl": 12261.96
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6500000000",
+          "bloco_referencia": "97747076",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.97,
+          "cotacao_brl": 50.47
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114024872",
+          "token": "monad",
+          "cotacao_usd": 0.02286453,
+          "cotacao_brl": 0.11576
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:14:05.893Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "75234388",
+          "bloco_referencia": "26208317",
+          "token": "ethereum",
+          "cotacao_usd": 2421.23,
+          "cotacao_brl": 12258.32
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "7047000000",
+          "bloco_referencia": "97747352",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.96,
+          "cotacao_brl": 50.41
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114025872",
+          "token": "monad",
+          "cotacao_usd": 0.02284497,
+          "cotacao_brl": 0.115661
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:19:07.912Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "81349300",
+          "bloco_referencia": "26208342",
+          "token": "ethereum",
+          "cotacao_usd": 2421.43,
+          "cotacao_brl": 12259.33
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "5038803062",
+          "bloco_referencia": "97747635",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.96,
+          "cotacao_brl": 50.41
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "108000000000",
+          "bloco_referencia": "114026872",
+          "token": "monad",
+          "cotacao_usd": 0.0228582,
+          "cotacao_brl": 0.115728
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:24:09.690Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "118751492",
+          "bloco_referencia": "26208367",
+          "token": "ethereum",
+          "cotacao_usd": 2421.81,
+          "cotacao_brl": 12261.28
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "7500000225",
+          "bloco_referencia": "97747915",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.95,
+          "cotacao_brl": 50.39
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "102000000001",
+          "bloco_referencia": "114027871",
+          "token": "monad",
+          "cotacao_usd": 0.02284414,
+          "cotacao_brl": 0.115656
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:29:10.982Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "115696183",
+          "bloco_referencia": "26208392",
+          "token": "ethereum",
+          "cotacao_usd": 2420.45,
+          "cotacao_brl": 12254.36
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "7500000225",
+          "bloco_referencia": "97748182",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.94,
+          "cotacao_brl": 50.34
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114028888",
+          "token": "monad",
+          "cotacao_usd": 0.0228369,
+          "cotacao_brl": 0.11562
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:34:18.199Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "81741144",
+          "bloco_referencia": "26208418",
+          "token": "ethereum",
+          "cotacao_usd": 2420.46,
+          "cotacao_brl": 12254.43
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6500000000",
+          "bloco_referencia": "97748464",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.95,
+          "cotacao_brl": 50.36
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114029888",
+          "token": "monad",
+          "cotacao_usd": 0.02284278,
+          "cotacao_brl": 0.11565
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:39:20.042Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "80564381",
+          "bloco_referencia": "26208443",
+          "token": "ethereum",
+          "cotacao_usd": 2421.32,
+          "cotacao_brl": 12258.8
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6250000188",
+          "bloco_referencia": "97748749",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.95,
+          "cotacao_brl": 50.36
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114030889",
+          "token": "monad",
+          "cotacao_usd": 0.02286803,
+          "cotacao_brl": 0.115777
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:44:21.738Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "73339917",
+          "bloco_referencia": "26208468",
+          "token": "ethereum",
+          "cotacao_usd": 2421.58,
+          "cotacao_brl": 12260.1
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "7500000225",
+          "bloco_referencia": "97749028",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.96,
+          "cotacao_brl": 50.41
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "105000000001",
+          "bloco_referencia": "114031888",
+          "token": "monad",
+          "cotacao_usd": 0.02287421,
+          "cotacao_brl": 0.115809
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:49:23.434Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "72797821",
+          "bloco_referencia": "26208492",
+          "token": "ethereum",
+          "cotacao_usd": 2421.13,
+          "cotacao_brl": 12257.83
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6500000000",
+          "bloco_referencia": "97749275",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.95,
+          "cotacao_brl": 50.39
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114032888",
+          "token": "monad",
+          "cotacao_usd": 0.0228975,
+          "cotacao_brl": 0.115927
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:54:25.454Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "441099511",
+          "bloco_referencia": "26208518",
+          "token": "ethereum",
+          "cotacao_usd": 2420.77,
+          "cotacao_brl": 12255.98
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6500000000",
+          "bloco_referencia": "97749511",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.95,
+          "cotacao_brl": 50.39
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114033887",
+          "token": "monad",
+          "cotacao_usd": 0.02288813,
+          "cotacao_brl": 0.115879
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-16T23:59:26.769Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "229220771",
+          "bloco_referencia": "26208543",
+          "token": "ethereum",
+          "cotacao_usd": 2420.59,
+          "cotacao_brl": 12255.11
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6500000000",
+          "bloco_referencia": "97749776",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.95,
+          "cotacao_brl": 50.37
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "102000000001",
+          "bloco_referencia": "114034886",
+          "token": "monad",
+          "cotacao_usd": 0.02286798,
+          "cotacao_brl": 0.115777
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-17T00:04:28.438Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "88834566",
+          "bloco_referencia": "26208568",
+          "token": "ethereum",
+          "cotacao_usd": 2419.81,
+          "cotacao_brl": 12251.15
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "6000000000",
+          "bloco_referencia": "97750086",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.94,
+          "cotacao_brl": 50.34
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "103000000000",
+          "bloco_referencia": "114035897",
+          "token": "monad",
+          "cotacao_usd": 0.02284175,
+          "cotacao_brl": 0.115644
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-17T00:09:33.486Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "75714346",
+          "bloco_referencia": "26208593",
+          "token": "ethereum",
+          "cotacao_usd": 2419.47,
+          "cotacao_brl": 12249.4
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "8637324427",
+          "bloco_referencia": "97750403",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.94,
+          "cotacao_brl": 50.31
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "105000000000",
+          "bloco_referencia": "114036896",
+          "token": "monad",
+          "cotacao_usd": 0.02284856,
+          "cotacao_brl": 0.115679
+        }
+      }
+    },
+    {
+      "momento_utc": "2026-10-17T00:14:34.932Z",
+      "fonte_gas": "eth_feeHistory (20 blocos, base fee + gorjeta p50)",
+      "fonte_cotacao": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum,avalanche-2,monad&vs_currencies=usd,brl",
+      "redes": {
+        "sepolia": {
+          "mainnet_chain_id": 1,
+          "rpc_mainnet": "https://ethereum-rpc.publicnode.com",
+          "gas_preco_wei": "70014958",
+          "bloco_referencia": "26208618",
+          "token": "ethereum",
+          "cotacao_usd": 2419.87,
+          "cotacao_brl": 12251.43
+        },
+        "fuji": {
+          "mainnet_chain_id": 43114,
+          "rpc_mainnet": "https://api.avax.network/ext/bc/C/rpc",
+          "gas_preco_wei": "5000000225",
+          "bloco_referencia": "97750714",
+          "token": "avalanche-2",
+          "cotacao_usd": 9.93,
+          "cotacao_brl": 50.28
+        },
+        "monad": {
+          "mainnet_chain_id": 143,
+          "rpc_mainnet": "https://rpc.monad.xyz",
+          "gas_preco_wei": "110000000000",
+          "bloco_referencia": "114037894",
+          "token": "monad",
+          "cotacao_usd": 0.022854,
+          "cotacao_brl": 0.115706
+        }
+      }
+    }
+  ]
+}
