@@ -1,6 +1,6 @@
 # Resumo Executivo — Seleção de rede para crédito interfinanceiro overnight
 
-> **Atualizado em 19/10/2026:** números de `pesquisa/3-resultados/resultados.md`. Limitações aguardam revisão da Pessoa A.
+> **Atualizado em 19/10/2026:** números de `pesquisa/3-resultados/resultados.md`. Limitações revisadas contra a seção 10 da matriz de critérios.
 
 ## Problema
 Checagens manuais de limites atrasam a negociação e a liquidação do crédito overnight, elevando o risco de contraparte e a complexidade do fechamento de caixa. O projeto avalia, com critérios explícitos, qual rede é mais adequada para automatizar esse processo.
@@ -34,7 +34,9 @@ Em 16 variações, além do cenário-base, Canton fica em primeiro em 13 de 17 c
 - **Ambientes e escopo:** Besu e Canton foram testados localmente; Canton, em sandbox de um participante. Sem internet nem carga de terceiros, seus tempos não representam produção. O teste cobriu um protocolo e lotes de até 50; 100% de sucesso não diferenciou as redes.
 - **Custos:** a Sepolia ativou Glamsterdam em 06/10 e seu gas medido foi 3,56 vezes o das regras atuais da mainnet. A tarifa real da Canton, rede privada de acesso restrito a instituições, não pôde ser medida e não foi estimada; o custo de infraestrutura (C4-M2) também não foi levantado.
 - **Método:** pesos AHP vieram de uma regra por níveis. C2-M2 compara uma versão Solidity e uma Daml, com linguagens e números de funções diferentes. Stellar, Solana e Miden foram descartadas.
-- Limitações da matriz; revisão final da Pessoa A pendente.
+- **Latência:** mede a inclusão no bloco, não a janela completa do RNF02 (backend e tela). A do Besu depende do período de bloco escolhido (2 s). As testnets foram coletadas em paralelo, na mesma máquina e com RPC público, e o Besu dois dias antes.
+- **Dados e escalas:** a normalização min-max depende do conjunto fechado de redes. Os critérios qualitativos (C5, C2-M1, C2-M3) seguem escalas definidas pela equipe, e as medidas internas de C2 e C4 usam média simples. Números declarados pelas redes, como os da Monad, não foram verificados por terceiros.
+- **Protocolo:** os resultados valem para este protocolo. A versão Daml muda o desenho por causa da privacidade: o limite do tomador só é checado no aceite, e aceites simultâneos do mesmo tomador disputam o mesmo contrato de limite.
 
 ## Próximos passos
 - Obter o custo real da Canton junto a um operador da rede e estimar a infraestrutura para três participantes; validar a rede em máquinas separadas, com carga maior e revisão regulatória/de privacidade.
