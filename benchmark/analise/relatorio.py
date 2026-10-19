@@ -173,7 +173,7 @@ def gerar(*, redes, nomes, detalhes, matriz, pontos, sens, precos, origens, orig
         "C2 e C5 vêm de documentação e do código em todas as redes. Pontuação em faixa: critérios ainda sem valor podem ir de 0 a 1.",
     ]
     if matriz.sem_infra:
-        L.append("C4 usa só o custo por transação (C4-M1): o custo de infraestrutura (C4-M2) ainda não foi levantado.")
+        L.append("C4 usa só o custo por transação (C4-M1). O custo de infraestrutura (C4-M2) foi levantado em `pesquisa/4-custo-infraestrutura/`, mas não entra na pontuação: a Canton é uma rede privada, de acesso restrito a instituições, e supor um valor para ela seria antiético.")
 
     mudou = [l["cenario"] for l in sens if l["primeiro_mudou"]]
     L += ["", "## Sensibilidade aos pesos", "", f"![Sensibilidade]({img}/sensibilidade.png)", "",

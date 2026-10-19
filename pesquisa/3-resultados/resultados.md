@@ -1,6 +1,6 @@
 # Resultados do benchmark
 
-> Arquivo gerado por `benchmark/analise/analisar.py` em 17/10/2026 00:19 UTC. Não edite à mão: depois de cada coleta, rode `npm run analisar` dentro de `benchmark/`.
+> Arquivo gerado por `benchmark/analise/analisar.py` em 19/10/2026 16:20 UTC. Não edite à mão: depois de cada coleta, rode `npm run analisar` dentro de `benchmark/`.
 
 ## De onde vem cada número
 
@@ -29,20 +29,20 @@ Quando uma testnet for coletada, a linha dela passa de projeção para medido em
 
 | Posição | Rede | Origem | C1 | C2 | C3 | C4 | C5 | Pontuação |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Canton | `LOCAL` medido em rede local | 1,00 | 0,83 | 1,00 | 1,00 | 0,00 | **86,2** |
-| 2 | Hyperledger Besu | `LOCAL` medido em rede local | 1,00 | 0,50 | 0,85 | 1,00 | 1,00 | **82,8** |
-| 3 | Monad | `TESTNET` medido em testnet | 1,00 | 0,33 | 0,94 | 1,00 | 1,00 | **79,2** |
-| 4 | Avalanche Fuji | `TESTNET` medido em testnet | 1,00 | 0,33 | 0,79 | 0,90 | 1,00 | **75,2** |
-| 5 | Ethereum Sepolia | `TESTNET` medido em testnet | 1,00 | 0,33 | 0,00 | 0,00 | 1,00 | **48,6** |
+| 1 | Hyperledger Besu | `LOCAL` medido em rede local | 1,00 | 0,83 | 0,85 | 1,00 | 1,00 | **92,7** |
+| 2 | Monad | `TESTNET` medido em testnet | 1,00 | 0,67 | 0,94 | 1,00 | 1,00 | **89,1** |
+| 3 | Avalanche Fuji | `TESTNET` medido em testnet | 1,00 | 0,67 | 0,79 | 0,90 | 1,00 | **85,2** |
+| 4 | Canton | `LOCAL` medido em rede local | 1,00 | 0,50 | 1,00 | 1,00 | 0,00 | **76,2** |
+| 5 | Ethereum Sepolia | `TESTNET` medido em testnet | 1,00 | 0,67 | 0,00 | 0,00 | 1,00 | **58,5** |
 
 Notas de 0 a 1 (min-max entre as cinco redes); pesos C1 29,78%, C2 29,78%, C3 15,78%, C4 15,78%, C5 8,88%. C2 e C5 vêm de documentação e do código em todas as redes. Pontuação em faixa: critérios ainda sem valor podem ir de 0 a 1.
-C4 usa só o custo por transação (C4-M1): o custo de infraestrutura (C4-M2) ainda não foi levantado.
+C4 usa só o custo por transação (C4-M1). O custo de infraestrutura (C4-M2) foi levantado em `pesquisa/4-custo-infraestrutura/`, mas não entra na pontuação: a Canton é uma rede privada, de acesso restrito a instituições, e supor um valor para ela seria antiético.
 
 ## Sensibilidade aos pesos
 
 ![Sensibilidade](graficos/sensibilidade.png)
 
-O primeiro lugar muda em 4 de 17 cenários: S1 pesos iguais, S2 C2 −50%, S2 C5 +50%, S3 sem C2. Enquanto houver projeção, a sensibilidade também é preliminar.
+O primeiro lugar muda em 1 de 17 cenários: S3 sem C2. Enquanto houver projeção, a sensibilidade também é preliminar.
 
 ## Escolhas de método que podem mudar a conclusão
 
@@ -50,9 +50,9 @@ O ranking refeito com cada alternativa (pesos do cenário base):
 
 | Escolha | 1º lugar | Pontuação por rede |
 |---|---|---|
-| **Adotada** (roteiro) | Canton | Canton 86,2; Hyperledger Besu 82,8; Monad 79,2; Avalanche Fuji 75,2; Ethereum Sepolia 48,6 |
-| Custo por transação da Canton a definir (modelo de tráfego, INTER-6), em vez de zero como no sandbox | Hyperledger Besu | Hyperledger Besu 82,8; Monad 79,2; Canton 70,4 a 86,2; Avalanche Fuji 75,2; Ethereum Sepolia 48,6 |
-| Custo da Ethereum com o gas das regras atuais da mainnet (pré-Glamsterdam), em vez do gas medido na Sepolia | Canton | Canton 86,2; Hyperledger Besu 82,8; Monad 79,0; Avalanche Fuji 71,3; Ethereum Sepolia 48,6 |
+| **Adotada** (roteiro) | Hyperledger Besu | Hyperledger Besu 92,7; Monad 89,1; Avalanche Fuji 85,2; Canton 76,2; Ethereum Sepolia 58,5 |
+| Custo por transação da Canton a definir (modelo de tráfego, INTER-6), em vez de zero como no sandbox | Hyperledger Besu | Hyperledger Besu 92,7; Monad 89,1; Avalanche Fuji 85,2; Canton 60,5 a 76,2; Ethereum Sepolia 58,5 |
+| Custo da Ethereum com o gas das regras atuais da mainnet (pré-Glamsterdam), em vez do gas medido na Sepolia | Hyperledger Besu | Hyperledger Besu 92,7; Monad 88,9; Avalanche Fuji 81,2; Canton 76,2; Ethereum Sepolia 58,5 |
 
 ## Custo por ciclo a preços da mainnet (C4-M1)
 
@@ -102,7 +102,7 @@ Montadas na máquina da equipe; medem o protocolo sem tráfego de terceiros nem 
 
 **Origem dos números:** `LOCAL` medido em rede local.
 
-**Coleta:** T1 de 2026-10-14 14:21 a 14:25 UTC; T2 de 2026-10-14 15:41 a 15:42 UTC. RPC: nó próprio local. Cliente: `besu/v26.8.1/linux-x86_64/openjdk-java-25`. Dados brutos: `../../dados/medicoes_besu_2026-10-14.csv`.
+**Coleta:** T1 de 2026-10-14 14:21 a 14:25 UTC; T2 de 2026-10-14 15:41 a 15:42 UTC. RPC: nó próprio local. Cliente: `besu/v26.8.1/linux-x86_64/openjdk-java-25`. Dados brutos: `..\..\dados/medicoes_besu_2026-10-14.csv`.
 
 **T1, latência do `acceptOffer` (C3):**
 
@@ -137,7 +137,7 @@ Falhas: A 0 · B 0 · C 0 · D 0 · X 0 (só D conta contra a rede).
 
 **Origem dos números:** `LOCAL` medido em rede local.
 
-**Coleta:** T1 de 2026-10-16 22:54 a 22:55 UTC; T2 de 2026-10-16 22:58 a 22:58 UTC. RPC: JSON Ledger API v2 local, sem autenticação. Cliente: `Canton 3.6.1`. Dados brutos: `../../dados/medicoes_canton_2026-10-16.csv`.
+**Coleta:** T1 de 2026-10-16 22:54 a 22:55 UTC; T2 de 2026-10-16 22:58 a 22:58 UTC. RPC: JSON Ledger API v2 local, sem autenticação. Cliente: `Canton 3.6.1`. Dados brutos: `..\..\dados/medicoes_canton_2026-10-16.csv`.
 
 **T1, latência do `acceptOffer` (C3):**
 
@@ -176,7 +176,7 @@ Fichas prontas para os dados da coleta; enquanto mostrarem "—", a matriz usa o
 
 **Origem dos números:** `TESTNET` medido em testnet.
 
-**Coleta:** T1 de 2026-10-16 22:52 a 23:15 UTC; T2 de 2026-10-16 23:20 a 23:22 UTC. RPC: público gratuito. Cliente: `reth/v2.7.0-3d592ec/x86_64-unknown-linux-gnu`. Dados brutos: `../../dados/medicoes_sepolia_2026-10-16.csv`.
+**Coleta:** T1 de 2026-10-16 22:52 a 23:15 UTC; T2 de 2026-10-16 23:20 a 23:22 UTC. RPC: público gratuito. Cliente: `reth/v2.7.0-3d592ec/x86_64-unknown-linux-gnu`. Dados brutos: `..\..\dados/medicoes_sepolia_2026-10-16.csv`.
 
 **T1, latência do `acceptOffer` (C3):**
 
@@ -211,7 +211,7 @@ Falhas: A 0 · B 0 · C 0 · D 0 · X 0 (só D conta contra a rede).
 
 **Origem dos números:** `TESTNET` medido em testnet.
 
-**Coleta:** T1 de 2026-10-16 22:41 a 22:49 UTC; T2 de 2026-10-16 22:50 a 22:52 UTC. RPC: público gratuito. Cliente: `avalanchego/1.15.1 [database=v1.4.5, rpcchainvm=46, commit=fdb2c1b9b02ef357b5867d5ababb6acc83837a01, go=1.26.8]`. Dados brutos: `../../dados/medicoes_fuji_2026-10-16.csv`.
+**Coleta:** T1 de 2026-10-16 22:41 a 22:49 UTC; T2 de 2026-10-16 22:50 a 22:52 UTC. RPC: público gratuito. Cliente: `avalanchego/1.15.1 [database=v1.4.5, rpcchainvm=46, commit=fdb2c1b9b02ef357b5867d5ababb6acc83837a01, go=1.26.8]`. Dados brutos: `..\..\dados/medicoes_fuji_2026-10-16.csv`.
 
 **Atenção:** 1 pausa(s) do observador; as linhas afetadas ficam fora das estatísticas de latência.
 
@@ -248,7 +248,7 @@ Falhas: A 0 · B 0 · C 0 · D 0 · X 0 (só D conta contra a rede).
 
 **Origem dos números:** `TESTNET` medido em testnet.
 
-**Coleta:** T1 de 2026-10-16 22:40 a 22:43 UTC; T2 de 2026-10-16 22:44 a 22:44 UTC. RPC: público gratuito. Cliente: `Monad/0.16.3`. Dados brutos: `../../dados/medicoes_monad_2026-10-16.csv`.
+**Coleta:** T1 de 2026-10-16 22:40 a 22:43 UTC; T2 de 2026-10-16 22:44 a 22:44 UTC. RPC: público gratuito. Cliente: `Monad/0.16.3`. Dados brutos: `..\..\dados/medicoes_monad_2026-10-16.csv`.
 
 **T1, latência do `acceptOffer` (C3):**
 
