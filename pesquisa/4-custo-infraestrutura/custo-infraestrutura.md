@@ -1,6 +1,6 @@
 # Custo de infraestrutura (C4-M2)
 
-Levantamento feito conforme a seção 8.4 do [roteiro de medição](../2-metodo/roteiro-medicao.md). **Estado:** proposta para validação da equipe. Os valores ainda **não** entraram em `benchmark/config/declarados.json` nem em `resultados.md` (ver seção 5).
+Levantamento feito conforme a seção 8.4 do [roteiro de medição](../2-metodo/roteiro-medicao.md). **Estado:** levantamento concluído. Conforme a decisão da equipe, os valores são **descritivos** e não entram na pontuação do ranking (ver seção 5).
 
 ## 1. Cenário
 
@@ -45,16 +45,11 @@ Para o Besu, assumiu-se a mesma classe do Geth (4 vCPU, 16 GB), que acomoda a JV
 4. **Um único provedor e uma única data.** O valor depende do provedor, da região e do dia da consulta, como registra a ameaça 10 da matriz.
 5. **Besu.** O custo é o de uma rede QBFT privada operada pelos próprios participantes. O US$ 0 de gas medido no teste não significa custo zero de operação.
 
-## 5. Efeito no ranking (simulação, sem alterar os resultados oficiais)
+## 5. Tratamento no ranking (decisão da equipe)
 
-Com os quatro valores acima em `C4_M2_infra_usd_mes` e a Canton sem valor (C4 dela vira intervalo), reexecutando `analise/analisar.py` em pasta temporária:
+A Canton é uma rede privada, de acesso restrito a instituições, e supor um custo para ela seria antiético e arbitrário. Como o C4-M2 não pode ser levantado para todas as redes, **ele não entra na pontuação**: os valores acima ficam como informação descritiva e o C4 do ranking continua sendo o custo por transação (C4-M1).
 
-| Posição | Cenário com `m5zn.metal` | Cenário com `c7i.4xlarge` |
-|---|---|---|
-| 1 | Besu 92,6 | Besu 91,8 |
-| 2 | Fuji 84,9 | Monad 81,2 |
-| 3 | Monad 81,2 | Fuji 78,4 |
-| 4 | Canton 68,3 a 76,2 | Canton 68,3 a 76,2 |
-| 5 | Sepolia 66,4 | Sepolia 66,4 |
+O ranking oficial não muda: Canton* 86,2, Besu* 82,8, Monad 79,2, Avalanche 75,2 e Ethereum 48,6, com asterisco em Canton e Besu por terem rodado em rede local.
 
-O ranking atual, sem C4-M2, tem Canton 86,2 e Besu 82,8. Com o C4-M2, o Besu lidera nos dois cenários, porque a Canton, sem valor de C4-M2, passa a ter pontuação em intervalo (a nota dessa medida pode ir de 0 a 1), e o Besu ganha a vantagem de ter o custo de infraestrutura mais baixo entre as redes com valor, depois da Ethereum. Isso é consistente com a alternativa já registrada em `resultados.md` (custo da Canton indefinido). A escolha de incluir o C4-M2 e de como tratar a Canton nele muda a recomendação, então fica para a equipe decidir antes de atualizar `declarados.json`, o `resultados.md` e o resumo executivo.
+Uma simulação feita à parte, incluindo estes valores e deixando a Canton sem dado, colocaria o Besu em primeiro (91,8 a 92,6) e a Canton em intervalo (68,3 a 76,2). Essa diferença vem da falta de dado da Canton, e não de ela ser pior, o que reforça a decisão de não usar o C4-M2 na pontuação.
+
