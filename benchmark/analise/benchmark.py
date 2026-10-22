@@ -38,16 +38,15 @@ NOMES_CRITERIOS = {
     "C4": "Custo",
     "C5": "Compatibilidade EVM",
 }
-# Tipo de ambiente de cada rede no experimento.
-AMBIENTE = {"sepolia": "testnet", "fuji": "testnet", "monad": "testnet", "besu": "local", "canton": "local", "anvil": "local"}
+# Tipo de ambiente de cada rede no experimento. Só testnets públicas entram na comparação;
+# o Anvil serve apenas de ensaio local dos coletores.
+AMBIENTE = {"sepolia": "testnet", "fuji": "testnet", "monad": "testnet", "anvil": "ensaio"}
 
 # Origem dos números de uma rede, do mais forte para o mais fraco.
-#   local      medido pela equipe numa rede montada na própria máquina (Besu, LocalNet da Canton)
 #   testnet    medido pela equipe numa testnet pública (Sepolia, Fuji, Monad)
 #   projetado  sem teste: valores da documentação oficial e hipóteses, no lugar da medição
 #   pendente   sem teste e sem valor provisório: entra na pontuação como faixa
 ROTULO_ORIGEM = {
-    "local": "medido em rede local",
     "testnet": "medido em testnet",
     "projetado": "projeção, sem teste",
     "pendente": "a medir",
@@ -56,7 +55,7 @@ ROTULO_ORIGEM = {
 
 def origem_rede(rede: str, medido: bool, tem_projecao: bool) -> str:
     if medido:
-        return AMBIENTE.get(rede, "local")
+        return "testnet"
     return "projetado" if tem_projecao else "pendente"
 
 
@@ -191,15 +190,13 @@ def custo_usd(gas: float, preco_wei: float, cotacao_usd: float) -> float:
 def custos(df: pd.DataFrame, rede: str, cobranca: str, preco: dict | None) -> dict:
     """C4-M1: custo médio por função e por ciclo completo, em USD (seção 3.3).
 
-    `cobranca`: 'gasUsed' (Ethereum, Avalanche), 'gasLimit' (Monad cobra o limite) ou 'gratis' (Besu).
+    `cobranca`: 'gasUsed' (Ethereum, Avalanche) ou 'gasLimit' (Monad cobra o limite).
     """
     t1 = df[(df.rede == rede) & (df.teste == "T1") & (df.status == "confirmada")].copy()
     if t1.empty:
         return {}
     coluna_gas = "gas_limit" if cobranca == "gasLimit" else "gas_used"
-    if cobranca == "gratis":
-        t1["usd"] = 0.0
-    elif preco and preco.get("cotacao_usd"):
+    if preco and preco.get("cotacao_usd"):
         t1["usd"] = t1[coluna_gas].astype(float) * preco["gas_preco_wei"] / 1e18 * preco["cotacao_usd"]
     else:
         return {"gas_medio": t1.groupby("funcao")[coluna_gas].mean().to_dict(), "sem_preco": True}

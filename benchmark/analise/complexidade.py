@@ -3,11 +3,9 @@
 M por função = pontos de decisão + 1. Contam: if (inclusive o do `else if`), for, while,
 operador ternário, && e ||. Não contam modificadores (onlyRole, nonReentrant).
 
-Solidity: só os contratos da pasta src/ (sem interfaces nem OpenZeppelin).
-Daml [PROPOSTA, conferir na INTER-15]: if, guardas `|` de função, cada alternativa de `case`
-além da primeira, `assert`/`assertMsg`/`ensure` (equivalentes ao `if (...) revert`), && e ||.
+Só os contratos Solidity da pasta src/ (sem interfaces nem OpenZeppelin).
 
-Uso: python3 analise/complexidade.py ../../projeto-inter-web3/src redes-locais/canton
+Uso: python3 analise/complexidade.py ../../projeto-inter-web3/src
 """
 
 from __future__ import annotations
@@ -84,59 +82,12 @@ def analisar_solidity(arquivo: Path) -> list[Contrato]:
     return contratos
 
 
-DAML_DECISOES = re.compile(r"\bif\b|\bassert\b|\bassertMsg\b|\bensure\b|&&|\|\|")
-
-
-def analisar_daml(arquivo: Path) -> list[Contrato]:
-    """Cada choice, função de nível superior e o bloco `ensure` de um template contam como função."""
-    linhas = arquivo.read_text().splitlines()
-    linhas = [re.sub(r"--.*", "", l) for l in linhas]
-    contrato = Contrato(arquivo.name, arquivo.stem)
-    atual: Funcao | None = None
-    for linha in linhas:
-        if not linha.strip():
-            continue
-        cab_choice = re.match(r"\s+(?:nonconsuming\s+|preconsuming\s+|postconsuming\s+)?choice\s+(\w+)", linha)
-        cab_func = re.match(r"^([a-z]\w*)\s*:", linha)
-        cab_template = re.match(r"^template\s+(\w+)", linha)
-        if cab_choice or cab_func or cab_template:
-            nome = (cab_choice or cab_func or cab_template).group(1)
-            atual = Funcao(f"template {nome}" if cab_template else nome, 0)
-            contrato.funcoes.append(atual)
-        if atual is None:
-            continue
-        atual.decisoes += len(DAML_DECISOES.findall(linha))
-        # Guardas de função (`| cond = ...`) e alternativas de case (`padrão ->`).
-        if re.match(r"\s+\|\s", linha):
-            atual.decisoes += 1
-        # Cada alternativa de `case` conta; a primeira é descontada no `case` (n alternativas = n − 1 decisões).
-        if re.match(r"\s+[\w(\[][^=]*->", linha):
-            atual.decisoes += 1
-        if re.search(r"\bcase\b.*\bof\b", linha):
-            atual.decisoes -= 1
-    # Funções-tipo duplicadas (assinatura + definição) contam uma vez só.
-    unicas: dict[str, Funcao] = {}
-    for f in contrato.funcoes:
-        if f.nome in unicas:
-            unicas[f.nome].decisoes += f.decisoes
-        else:
-            unicas[f.nome] = f
-    contrato.funcoes = list(unicas.values())
-    # Templates sem `ensure` não têm código executável próprio.
-    contrato.funcoes = [f for f in contrato.funcoes if not (f.nome.startswith("template ") and f.decisoes == 0)]
-    return [contrato]
-
-
 def analisar(pasta: Path) -> dict:
     contratos: list[Contrato] = []
     for arq in sorted(pasta.rglob("*.sol")):
         if "interfaces" in arq.parts:
             continue
         contratos += analisar_solidity(arq)
-    for arq in sorted(pasta.rglob("*.daml")):
-        if arq.stem.startswith("Test") or ".daml" in arq.parts:
-            continue
-        contratos += analisar_daml(arq)
     return {
         "pasta": str(pasta),
         "contratos": [

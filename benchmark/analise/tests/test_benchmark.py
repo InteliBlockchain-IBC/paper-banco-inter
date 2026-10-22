@@ -71,7 +71,6 @@ def test_custo_monad_usa_gas_limit():
     usado = bm.custos(df, "x", "gasUsed", preco)["ciclo_usd_medio"]
     limite = bm.custos(df, "x", "gasLimit", preco)["ciclo_usd_medio"]
     assert limite / usado == pytest.approx(1.2)
-    assert bm.custos(df, "x", "gratis", preco)["ciclo_usd_medio"] == 0.0
 
 
 def test_complexidade_solidity_bate_com_contagem_preliminar():

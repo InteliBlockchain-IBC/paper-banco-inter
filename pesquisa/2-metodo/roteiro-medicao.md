@@ -3,7 +3,9 @@
 **Projeto:** Protocolo de concessão de crédito interfinanceiro (Mockchain)
 **Trilha:** Pesquisa Acadêmica
 **Entrega do cronograma:** Roteiro de medição (Semana 4)
-**Versão:** v2, 14/10/2026. Conferida contra o código do time de Web3 (commit `3347bf2`, 12/10/2026) [R13]
+**Versão:** v2.1, 22/10/2026 (v2 de 14/10/2026). Conferida contra o código do time de Web3 (commit `3347bf2`, 12/10/2026) [R13]
+
+> **v2.1 (22/10/2026):** o roteiro vale para as três testnets públicas: Ethereum Sepolia, Avalanche Fuji e Monad.
 
 ---
 
@@ -36,7 +38,7 @@ Três marcações aparecem ao longo do texto:
 |---|---|
 | **[DECIDIDO]** | Decisão aprovada pela equipe em 14/10 (letras A a E, seção 13.1). |
 | **[PROPOSTA]** | Decisão sugerida neste roteiro, ainda para aprovar (seção 13.2). |
-| **[CONFERIR]** | Depende do que a equipe descobriu sobre Canton e Monad (INTER-6, INTER-11, INTER-13) ou de confirmação na INTER-15. |
+| **[CONFERIR]** | Depende do que a equipe descobriu sobre a Monad (INTER-11) ou de confirmação na INTER-15. |
 
 **Prazo:** a entrega original deste roteiro era 11/10 e o artigo fecha em 17/10. A seção 11 traz uma versão reduzida para o caso de faltar tempo.
 
@@ -73,16 +75,11 @@ Além dos critérios, o roteiro registra o **modelo de finalidade** de cada rede
 | Ethereum | Testnet Sepolia | Pessoa A (INTER-11) | Um bloco a cada 12 s. O contrato já está implantado e verificado lá desde 05/10, mas os testes usam uma implantação nova (decisão B) |
 | Avalanche | Testnet da C-Chain (Fuji) | Pessoa A (INTER-11) | [CONFERIR] endereço de RPC e faucet |
 | Monad | Testnet pública | Pessoa A (INTER-11) | [CONFERIR] se a testnet está disponível; se não estiver, seguir a seção 10 |
-| Hyperledger Besu | Rede privada local, consenso QBFT, 4 validadores | Pessoa B (INTER-12) | A documentação do Besu indica mínimo de quatro validadores para tolerância bizantina e finalidade imediata [R1] |
-| Canton | [CONFERIR] ambiente definido na INTER-13 | Pessoa B (INTER-13) | Contrato reescrito em Daml |
 
 O que significam os termos da tabela:
 
 - **RPC:** endereço do servidor que recebe as transações enviadas pelo script e responde consultas sobre a rede.
 - **Faucet:** site que distribui gratuitamente tokens de testnet, usados para pagar as taxas nos testes.
-- **QBFT:** algoritmo de consenso do Besu em que um grupo fixo de validadores aprova cada bloco.
-- **Tolerância bizantina:** a rede continua funcionando corretamente mesmo que parte dos validadores falhe ou aja de má-fé.
-- **Finalidade imediata:** assim que a transação entra em um bloco, ela não pode mais ser desfeita.
 
 **Observação para o artigo:** o README do repositório diz que as operações fora do ambiente local devem usar "exclusivamente a testnet Sepolia" (RNF01). O protocolo continua rodando só na Sepolia. As implantações nas outras redes servem apenas ao experimento de comparação, com ativos simulados, e o artigo deve dizer isso.
 
@@ -195,10 +192,6 @@ custo = gas usado (medido na testnet) × preço de referência do gas na mainnet
 
 Premissa a declarar no artigo: a mesma operação consome a mesma quantidade de gas na testnet e na mainnet da mesma rede, porque as duas seguem as mesmas regras de cobrança. [CONFERIR] essa premissa para a Monad na documentação oficial.
 
-**Besu:** a taxa é a que foi configurada na rede privada. Se a rede for configurada sem cobrança de gas, a taxa é zero e o custo real dessa rede aparece em C4-M2 (infraestrutura). O gas usado é registrado mesmo assim, como dado descritivo.
-
-**Canton:** [CONFERIR] modelo de cobrança da rede (INTER-6).
-
 **O que é reportado:** custo por função (`approve`, `createOffer`, `acceptOffer`, `cancelOffer`) e por ciclo completo. O valor do ciclo completo é o que entra na matriz. Lazăr et al. indicam que o total de taxa paga é uma base de comparação mais robusta entre redes do que métricas isoladas [R4].
 
 ### 3.4 C2-M2: complexidade do código [DECIDIDO C]
@@ -249,12 +242,9 @@ Na prática, para código estruturado, McCabe mostra que o resultado equivale a 
 | Base | Shin et al. encontraram associação entre métricas de complexidade e vulnerabilidades de software [R6] |
 | Ferramenta | [CONFERIR] ferramenta automática ou contagem manual documentada (INTER-15) |
 
-**Versão em Daml:** aplicar a mesma regra ao código Daml escrito pela equipe, contando as construções equivalentes de decisão. [CONFERIR] quais são essas construções em Daml (INTER-13 e INTER-15); a lista vai para o artigo.
-
 **Limitações para Ameaças à Validade:**
 
-- Existem só duas versões do código. A versão em Solidity é a mesma para Ethereum, Avalanche, Monad e Besu; a versão em Daml é só da Canton. Portanto, C2-M2 dá o mesmo valor às quatro redes EVM e só diferencia a Canton.
-- Comparar complexidade entre duas linguagens diferentes é uma limitação.
+- Existe uma só versão do código (Solidity), a mesma nas três redes. Portanto, C2-M2 dá o mesmo valor a todas e não diferencia nenhuma. A medida fica no método porque diferenciaria uma rede que exigisse reescrever o contrato.
 - Como cada função soma 1 ao total, uma versão com mais funções tem total maior mesmo sem mais decisões. Na versão Solidity, 24 dos 49 pontos vêm só do número de funções.
 
 ### 3.5 Modelo de finalidade (registro, sem nota)
@@ -266,7 +256,7 @@ Na prática, para código estruturado, McCabe mostra que o resultado equivale a 
 | Determinística (imediata) | A transação é definitiva assim que entra no bloco |
 | Não imediata | A transação entra no bloco e só se torna definitiva depois de uma etapa adicional ou de um certo número de blocos |
 
-Para cada rede, registrar o tipo e o tempo até a finalidade, com a fonte. Exemplo já verificado: Besu com QBFT tem finalidade imediata [R1]. As demais redes são preenchidas a partir da documentação oficial nas tarefas de dados declarados (INTER-16 e INTER-17).
+Para cada rede, registrar o tipo e o tempo até a finalidade, com a fonte. As redes são preenchidas a partir da documentação oficial nas tarefas de dados declarados (INTER-16 e INTER-17).
 
 ---
 
@@ -346,7 +336,7 @@ Para cada rede, registrar o tipo e o tempo até a finalidade, com a fonte. Exemp
 **Limites desse desenho, para declarar no artigo:**
 
 - Em redes com blocos maiores ou mais rápidos, 50 transações podem não gerar carga. O resultado deve ser descrito como "taxa de sucesso com até 50 transações simultâneas", e não como capacidade máxima da rede.
-- As testnets públicas são compartilhadas com outros usuários; a rede Besu local não é. As condições de carga não são iguais.
+- As testnets públicas são compartilhadas com outros usuários e o tráfego varia. Para que as condições fossem parecidas, as três foram coletadas na mesma janela.
 
 ### 4.4 Janela de coleta
 
@@ -412,8 +402,7 @@ Base: Lazăr et al. mostraram que falhas por reutilização de nonce vinham do c
 - Commit do código, versão do compilador (Solidity 0.8.24), configuração do otimizador (200 execuções) e versão da OpenZeppelin (5.4.0)
 - Arquivo `script/config/<rede>.json` usado
 - Endereços das contas (admin, ofertante, tomadores) e número de contas tomadoras no T2
-- Versão do cliente da rede (Besu e Canton)
-- Número de nós ou validadores (Besu e Canton)
+- Versão do cliente da rede, quando o RPC informa
 - Preço de referência do gas e cotação do token, com fonte, data e hora
 
 ---
@@ -460,9 +449,9 @@ Critério de custo (menor é melhor):      r = (máx − x) ÷ (máx − mín)
 
 **[PROPOSTA] Empate:** se todas as redes tiverem o mesmo valor (máx = mín), a fórmula dividiria por zero. Nesse caso, todas recebem 1, porque ninguém deve ser penalizado em um critério em que todos são iguais.
 
-**Atenção para C2-M2:** como só existem dois valores (Solidity e Daml), a normalização dá 1 para um grupo e 0 para o outro. A diferença entre as linguagens vira "tudo ou nada". Isso deve ser comentado na Discussão.
+**Atenção para C2-M2:** com uma só versão do código, as três redes empatam e recebem 1 (regra de empate). Isso deve ser comentado na Discussão.
 
-**Lista de redes fechada antes do cálculo:** a normalização min-max depende do menor e do maior valor do conjunto. Incluir ou retirar uma rede muda as notas de todas as outras e pode inverter a ordem entre elas. Belton e Gear (1983) mostraram esse efeito, chamado de inversão de ranking, em métodos em que a nota depende do conjunto de alternativas [R10]. Por isso, a lista das cinco redes é fechada antes de qualquer nota ser calculada.
+**Lista de redes fechada antes do cálculo:** a normalização min-max depende do menor e do maior valor do conjunto. Incluir ou retirar uma rede muda as notas de todas as outras e pode inverter a ordem entre elas. Belton e Gear (1983) mostraram esse efeito, chamado de inversão de ranking, em métodos em que a nota depende do conjunto de alternativas [R10]. Por isso, a lista de redes é fechada antes de qualquer nota ser calculada.
 
 ### 8.2 Escalas dos critérios declarados
 
@@ -514,8 +503,6 @@ Cenário: três participantes operando o protocolo, os mesmos dos testes: duas i
 | Rede | Nós considerados |
 |---|---|
 | Ethereum, Avalanche, Monad | **[PROPOSTA]** 1 nó próprio por participante (3 no total) |
-| Besu | 4 validadores no total, o mínimo para tolerância bizantina [R1]; registrar como foram distribuídos entre os três participantes |
-| Canton | [CONFERIR] (INTER-17), para três participantes |
 
 **Procedimento:**
 
@@ -566,7 +553,6 @@ Exemplo (S2, latência +50%): C3 passa de 15,78% para 23,67%. A soma vira 107,89
 
 | Problema | O que fazer |
 |---|---|
-| Canton sem ambiente ou sem contrato reescrito até 14/10 | Usar dados declarados para C1, C3 e C4-M1 e declarar como limitação. C2-M2 só entra se o código em Daml existir |
 | Monad sem testnet disponível | Usar dados declarados e declarar como limitação |
 | Faucet não fornece tokens suficientes | Reduzir os lotes (seção 11) |
 | Muitas falhas da categoria C | Trocar o RPC para todas as redes, não só para a que falhou, e repetir |
@@ -592,14 +578,10 @@ Em todos os casos, registrar célula a célula na matriz se o dado é medido ou 
 | O quê | Pessoa | Tarefa |
 |---|---|---|
 | Rodadas T1 e T2 em Ethereum, Avalanche e Monad | A | INTER-11 |
-| Rodadas em Besu | B | INTER-12 |
-| Contrato em Daml e rodadas em Canton | B | INTER-13 |
 | Script de coleta EVM | C | INTER-10 |
-| Script de coleta Canton | C | INTER-14 |
 | Complexidade do código | C | INTER-15 |
 | Consolidação dos dados medidos | C | INTER-18 |
 | Dados declarados: Ethereum, Avalanche, Monad | A | INTER-16 |
-| Dados declarados: Besu, Canton | B | INTER-17 |
 | Normalização, ranking e sensibilidade | B | INTER-21 |
 
 ---
@@ -659,9 +641,6 @@ Em todos os casos, registrar célula a célula na matriz se o dado é medido ou 
 ---
 
 ## Referências
-
-[R1] Hyperledger Besu. *Proof of authority consensus*. Usado para: mínimo de quatro validadores no QBFT e finalidade imediata.
-https://besu.hyperledger.org/private-networks/concepts/poa
 
 [R2] Hyperledger Performance and Scale Working Group. *Blockchain Performance Metrics*. Usado para: definições de latência e de tratamento de transações que falham.
 https://www.lfdecentralizedtrust.org/learn/publications/blockchain-performance-metrics

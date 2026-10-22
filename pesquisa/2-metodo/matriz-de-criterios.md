@@ -2,7 +2,7 @@
 
 **Projeto:** Protocolo de concessão de crédito interfinanceiro (Mockchain)
 **Trilha:** Pesquisa Acadêmica
-**Atualizado em:** 16/10/2026
+**Atualizado em:** 22/10/2026
 **Função deste arquivo:** fonte única das decisões da pesquisa. Quando algo for decidido ou mudar, atualize este arquivo primeiro e depois o paper.
 
 ---
@@ -13,7 +13,7 @@
 - Os detalhes de medição (testes, planilhas, falhas) estão em `pesquisa/2-metodo/roteiro-medicao.md`.
 - Os números medidos, o ranking atual e a sensibilidade estão em `pesquisa/3-resultados/resultados.md`, gerado pelos scripts de `benchmark/`.
 - As pesquisas exploratórias de setembro, que levaram à lista de redes, estão em `pesquisa/1-redes-candidatas/`.
-- O texto do artigo está em `paper/template_cotb2027.tex`.
+- O texto do artigo está em `paper/template_cotb2027.tex`. A versão preliminar em LaTeX, com os dados das três testnets, está em `artigo/artigo-alpha.tex` deste repositório.
 - Cada afirmação técnica aponta uma fonte entre colchetes, como [R3]. Os links estão na seção 15.
 - Ao mudar algo: atualizar a data no topo e registrar a mudança na seção 14 (Histórico).
 
@@ -21,7 +21,7 @@
 |---|---|
 | **[DECIDIDO]** | Aprovado pela equipe |
 | **[PROPOSTA]** | Sugerido no roteiro de medição, aguardando aprovação (seção 11.2) |
-| **[CONFERIR]** | Depende de informação que ainda não chegou (Canton, Monad ou contagem da INTER-15) |
+| **[CONFERIR]** | Depende de informação que ainda não chegou (Monad ou contagem da INTER-15) |
 | **[VERIFICAR]** | Precisa de fonte antes da versão final do paper |
 | **[A REGISTRAR]** | Decisão tomada, mas o motivo ainda não foi escrito |
 
@@ -86,7 +86,7 @@ Fonte: repositório do time de Web3, commit `3347bf2`, de 12/10/2026 [R31].
 
 ---
 
-## 3. Alternativas: as cinco redes [DECIDIDO]
+## 3. Alternativas: as três redes [DECIDIDO]
 
 A lista está **fechada**. Incluir ou retirar uma rede depois do cálculo pode inverter a ordem das demais, efeito mostrado por Belton e Gear [R6]. Qualquer mudança na lista exige refazer a análise inteira.
 
@@ -95,10 +95,22 @@ A lista está **fechada**. Incluir ou retirar uma rede depois do cálculo pode i
 | Ethereum | Pública | Sim (rede de origem da EVM); implantada sem alteração na Sepolia em 16/10/2026 | Testnet Sepolia, com o Glamsterdam ativo desde 06/10/2026 [R41] | Cerca de 16 min após a inclusão no bloco [VERIFICAR título e autoria da nota] | [R23, R41] |
 | Avalanche (C-Chain) | Pública | Sim; implantada sem alteração na Fuji em 16/10/2026 | Testnet Fuji | Probabilística, menos de 1 s | [R17, R24] |
 | Monad | Pública | Sim; implantada sem alteração na testnet em 16/10/2026 | Testnet pública, chain ID 10143 [R35] | Declara 600 ms (2 slots), com bloco mínimo de 300 ms; consulta de 14/10/2026 [R36]. Versões anteriores da documentação diziam 800 ms e 400 ms | [R25, R36] |
-| Hyperledger Besu | Privada (permissionada), montada pela equipe | Sim; implantada sem alteração em 14/10/2026 (Besu 26.8.1) | Rede local QBFT com 4 validadores, período de bloco de 2 s, gas grátis [R34] | Imediata | [R26] |
-| Canton | Permissionada: DevNet e TestNet exigem patrocínio de um Super Validator [CONFERIR na INTER-17] | Não; contrato reescrito em Daml (5 testes de Daml Script passando) | Sandbox local do SDK oficial (`dpm sandbox`, Canton 3.6.1): participante, sequencer e mediator num só processo [R42]. O LocalNet do `cn-quickstart` [R39] exigiria Nix e conta no Docker Hub | Determinística após a confirmação; no sandbox, 0,37 s até a resposta do commit (medido) | [R28, R39, R42] |
 
-**Redes que saíram da lista:** Solana e Stellar (candidatas iniciais) e Miden (sugerida pelo parceiro). [A REGISTRAR: o motivo de cada descarte. Se o paper citar essas redes, o motivo precisa estar escrito.]
+**Por que estas três redes [DECIDIDO]:** cada uma atende a três condições.
+
+1. Executa transações de forma atômica, condição para a liquidação DvP (seção 4).
+2. Executa o contrato do projeto (Solidity, testado com Foundry) sem reescrita. Assim a comparação mede a rede, e não uma nova implementação do contrato (base de C5, seção 5).
+3. Tem testnet pública de acesso livre, com faucet. As três podem ser medidas nas mesmas condições (tráfego de terceiros, RPC público) e na mesma janela.
+
+Dentro dessas condições, cada rede representa um perfil diferente de rede EVM pública:
+
+| Rede | Por que entra na comparação | Fontes |
+|---|---|---|
+| Ethereum | Rede de origem da EVM e ambiente onde o protocolo já está implantado (Sepolia, RNF01). É a referência para as demais | [R23, R31] |
+| Avalanche (C-Chain) | Executa o mesmo bytecode com consenso Snowman e finalidade declarada abaixo de 1 s. Permite criar L1s próprias com validadores permissionados, caminho possível para produção | [R24]; `pesquisa/1-redes-candidatas/pesquisa-avalanche-stellar.md`, seção 34 |
+| Monad | Rede EVM voltada a desempenho (execução paralela, MonadBFT), com finalidade declarada de 600 ms e mainnet desde novembro de 2025. Os números são do próprio projeto, e a medição serve também para verificá-los | [R25, R36]; [R17]; `pesquisa/1-redes-candidatas/pesquisa-monad-canton-miden.md`, seção 3 |
+
+**Redes que saíram da lista:** Solana, Stellar e Miden, todas por exigirem a reescrita do contrato. Solana usa programas em Rust compilados para SBF; Stellar usa Soroban, em Rust executado em WebAssembly; Miden usa Rust e Miden Assembly e ainda não tinha mainnet confirmada em setembro de 2026. Detalhes em `pesquisa/1-redes-candidatas/`.
 
 ---
 
@@ -239,11 +251,13 @@ Evidência para a Sepolia: o guia de integração do time de Web3 registra que q
 
 **Notas atribuídas nessas escalas [PROPOSTA, conferir nas INTER-16 e INTER-17]:**
 
-| Medida | Ethereum | Avalanche | Monad | Besu | Canton | Fonte |
-|---|---|---|---|---|---|---|
-| C2-M1 Verificação formal | 1,0 | 1,0 | 1,0 | 1,0 | 0,5 | Solidity: SMTChecker faz parte do compilador oficial [R37]. Daml: `daml-lf-verify` é experimental, não lançado e só verifica a conservação de um campo [R38] |
-| C2-M3 Confidencialidade | 0,0 | 0,0 | 0,0 | 0,5 | 1,0 | Pública nas três primeiras; Besu permissionada com todos vendo tudo; Canton com privacidade por subtransação [R28] |
-| C5 Compatibilidade EVM | 1,0 (confirmado em 16/10) | 1,0 (confirmado em 16/10) | 1,0 (confirmado em 16/10) | 1,0 (confirmado em 14/10) | 0,0 | Implantações do experimento [R34] |
+| Medida | Ethereum | Avalanche | Monad | Fonte |
+|---|---|---|---|---|
+| C2-M1 Verificação formal | 1,0 | 1,0 | 1,0 | Solidity: SMTChecker faz parte do compilador oficial [R37] |
+| C2-M3 Confidencialidade | 0,0 | 0,0 | 0,0 | As três são públicas |
+| C5 Compatibilidade EVM | 1,0 (confirmado em 16/10) | 1,0 (confirmado em 16/10) | 1,0 (confirmado em 16/10) | Implantações do experimento [R34] |
+
+Com as três redes EVM públicas, C2 (as três medidas) e C5 dão a mesma nota a todas as redes. Pela seção 4, um critério com a mesma nota em todas as redes não muda o ranking: a ordem passa a depender de C1, C3 e C4. As escalas continuam no método porque valem para qualquer rede candidata; o paper deve dizer que, nesta lista, elas não diferenciaram ninguém.
 
 ### 7.3 Notas dentro de C2 e C4 [PROPOSTA]
 
@@ -285,40 +299,38 @@ Detalhes completos em `pesquisa/2-metodo/roteiro-medicao.md` (v2).
 | Custo na Monad | A Monad cobra o gas limit, e não o gas usado [R35]. O custo da Monad usa o limite enviado (estimativa × 1,2, igual em todas as redes) | [PROPOSTA] | 3.3 |
 | Complexidade | Complexidade ciclomática do código da equipe em `src/`, sem OpenZeppelin; contam `if`, laços, ternário, `&&` e `\|\|`; não contam modificadores | Regra [DECIDIDO C]; métrica [PROPOSTA] | 3.4 |
 | Contagem Solidity | 49 (24 funções e 25 pontos de decisão), igual à contagem manual; conferida por script em 14/10 [R34] | Conferida; falta o aceite da INTER-15 | 3.4 |
-| Contagem Daml | 24 (9 funções e 15 pontos de decisão) na versão provisória do benchmark; contam `if`, `assert`, `assertMsg`, `ensure`, guardas, alternativas de `case`, `&&` e `\|\|` [R34] | [PROPOSTA]; refazer sobre o código da INTER-13 | 3.4 |
-| Infraestrutura | Três participantes (duas instituições e o admin); 1 nó por participante nas redes públicas; 4 validadores no Besu | Participantes [DECIDIDO E]; nós [PROPOSTA] | 8.4 |
+| Infraestrutura | Três participantes (duas instituições e o admin); 1 nó por participante. Levantado em 19/10/2026 (`pesquisa/4-custo-infraestrutura/`); descritivo, fora da pontuação | Participantes [DECIDIDO E]; nós [PROPOSTA]; uso descritivo [DECIDIDO] | 8.4 |
 
 ### 8.1 Dados coletados e origem de cada número
 
 Scripts em `benchmark/`, dados brutos em `dados/` e gráficos em `pesquisa/3-resultados/graficos/` [R34]. Resultados completos e sempre atualizados em `pesquisa/3-resultados/resultados.md`.
 
-Todo número do paper precisa dizer de onde veio. São quatro origens:
+Todo número do paper precisa dizer de onde veio. São três origens possíveis; hoje todas as redes estão na primeira:
 
 | Etiqueta | Origem | O que significa |
 |---|---|---|
-| `LOCAL` | Medido em rede local | A equipe rodou o contrato numa rede montada na própria máquina (Docker): Besu e, depois, o LocalNet da Canton. Mede o protocolo, mas sem tráfego de terceiros nem latência de internet |
 | `TESTNET` | Medido em testnet | A equipe rodou o contrato na testnet pública: Sepolia, Fuji e Monad |
-| `PROJEÇÃO` | Projeção, sem teste | Valor da documentação oficial, custo calculado com o gas medido na rede local, ou hipótese (100% de sucesso), usado no lugar da medição |
+| `PROJEÇÃO` | Projeção, sem teste | Valor da documentação oficial ou hipótese (100% de sucesso), usado no lugar da medição |
 | `A MEDIR` | A medir | Sem teste e sem valor provisório; a pontuação aparece como faixa |
 
-| Rede | Ambiente | Origem | T1: mediana do `acceptOffer` | T1: p95 e máximo | T1: até 30 s | T2: taxa de sucesso | Gas médio do ciclo | Custo do ciclo | Coletado em |
-|---|---|---|---|---|---|---|---|---|---|
-| Canton | Rede local (sandbox) | `LOCAL` | 0,37 s | 0,37 s e 0,38 s | 100% | 100% (255 de 255) | sem gas | Zero (sandbox sem taxa) | 16/10/2026 |
-| Hyperledger Besu | Rede local (QBFT, 4 validadores) | `LOCAL` | 1,96 s | 2,06 s e 2,07 s | 100% | 100% (255 de 255) | 422.312 | Zero (gas grátis) | 14/10/2026 |
-| Monad | Testnet pública | `TESTNET` | 0,99 s | 1,56 s e 1,74 s | 100% | 100% (255 de 255) | 602.935 (gas limit) | US$ 0,0014 | 16/10/2026 |
-| Avalanche Fuji | Testnet pública | `TESTNET` | 2,64 s | 3,03 s e 3,13 s | 100% | 100% (255 de 255) | 429.924 | US$ 0,029 | 16/10/2026 |
-| Ethereum Sepolia | Testnet pública | `TESTNET` | 11,04 s | 11,98 s e 22,02 s | 100% | 100% (255 de 255) | 1.502.836 | US$ 0,296 | 16/10/2026 |
+| Rede | Origem | T1: mediana do `acceptOffer` | T1: p95 e máximo | T1: até 30 s | T2: taxa de sucesso | Gas médio do ciclo | Custo do ciclo | Coletado em |
+|---|---|---|---|---|---|---|---|---|
+| Monad | `TESTNET` | 0,99 s | 1,56 s e 1,74 s | 100% | 100% (255 de 255) | 602.935 (gas limit) | US$ 0,0014 | 16/10/2026 |
+| Avalanche Fuji | `TESTNET` | 2,64 s | 3,03 s e 3,13 s | 100% | 100% (255 de 255) | 429.924 | US$ 0,029 | 16/10/2026 |
+| Ethereum Sepolia | `TESTNET` | 11,04 s | 11,98 s e 22,02 s | 100% | 100% (255 de 255) | 1.502.836 | US$ 0,296 | 16/10/2026 |
 
-Nenhuma rede teve falha de nenhuma categoria (A a D) no T1 nem no T2: 1.825 transações medidas, todas confirmadas. As testnets foram coletadas em paralelo entre 22:40 e 23:22 UTC de 16/10/2026, com RPC público gratuito; preços de referência são a mediana de 9 amostras nessa janela (Ethereum 0,081 gwei a US$ 2.422,04; Avalanche 6,77 gwei a US$ 9,97; Monad 103 gwei a US$ 0,0229).
+Nenhuma rede teve falha de nenhuma categoria (A a D) no T1 nem no T2: 1.095 transações medidas (365 por rede), todas confirmadas. As três testnets foram coletadas em paralelo entre 22:40 e 23:22 UTC de 16/10/2026, com RPC público gratuito; preços de referência são a mediana de 9 amostras nessa janela (Ethereum 0,081 gwei a US$ 2.422,04; Avalanche 6,77 gwei a US$ 9,97; Monad 103 gwei a US$ 0,0229).
 
-**Resultado da matriz (pesos do cenário base):** Canton 86,2; Hyperledger Besu 82,8; Monad 79,2; Avalanche 75,2; Ethereum 48,6. O primeiro lugar muda em 4 dos 17 cenários de sensibilidade (pesos iguais; C2 −50%; C5 +50%; sem C2), sempre para o Besu ou para a Monad. Com C1 empatado em 100% em todas as redes, o critério de maior peso não diferencia ninguém neste estudo.
+**Resultado da matriz (pesos do cenário base):** Monad 90,1; Avalanche 86,0; Ethereum 58,5. O primeiro lugar não muda em nenhum dos 17 cenários de sensibilidade, e a ordem das três também não. C1 (100% em todas), C2 e C5 dão a mesma nota às três redes; a diferença vem só de C3 e C4, que somam 31,56% do peso. Notas: C3 Monad 1,00, Avalanche 0,84, Ethereum 0,00; C4 Monad 1,00, Avalanche 0,91, Ethereum 0,00.
 
 **Achados que entram no artigo:**
 
-- **Sepolia pós-Glamsterdam.** A Sepolia ativou o Glamsterdam em 06/10/2026 [R41], um dia depois da implantação do time, e a criação de estado ficou mais cara. O ciclo gastou 1.502.836 de gas na Sepolia contra 422.312 pelas regras atuais da mainnet (medidas no Besu), 3,56 vezes mais. A premissa da seção 3.3 do roteiro (mesmo gas na testnet e na mainnet) não vale para a Ethereum neste estudo. A matriz usa o gas da Sepolia, como manda o roteiro; com o gas das regras atuais o custo cai para US$ 0,083 por ciclo, a Ethereum continua a mais cara e a ordem não muda.
-- **Custo da Canton.** O sandbox não cobra por transação, e a matriz trata isso como o Besu com gas grátis (custo zero). A Canton é uma rede privada, de acesso restrito a instituições, então o custo real dela não é acessível e supor um valor seria antiético. **[DECIDIDO pela equipe]** Não estimar: Canton e Besu aparecem com asterisco por terem rodado em rede local, e o C4-M2 (levantado em `pesquisa/4-custo-infraestrutura/`) fica como informação descritiva, fora da pontuação. A alternativa com o custo "a definir" (faixa de 70,4 a 86,2, com o Besu em primeiro) continua registrada em `resultados.md` como análise de robustez.
+- **Sepolia pós-Glamsterdam.** A Sepolia ativou o Glamsterdam em 06/10/2026 [R41], um dia depois da implantação do time, e a criação de estado ficou mais cara. O ciclo gastou 1.502.836 de gas na Sepolia contra 429.924 na Fuji, que executa o mesmo bytecode com as regras anteriores, ainda em vigor na mainnet da Ethereum: 3,50 vezes mais. A premissa da seção 3.3 do roteiro (mesmo gas na testnet e na mainnet) não vale para a Ethereum neste estudo. A matriz usa o gas da Sepolia, como manda o roteiro; com o gas das regras anteriores o custo cai para US$ 0,085 por ciclo, a Ethereum continua a mais cara e a ordem não muda (a Avalanche cai de 86,0 para 82,2). A Fuji é uma aproximação conservadora: a C-Chain não devolve gas por limpeza de armazenamento.
+- **Latência sob carga na Fuji.** No lote de 50 da primeira rodada, 3 dos 150 aceites levaram 64,3 s, acima do limite de 30 s do RNF02. O horário coincide com uma pausa do observador de blocos (22:51:28 a 22:52:34 UTC, registrada nos metadados). [CONFERIR antes de citar: se for efeito da pausa, essas linhas saem da estatística de latência sob carga.] A matriz não usa a latência do T2.
 
-O gas médio do ciclo no Besu (422.312) é menor que o da demonstração na Sepolia em 06/10 (455.420) porque a primeira oferta grava posições vazias do armazenamento [R30]; a média de 30 ciclos já reflete o estado comum.
+- **Custo de infraestrutura (C4-M2).** Levantado em `pesquisa/4-custo-infraestrutura/` (AWS `us-east-1`, sob demanda, 3 nós, consulta de 19/10/2026): Ethereum US$ 376,68, Avalanche US$ 1.502,34 e Monad US$ 8.681,38 por mês (servidor físico, exigido pela documentação) ou US$ 1.563,66 (instância virtual). **[DECIDIDO pela equipe]** Fica como informação descritiva, fora da pontuação; o C4 do ranking é só o C4-M1. Com o C4-M2 na pontuação, a ordem depende da instância da Monad: Avalanche 85,7, Monad 82,2 e Ethereum 66,4 com servidor físico; Monad 82,2, Avalanche 79,2 e Ethereum 66,4 com instância virtual.
+
+O gas médio do ciclo na Fuji (429.924) é menor que o da demonstração na Sepolia em 06/10 (455.420) porque a primeira oferta grava posições vazias do armazenamento [R30]; a média de 30 ciclos já reflete o estado comum.
 
 ---
 
@@ -343,25 +355,22 @@ Reportar a posição de cada rede em cada cenário e se o primeiro lugar muda.
 |---|---|---|
 | 1 | Os julgamentos do AHP vieram de uma regra por níveis; o CR baixo não indica julgamentos independentes | Seção 6.4 |
 | 2 | Testnet não é mainnet: o tráfego é menor, e o preço do gas foi trocado pelo da mainnet sob a premissa de que o gas usado é igual | Roteiro 3.3 |
-| 3 | A rede Besu é local e não compartilhada; as testnets públicas têm outros usuários. As condições de carga diferem | Roteiro 4.3 |
+| 3 | As testnets são compartilhadas e o tráfego varia ao longo do dia; as três foram coletadas na mesma janela de 16/10/2026 para que as condições fossem parecidas, mas uma única janela não mostra a variação | Roteiro 4.3 |
 | 4 | A carga máxima é de 50 transações simultâneas; o resultado não mede a capacidade máxima da rede | Roteiro 4.3 |
 | 5 | A latência mede só a inclusão no bloco. A janela do RNF02 também inclui backend e tela, e inclusão não é o mesmo que finalidade | Seção 5; roteiro 3.2 |
-| 6 | C2-M2 tem só duas versões do código (Solidity e Daml), em linguagens diferentes; a soma cresce com o número de funções; a normalização vira "tudo ou nada" | Roteiro 3.4 e 8.1 |
+| 6 | C2-M2 tem uma só versão do código (Solidity), igual nas três redes; a medida não diferencia as redes | Roteiro 3.4 e 8.1 |
 | 7 | As medidas internas de C2 e C4 usam média simples, sem pesos próprios | Seção 7.3 |
 | 8 | As escalas qualitativas (C5, C2-M1, C2-M3) foram definidas pela equipe | Seção 7.2 |
 | 9 | A normalização min-max depende do conjunto de redes; por isso a lista foi fechada | Seção 3 |
 | 10 | O custo de infraestrutura depende do cenário escolhido, de um único provedor de nuvem e da data da consulta | Roteiro 8.4 |
 | 11 | Dados declarados pelas próprias redes (por exemplo, os números da Monad) não foram verificados por terceiros. Gramoli et al. apontam que esses números costumam não ser reproduzíveis | Seção 3; [R17] |
-| 12 | Se Canton ou Monad ficarem sem ambiente de teste, parte dos dados será declarada, e não medida | Roteiro 10 |
-| 13 | O estudo avalia um único protocolo; os resultados valem para este caso de uso | Geral |
-| 14 | A latência do Besu reflete o período de bloco escolhido pela equipe (2 s); outro período mudaria C3 | Seção 8.1 |
-| 15 | Na Monad o custo depende do gas limit que o cliente envia, e não só do trabalho executado | Seção 8 |
-| 16 | A Canton roda numa só máquina, sem rede entre participantes; a latência medida (0,37 s) é um piso | Seção 3 |
-| 17 | A versão Daml muda o desenho em dois pontos por causa da privacidade: o limite do tomador só é checado no aceite, e a posição é um contrato assinado pelas duas partes. Aceites simultâneos do mesmo tomador disputam o mesmo contrato de limite | Seção 8 |
-| 18 | A Sepolia mudou de regras de gas durante o estudo (Glamsterdam, 06/10/2026); o gas medido nela não representa a mainnet atual | Seção 8.1 |
-| 19 | A Canton foi medida no sandbox do SDK (um participante, sequencer e mediator no mesmo processo), não no LocalNet com vários validadores nem na rede real | Seções 3 e 8.1 |
-| 20 | Todas as redes tiveram 100% de sucesso com até 50 aceites simultâneos; C1 não diferenciou as redes, e uma carga maior seria necessária para separá-las | Seção 8.1 |
-| 21 | As três testnets foram coletadas em paralelo na mesma máquina, com RPC público; o Besu foi coletado dois dias antes | Seção 8.1 |
+| 12 | O estudo avalia um único protocolo; os resultados valem para este caso de uso | Geral |
+| 13 | Na Monad o custo depende do gas limit que o cliente envia, e não só do trabalho executado | Seção 8 |
+| 14 | A Sepolia mudou de regras de gas durante o estudo (Glamsterdam, 06/10/2026); o gas medido nela não representa a mainnet atual | Seção 8.1 |
+| 15 | Todas as redes tiveram 100% de sucesso com até 50 aceites simultâneos; C1 não diferenciou as redes, e uma carga maior seria necessária para separá-las | Seção 8.1 |
+| 16 | As três testnets foram coletadas em paralelo na mesma máquina, com RPC público | Seção 8.1 |
+| 17 | Com três redes EVM públicas, C1, C2 e C5 dão a mesma nota a todas; o ranking é decidido por C3 e C4, que somam 31,56% do peso. A estrutura de cinco critérios foi pensada para uma lista mais variada | Seções 3 e 8.1 |
+| 18 | As três redes são públicas: a confidencialidade (C2-M3) é 0 em todas e não foi um diferencial; a conclusão vale para redes públicas | Seção 7.2 |
 
 ---
 
@@ -377,13 +386,13 @@ Reportar a posição de cada rede em cada cenário e se o primeiro lugar muda.
 | Confidencialidade como medida dentro de C2; infraestrutura como medida dentro de C4 | Até 14/10 |
 | "Confirmação" do RNF02 = inclusão em bloco | Até 14/10 |
 | Dinheiro representado por token; nenhum dinheiro real | Até 14/10 |
-| Testes nas testnets das outras redes, inclusive a não EVM | Até 14/10 |
-| Lista fechada: Ethereum, Avalanche, Monad, Besu e Canton | Até 14/10 |
+| Testes nas testnets públicas das redes da lista | Até 14/10 |
 | A. Um `approve` por ciclo, no valor exato; no T2, um único `approve` na preparação | 14/10 |
 | B. Mesmo ponto de partida em todas as redes | 14/10 |
 | C. Complexidade conta só o código exato da equipe | 14/10 |
 | D. Definição de "sem alteração" em C5 | 14/10 |
 | E. O admin entra no cenário de infraestrutura | 14/10 |
+| F. Lista fechada: Ethereum, Avalanche e Monad, medidas nas testnets públicas | 22/10 |
 
 ### 11.2 Aguardando aprovação (seção 13.2 do roteiro)
 
@@ -427,13 +436,13 @@ Template do COTB 2027, trilha de artigo completo.
 | Confirmar o método de normalização | 3.1 | Aprovação do item 11.2; texto na seção 7.1 deste arquivo |
 | Referência revisada por pares para o WSM | 3.1 | Buscar e citar |
 | Cenários de sensibilidade | 3.1 | Aprovação do item 9; seção 9 deste arquivo |
-| Tabela de alternativas | 3.2 | Seção 3 deste arquivo, depois de fechar os [CONFERIR] da Canton |
+| Tabela de alternativas | 3.2 | Seção 3 deste arquivo (três redes) |
 | Documentação de atomicidade de cada rede | 3.2 | Buscar e citar |
 | Redação da elegibilidade ("transferência" do token de crédito) | 3.2 | Trocar para emissão do NFT (seção 2.4) |
 | Parâmetros de C1 | 3.2 | Roteiro 4.3 |
 | Escalas de M1 e M3, métrica de M2 e combinação de C2 | 3.2 | Seções 7.2 e 7.3; roteiro 3.4 |
 | Repetições e estatísticas de C3 | 3.2 | Roteiro 4.2 e 7 |
-| Exemplo do Hyperledger Fabric em C4 | 3.2 | Fabric não está na lista. Trocar pelo Besu sem cobrança de gas, que é a configuração usada no experimento [R40] |
+| Exemplo do Hyperledger Fabric em C4 | 3.2 | Fabric não está na lista. Retirar o exemplo (nenhuma rede da lista é sem cobrança de gas) |
 | Combinação de M1 e M2 em C4 | 3.2 | Seção 7.3 |
 | Nota de cada nível de C5 | 3.2 | Seção 7.2 |
 | Fonte do RI e do limite de 0,10 | 3.2 | Buscar e citar |
@@ -461,12 +470,11 @@ Template do COTB 2027, trilha de artigo completo.
 | Data | Mudança |
 |---|---|
 | 14/10/2026 | Criado. Consolida o rascunho de metodologia, os pesos com cinco critérios, o roteiro de medição v2, a leitura do código do time de Web3 e as decisões A a E. Substitui `contexto-trilha-pesquisa.md` (setembro), `pesos-criterios.md` (seis critérios) e `resumo-equipe-matriz.md` |
-| 14/10/2026 | Incorpora o benchmark (`benchmark-redes/`): finalidade da Monad atualizada pela documentação atual (600 ms, bloco de 300 ms); Monad cobra o gas limit; ambiente proposto para a Canton (LocalNet); notas propostas de C2-M1, C2-M3 e C5 com fontes; contagem Solidity conferida por script (49) e contagem Daml provisória (24); dados medidos do Besu (seção 8.1); ameaças 14 a 17; fonte para o exemplo de rede sem cobrança de gas |
-| 16/10/2026 | Benchmark movido para este repositório (`benchmark-redes/`); pesquisas de setembro movidas para `docs/pesquisa-redes/`; resultados passam a ser gerados em `docs/resultados.md` |
+| 14/10/2026 | Incorpora o benchmark: finalidade da Monad atualizada pela documentação atual (600 ms, bloco de 300 ms); Monad cobra o gas limit; notas propostas de C2-M1, C2-M3 e C5 com fontes; contagem Solidity conferida por script (49) |
 | 16/10/2026 | Repositório reorganizado por função: `pesquisa/` (1-redes-candidatas, 2-metodo com este arquivo e o roteiro, 3-resultados), `entregas/` (resumo executivo), `dados/` (coletas brutas) e `benchmark/` (código) |
-| 16/10/2026 | Seção 8.1 passa a marcar a origem de cada número (rede local, testnet, projeção ou a medir), com linhas reservadas para as testnets e a Canton |
-| 16/10/2026 | Coleta completa nas cinco redes: testnets Sepolia, Fuji e Monad e Canton em sandbox local; seção 8.1 com todos os números, resultado da matriz, achado do Glamsterdam na Sepolia e decisão pendente sobre o custo da Canton; C5 confirmado nas testnets; ameaças 18 a 21 |
-
+| 16/10/2026 | Coleta completa nas testnets Sepolia, Fuji e Monad; C5 confirmado nas três; achado do Glamsterdam na Sepolia |
+| 19/10/2026 | Custo de infraestrutura (C4-M2) levantado em `pesquisa/4-custo-infraestrutura/`; decisão de usá-lo só como informação descritiva, fora da pontuação |
+| 22/10/2026 | Lista fechada nas três redes (decisão F); seções 3, 7.2, 8, 8.1 e 10 atualizadas; Glamsterdam comparado com o gas da Fuji; achado da latência sob carga na Fuji; versão preliminar do artigo em `artigo/` |
 ---
 
 ## Glossário
@@ -488,7 +496,6 @@ Template do COTB 2027, trilha de artigo completo.
 | Dado declarado / medido | Declarado vem de documentação ou literatura; medido vem dos testes da equipe |
 | Finalidade | Momento a partir do qual a transação não pode mais ser desfeita |
 | EVM | Máquina virtual que executa contratos nas redes do tipo Ethereum |
-| Daml | Linguagem de contratos usada na Canton |
 | NFT (ERC-721) | Token único, que não é intercambiável com outro |
 
 ---
@@ -534,9 +541,6 @@ Template do COTB 2027, trilha de artigo completo.
 - [R23] Finalidade no Ethereum: nota de pesquisa https://notes.ethereum.org/@yannvon/S1wIxIDqbe [VERIFICAR título e autoria] e Gasper https://ethereum.org/developers/docs/consensus-mechanisms/pos/gasper/
 - [R24] Avalanche. Avalanche Consensus. https://docs.avax.network/docs/primary-network/avalanche-consensus
 - [R25] Monad. Documentação oficial. https://docs.monad.xyz
-- [R26] Hyperledger Besu. Proof of Authority Consensus. https://besu.hyperledger.org/private-networks/concepts/poa
-- [R27] Hyperledger Besu. Notas da versão 23.10.2. https://github.com/hyperledger/besu/releases/tag/23.10.2
-- [R28] Canton Network. Comunicado de lançamento (2023). https://www.canton.network/canton-network-press-release
 - [R29] EIP-20: Token Standard. https://eips.ethereum.org/EIPS/eip-20
 - [R30] EIP-2200: Structured Definitions for Net Gas Metering. https://eips.ethereum.org/EIPS/eip-2200
 
@@ -545,15 +549,11 @@ Template do COTB 2027, trilha de artigo completo.
 - [R31] Repositório do time de Web3, `projeto-inter-web3`, commit `3347bf2` (12/10/2026). https://github.com/anacampos-crypto/projeto-inter-web3
 - [R32] Transações da demonstração na Sepolia (06/10/2026): `approve` https://sepolia.etherscan.io/tx/0xac5f8c4b2678129920ef2c91fb677d6c4d3324dc62dc9d63afe23934ecfeb3aa ; `createOffer` https://sepolia.etherscan.io/tx/0x1fcfa5db23515922b644a39fa15cec2dc7203a5d01dddbda212025f6a911467d ; `acceptOffer` https://sepolia.etherscan.io/tx/0xe503d1c3f1dddf19cb0de517e291be9b8be34539c0963243414899782658084f
 - [R33] TAP e cronograma de entregas, no repositório geral do projeto. https://github.com/InteliBlockchain-IBC/projeto-banco-inter
-- [R34] Scripts e dados do benchmark (coletor EVM, rede Besu, modelo Daml, análise), pastas `benchmark/` e `dados/` deste repositório, 14/10/2026.
+- [R34] Scripts e dados do benchmark (coletor EVM e análise), pastas `benchmark/` e `dados/` deste repositório, coleta de 16/10/2026.
 
 **Fontes acrescentadas em 14/10/2026**
 
 - [R35] Monad. Gas Pricing e Testnets. https://docs.monad.xyz/developer-essentials/gas-pricing ; https://docs.monad.xyz/developer-essentials/testnets
 - [R36] Monad. MonadBFT. https://docs.monad.xyz/monad-arch/consensus/monad-bft
 - [R37] Solidity 0.8.24. SMTChecker and Formal Verification. https://docs.soliditylang.org/en/v0.8.24/smtchecker.html
-- [R38] Daml Forum. Formal Verification (ferramenta `daml-lf-verify`). https://discuss.daml.com/t/formal-verification/665
-- [R39] Digital Asset. `cn-quickstart` (LocalNet da Canton). https://github.com/digital-asset/cn-quickstart
-- [R40] Hyperledger Besu. Free gas networks. https://besu.hyperledger.org/private-networks/how-to/configure/free-gas
 - [R41] Glamsterdam ativado na Sepolia em 06/10/2026, com reprecificação da criação de estado. https://cryptobriefing.com/ethereum-sepolia-forks-gloas-200m-gas/ ; https://defiprotocolbycode.substack.com/p/glamsterdam-gas-repricing-what-builders-should-check [VERIFICAR nas notas oficiais do fork]
-- [R42] Digital Asset. Daml SDK 3.6 (`dpm sandbox`, Canton 3.6.1). https://get.digitalasset.com/install/install.sh

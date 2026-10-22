@@ -1,8 +1,10 @@
 """Consolida os dados medidos (INTER-18), calcula notas, ranking e sensibilidade (INTER-21) e gera gráficos.
 
+Compara as três testnets públicas: Sepolia, Fuji e Monad.
+
 Uso (o mesmo que `npm run analisar`):
-  python3 analise/analisar.py --projecao config/projecao.json --projetar-custo-com besu
-      dados medidos onde existem; nas redes ainda não medidas, valores declarados ou projetados
+  python3 analise/analisar.py --projecao config/projecao.json
+      dados medidos onde existem; nas redes ainda não medidas, valores declarados
   python3 analise/analisar.py --relatorio /tmp/so-medido.md
       só o que foi medido (o restante fica como faixa pendente)
 
@@ -41,8 +43,6 @@ def coletar_brutos(df, precos, redes_cfg, declarados, projecao, projetar_com, re
     fb = (projecao or {}).get("fallback_declarado", declarados.get("fallback_declarado", {}))
 
     m_sol = complexidade.analisar(repo_web3 / "src")["total"]["m_total"]
-    pasta_daml = RAIZ / "redes-locais" / "canton"
-    m_daml = complexidade.analisar(pasta_daml)["total"]["m_total"] if pasta_daml.exists() else None
 
     for r in redes:
         cfg = redes_cfg.get(r, {})
@@ -87,10 +87,8 @@ def coletar_brutos(df, precos, redes_cfg, declarados, projecao, projetar_com, re
         if isinstance(infra, (int, float)):
             brutos["C4M2"][r], origens["C4M2"][r] = infra, "declarado"
         versao = declarados["versao_codigo"][r]
-        m = m_sol if versao == "solidity" else m_daml
-        if m is not None:
-            brutos["C2M2"][r], origens["C2M2"][r] = m, "medido"
-        d["complexidade"] = {"versao": versao, "m_total": m}
+        brutos["C2M2"][r], origens["C2M2"][r] = m_sol, "medido"
+        d["complexidade"] = {"versao": versao, "m_total": m_sol}
         detalhes[r] = d
     return brutos, origens, detalhes
 
@@ -130,24 +128,20 @@ def main(argv=None):
         p2 = bm.pontuar(m2, pesos)
         alternativas.append({"descricao": descricao, "pontos": p2})
 
-    if brutos["C4M1"].get("canton") is not None:
-        def sem_custo_canton(b2, o2):
-            b2["C4M1"].pop("canton", None)
-            o2["C4M1"].pop("canton", None)
-        refazer("Custo por transação da Canton a definir (modelo de tráfego, INTER-6), em vez de zero como no sandbox", sem_custo_canton)
-    cs, cb = detalhes.get("sepolia", {}).get("custo") or {}, detalhes.get("besu", {}).get("custo") or {}
-    if origens["C4M1"].get("sepolia") == "medido" and cb.get("ciclo_gas_medio") and precos.get("sepolia", {}).get("cotacao_usd"):
+    # A Fuji (C-Chain) ainda usa as regras de gas anteriores ao Glamsterdam: o gas dela aproxima o da mainnet da Ethereum.
+    cf = detalhes.get("fuji", {}).get("custo") or {}
+    if origens["C4M1"].get("sepolia") == "medido" and cf.get("ciclo_gas_medio") and precos.get("sepolia", {}).get("cotacao_usd"):
         def ethereum_regras_mainnet(b2, o2):
             ps = precos["sepolia"]
-            b2["C4M1"]["sepolia"] = cb["ciclo_gas_medio"] * ps["gas_preco_wei"] / 1e18 * ps["cotacao_usd"]
-        refazer("Custo da Ethereum com o gas das regras atuais da mainnet (pré-Glamsterdam), em vez do gas medido na Sepolia", ethereum_regras_mainnet)
+            b2["C4M1"]["sepolia"] = cf["ciclo_gas_medio"] * ps["gas_preco_wei"] / 1e18 * ps["cotacao_usd"]
+        refazer("Custo da Ethereum com o gas das regras atuais da mainnet (pré-Glamsterdam, medido na Fuji), em vez do gas medido na Sepolia", ethereum_regras_mainnet)
 
     saida = Path(a.saida)
     saida.mkdir(parents=True, exist_ok=True)
     medidas = {r for r in redes if detalhes[r]["latencia_t1"].get("n") or detalhes[r]["taxa_sucesso_t2"].get("n")}
     projetadas = {r for r in redes if brutos["C3"].get(r) is not None and brutos["C4M1"].get(r) is not None}
     origem = {r: bm.origem_rede(r, r in medidas, r in projetadas) for r in redes}
-    ambiente = {r: bm.AMBIENTE.get(r, "local") for r in redes}
+    ambiente = {r: bm.AMBIENTE.get(r, "testnet") for r in redes}
     pasta_graficos = saida / "graficos"
     pasta_graficos.mkdir(parents=True, exist_ok=True)
     graficos.latencia_t1({r: bm.latencias_aceite_t1(df, r) if not df.empty else [] for r in redes}, nomes, origem, pasta_graficos / "latencia_t1.png")

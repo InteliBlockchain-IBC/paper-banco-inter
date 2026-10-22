@@ -117,8 +117,8 @@ export function nomeImplantacao(redeId) {
 }
 
 export function carregarImplantacao(redeId) {
-  // bench-<rede> é o padrão; <rede>.json só vale para redes locais implantadas antes da mudança (besu, anvil).
-  const candidatos = [nomeImplantacao(redeId), ...(['besu', 'anvil'].includes(redeId) ? [redeId] : [])];
+  // bench-<rede> é o padrão; <rede>.json só vale para o Anvil implantado antes da mudança.
+  const candidatos = [nomeImplantacao(redeId), ...(redeId === 'anvil' ? [redeId] : [])];
   for (const nome of candidatos) {
     const arquivo = path.join(REPO_WEB3, 'deployments', `${nome}.json`);
     if (fs.existsSync(arquivo)) return JSON.parse(fs.readFileSync(arquivo, 'utf8'));

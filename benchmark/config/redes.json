@@ -64,18 +64,6 @@
     },
     "pisoOrcamentoGwei": 100
   },
-  "besu": {
-    "nome": "Hyperledger Besu (QBFT local, 4 validadores)",
-    "chainId": 13371,
-    "rpcEnv": "BESU_RPC_URL",
-    "rpcPadrao": "http://127.0.0.1:8545",
-    "simbolo": "ETH (gas grátis)",
-    "faucets": [],
-    "intervaloConsultaMs": 100,
-    "cobrancaGas": "gratis",
-    "validadores": 4,
-    "pisoOrcamentoGwei": 0
-  },
   "anvil": {
     "nome": "Anvil (ensaio local, fora do benchmark)",
     "chainId": 31337,
@@ -87,12 +75,5 @@
     "cobrancaGas": "gasUsed",
     "ensaio": true,
     "pisoOrcamentoGwei": 0
-  },
-  "canton": {
-    "nome": "Canton (LocalNet)",
-    "cobrancaGas": "gratis",
-    "faucets": [],
-    "ledger": "daml",
-    "nota": "Sandbox local sem cobrança por transação (como o Besu com gas grátis); na Canton Network o tráfego é pago ao synchronizer, custo a tratar em C4-M2 (INTER-6)."
   }
 }

@@ -1,7 +1,7 @@
 """Gráficos do artigo (PNG).
 
-Todo gráfico diz de onde vem cada número: medido em rede local, medido em testnet, projeção sem
-teste ou a medir. Medido = barra sólida; projeção = barra clara e hachurada; a medir = contorno
+Todo gráfico diz de onde vem cada número: medido em testnet, projeção sem teste ou a medir.
+ Medido = barra sólida; projeção = barra clara e hachurada; a medir = contorno
 tracejado. O nome de cada rede leva a origem logo abaixo.
 """
 
@@ -26,7 +26,6 @@ TONS_CRITERIOS = ["#1f4e9c", "#2f6fdb", "#6b9bea", "#a9c4f2", "#d5e3fa"]
 
 # Estilo de barra por origem: medido sólido; projeção clara e hachurada; a medir só contorno.
 ESTILO = {
-    "local": {"facecolor": "#4a5568", "edgecolor": "#4a5568", "hatch": None},
     "testnet": {"facecolor": DESTAQUE, "edgecolor": DESTAQUE, "hatch": None},
     "projetado": {"facecolor": "#eef0f3", "edgecolor": CINZA, "hatch": "////"},
     "pendente": {"facecolor": "none", "edgecolor": CINZA, "hatch": None, "linestyle": "--"},
@@ -47,7 +46,7 @@ plt.rcParams.update({
 })
 
 
-CURTO = {"local": "rede local", "testnet": "testnet", "projetado": "projeção", "pendente": "a medir"}
+CURTO = {"testnet": "testnet", "projetado": "projeção", "pendente": "a medir"}
 
 
 def _rotulo(nome: str, origem: str, curto: bool = False) -> str:
@@ -56,7 +55,7 @@ def _rotulo(nome: str, origem: str, curto: bool = False) -> str:
 
 def _legenda_origem(ax, origens_usadas, **kw):
     itens = [Patch(**{k: v for k, v in ESTILO[o].items() if k != "linestyle"}, linestyle=ESTILO[o].get("linestyle", "-"), label=ROTULO_ORIGEM[o])
-             for o in ["local", "testnet", "projetado", "pendente"] if o in origens_usadas]
+             for o in ["testnet", "projetado", "pendente"] if o in origens_usadas]
     ax.legend(handles=itens, frameon=False, fontsize=8.5, **kw)
 
 
@@ -114,8 +113,7 @@ def custo_ciclo(custo: dict[str, float], origem_custo: dict[str, str], ambiente:
             ax.barh(i, custo[r], left=piso, **ESTILO[o])
             ax.text(custo[r] * 1.2, i, f"US$ {_br(custo[r], 4)}", va="center", fontsize=9, color=TEXTO)
         else:
-            motivo = "sem taxa por transação no sandbox" if r == "canton" else "gas grátis"
-            ax.text(piso * 1.3, i, f"US$ 0 por transação ({motivo}; o custo dessa rede está na infraestrutura)", va="center", fontsize=9, color=TEXTO)
+            ax.text(piso * 1.3, i, "US$ 0 por transação", va="center", fontsize=9, color=TEXTO)
     ax.set_xscale("log")
     ax.set_xlim(piso, max(positivos) * 8)
     ax.set_ylim(-0.6, len(redes) - 0.4)
@@ -124,7 +122,7 @@ def custo_ciclo(custo: dict[str, float], origem_custo: dict[str, str], ambiente:
     ax.set_title("Custo por ciclo a preços da mainnet", loc="left", fontsize=11, color=TEXTO)
     _legenda_origem(ax, usados, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncols=3)
     if "projetado" in usados:
-        _rodape(fig, "Projeção: gas medido na rede local aplicado ao preço da mainnet de cada rede; vira medição quando a testnet for coletada.", y=-0.17)
+        _rodape(fig, "Projeção: gas medido em outra rede aplicado ao preço da mainnet de cada rede; vira medição quando a testnet for coletada.", y=-0.17)
     fig.savefig(arquivo)
     plt.close(fig)
 

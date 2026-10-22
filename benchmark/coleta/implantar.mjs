@@ -32,7 +32,6 @@ function main() {
   console.log(`Configuração gravada em ${path.relative(process.cwd(), arquivo)}`);
 
   const args = ['script', 'script/Deploy.s.sol', '--rpc-url', rede.rpc, '--broadcast', '--slow', '--private-key', c.chaveAdmin()];
-  if (rede.cobrancaGas === 'gratis') args.push('--with-gas-price', '0', '--priority-gas-price', '0');
   // Redes cujas regras de gas mudaram em relação à simulação local do forge (ex.: Sepolia pós-Glamsterdam).
   if (rede.multiplicadorGasImplantacao) args.push('--gas-estimate-multiplier', String(rede.multiplicadorGasImplantacao));
   // O registro do forge vai para dados/implantacoes/, e não para o broadcast/ versionado do time.

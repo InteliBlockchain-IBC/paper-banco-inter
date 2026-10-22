@@ -190,7 +190,7 @@ async function rodarT2({ ex, impl, abis, plano, csv, ofertas, redeId }) {
 
 export async function main(argv) {
   const a = argumentos(argv);
-  if (!a.rede) throw new Error('Informe --rede (sepolia, fuji, monad, besu, anvil)');
+  if (!a.rede) throw new Error('Informe --rede (sepolia, fuji, monad, anvil)');
   const teste = (a.teste ?? 'todos').toUpperCase();
   const plano = a.reduzida ? PLANOS.reduzido : PLANOS.completo;
   const rede = carregarRede(a.rede);

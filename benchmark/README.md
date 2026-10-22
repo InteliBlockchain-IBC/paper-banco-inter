@@ -6,10 +6,11 @@ Código que coleta e analisa os dados medidos do paper. Implementa o roteiro de 
 Os dados brutos vão para [`../dados/`](../dados/) e o resultado sai em
 [`../pesquisa/3-resultados/`](../pesquisa/3-resultados/resultados.md).
 
+O estudo compara três testnets públicas: Ethereum Sepolia, Avalanche Fuji e Monad.
+
 | Tarefa | O que faz | Onde |
 |---|---|---|
-| INTER-10 | Coleta T1 e T2 nas redes EVM | `coleta/coletar-evm.mjs` |
-| INTER-14 | Coleta na Canton | `coleta/coletar-canton.mjs`, `redes-locais/canton/` |
+| INTER-10 | Coleta T1 e T2 nas testnets | `coleta/coletar-evm.mjs` |
 | INTER-15 | Complexidade ciclomática | `analise/complexidade.py` |
 | INTER-18 | Consolidação dos dados | `analise/analisar.py` |
 | INTER-21 | Notas, ranking e sensibilidade | `analise/benchmark.py` |
@@ -21,15 +22,12 @@ benchmark/
 ├── config/              redes.json (RPC, chain ID, faucets), declarados.json (notas e pesos), projecao.json
 ├── coleta/              coletores (Node + viem), carteiras, implantação, preços de referência
 ├── analise/             estatísticas, notas, ranking, sensibilidade, gráficos e relatório (Python)
-├── redes-locais/
-│   ├── besu/            rede Besu QBFT com 4 validadores (Docker)
-│   └── canton/          versão Daml do contrato, com testes em Daml Script
 └── testes/              testes dos coletores (Node); os da análise ficam em analise/tests/
 ```
 
 ## Preparação
 
-Precisa de Node 20+, Python 3.10+ com pandas e matplotlib, Foundry (`forge`) e Docker. O
+Precisa de Node 20+, Python 3.10+ com pandas e matplotlib e Foundry (`forge`). O
 repositório do contrato (`projeto-inter-web3`) fica ao lado deste repositório; se estiver em
 outro lugar, ajuste `WEB3_REPO` no `.env`.
 
@@ -48,7 +46,6 @@ financia as outras 12 contas, que o script deriva da própria chave.
 | Sepolia | 11155111 | [Google Cloud](https://cloud.google.com/application/web3/faucet/ethereum/sepolia), [Alchemy](https://www.alchemy.com/faucets/ethereum-sepolia), [PoW](https://sepolia-faucet.pk910.de) |
 | Fuji | 43113 | [Builder Hub](https://build.avax.network/console/primary-network/faucet), [Core](https://core.app/tools/testnet-faucet/?subnet=c&token=c) |
 | Monad | 10143 | [faucet.monad.xyz](https://faucet.monad.xyz) |
-| Besu | 13371 | não precisa (gas grátis) |
 
 ```bash
 npm run carteiras -- enderecos --rede fuji     # as 13 contas
@@ -69,45 +66,14 @@ no meio invalida as latências.
 # preços de referência da mainnet ao longo da janela de coleta (em paralelo)
 systemd-inhibit --what=sleep:idle npm run precos -- --amostras 12 --intervalo 300 &
 
-# redes EVM públicas: sepolia, fuji, monad
+# testnets: sepolia, fuji, monad (as três no mesmo dia, na mesma janela de preços)
 npm run implantar -- --rede sepolia
 systemd-inhibit --what=sleep:idle npm run coletar -- --rede sepolia
-
-# Besu local
-./redes-locais/besu/gerar-rede.sh --limpar
-npm run implantar -- --rede besu
-systemd-inhibit --what=sleep:idle npm run coletar -- --rede besu
 ```
 
 Cada coleta grava em `../dados/`: `medicoes_<rede>_<data>.csv` (seção 6.1 do roteiro, mais
 `gas_limit` e `nonce`), `preparo_<rede>_<data>.csv` (preparação do T2, fora da medição) e
 `metadados_<rede>_<data>.json` (seção 6.2).
-
-### Canton
-
-A coleta de 16/10/2026 usou o sandbox do SDK oficial do Daml: participante, sequencer e mediator
-da Canton num só processo, sem `sudo`, Nix ou conta no Docker Hub.
-
-```bash
-# 1. SDK do Daml (instala em ~/.dpm, sem sudo)
-curl -sSL https://get.digitalasset.com/install/install.sh | sh
-export PATH="$HOME/.dpm/bin:$PATH"
-
-# 2. Modelo Daml (dentro de benchmark/redes-locais/canton)
-dpm build && dpm test        # 5 testes de Daml Script
-
-# 3. Sandbox limpo, já com o DAR, na porta do .env (CANTON_API)
-dpm sandbox --json-api-port 3975 --dar .daml/dist/credit-interbank-1.0.0.dar
-
-# 4. Coletar (outro terminal, dentro de benchmark/)
-systemd-inhibit --what=sleep:idle npm run coletar:canton
-```
-
-O sandbox roda sem autenticação, então `CANTON_TOKEN` fica vazio. No `.env`, `CANTON_PACOTE`
-precisa de aspas (`"#credit-interbank"`): sem elas o `#` é lido como comentário. Para um ambiente
-com vários validadores, o LocalNet do
-[cn-quickstart](https://github.com/digital-asset/cn-quickstart) também funciona com o mesmo
-coletor (precisa de Nix, direnv e `docker login`).
 
 ## Análise
 
@@ -115,12 +81,12 @@ coletor (precisa de Nix, direnv e `docker login`).
 npm run analisar
 ```
 
-Lê tudo o que está em `../dados/`, usa valores medidos onde existem e, nas redes ainda não medidas,
-os valores de `config/projecao.json` (marcados como declarados, projetados ou hipótese). Regera
+Lê tudo o que está em `../dados/`, usa valores medidos onde existem e, se alguma rede ainda não foi
+medida, os valores de `config/projecao.json` (marcados como declarados ou hipótese). Regera
 `../pesquisa/3-resultados/` (resultados.md, resumo.json e graficos/). Rode depois de cada coleta.
 
-Gráficos e relatório marcam a origem de cada rede: `LOCAL` (medido em rede local: Besu e Canton),
-`TESTNET` (medido em testnet: Sepolia, Fuji e Monad), `PROJEÇÃO` (sem teste: documentação oficial e
+Gráficos e relatório marcam a origem de cada rede: `TESTNET` (medido em testnet: Sepolia, Fuji e
+Monad), `PROJEÇÃO` (sem teste: documentação oficial e
 hipóteses de `config/projecao.json`) e `A MEDIR` (faixa de pontuação). Nos gráficos, barra sólida =
 medido; clara e hachurada = projeção; contorno tracejado = a medir. Quando uma testnet é coletada,
 os valores medidos substituem a projeção automaticamente, sem mexer na configuração.
@@ -128,7 +94,7 @@ os valores medidos substituem a projeção automaticamente, sem mexer na configu
 ## Testes
 
 ```bash
-npm test                         # 18 testes; os 3 de integração pedem um Anvil com o contrato
+npm test                         # 13 testes; os 3 de integração pedem um Anvil com o contrato
 python3 -m pytest analise/tests  # 9 testes
 ```
 

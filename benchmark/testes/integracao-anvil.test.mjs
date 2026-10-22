@@ -1,4 +1,4 @@
-// Teste de integração contra uma rede local já implantada (Anvil ou Besu).
+// Teste de integração contra uma rede local de ensaio já implantada (Anvil).
 // Pulado se a rede não estiver no ar. Para rodar:
 //   anvil --port 8546 --block-time 1 --accounts 15 &
 //   MNEMONIC="test test test test test test test test test test test junk" npm run implantar -- --rede anvil

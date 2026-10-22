@@ -115,7 +115,6 @@ export class Nonces {
 }
 
 export async function taxas(cliente, rede) {
-  if (rede.cobrancaGas === 'gratis') return { maxFeePerGas: 0n, maxPriorityFeePerGas: 0n };
   return cliente.estimateFeesPerGas({ type: 'eip1559' });
 }
 

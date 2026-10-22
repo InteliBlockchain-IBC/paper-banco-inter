@@ -1,5 +1,5 @@
 {
-  "gerado_utc": "2026-10-17T00:19:07+00:00",
+  "gerado_utc": "2026-10-22T14:31:14+00:00",
   "pesos": {
     "C1": 0.2978,
     "C2": 0.2978,
@@ -43,62 +43,46 @@
     "C1": {
       "sepolia": 100.0,
       "fuji": 100.0,
-      "monad": 100.0,
-      "besu": 100.0,
-      "canton": 100.0
+      "monad": 100.0
     },
     "C3": {
       "sepolia": 11.0395,
       "fuji": 2.6445,
-      "monad": 0.987,
-      "besu": 1.9605000000000001,
-      "canton": 0.3655
+      "monad": 0.987
     },
     "C4M1": {
       "sepolia": 0.2961056685073103,
       "fuji": 0.029025108408346,
-      "monad": 0.0014213300148800479,
-      "besu": 0.0,
-      "canton": 0.0
+      "monad": 0.0014213300148800479
     },
     "C4M2": {},
     "C2M2": {
       "sepolia": 49,
       "fuji": 49,
-      "monad": 49,
-      "besu": 49,
-      "canton": 24
+      "monad": 49
     }
   },
   "origens": {
     "C1": {
       "sepolia": "medido",
       "fuji": "medido",
-      "monad": "medido",
-      "besu": "medido",
-      "canton": "medido"
+      "monad": "medido"
     },
     "C3": {
       "sepolia": "medido",
       "fuji": "medido",
-      "monad": "medido",
-      "besu": "medido",
-      "canton": "medido"
+      "monad": "medido"
     },
     "C4M1": {
       "sepolia": "medido",
       "fuji": "medido",
-      "monad": "medido",
-      "besu": "medido",
-      "canton": "medido"
+      "monad": "medido"
     },
     "C4M2": {},
     "C2M2": {
       "sepolia": "medido",
       "fuji": "medido",
-      "monad": "medido",
-      "besu": "medido",
-      "canton": "medido"
+      "monad": "medido"
     }
   },
   "notas": {
@@ -114,35 +98,19 @@
       "monad": {
         "valor": 1.0,
         "origem": "medido"
-      },
-      "besu": {
-        "valor": 1.0,
-        "origem": "medido"
-      },
-      "canton": {
-        "valor": 1.0,
-        "origem": "medido"
       }
     },
     "C2": {
       "sepolia": {
-        "valor": 0.3333333333333333,
+        "valor": 0.6666666666666666,
         "origem": "misto"
       },
       "fuji": {
-        "valor": 0.3333333333333333,
+        "valor": 0.6666666666666666,
         "origem": "misto"
       },
       "monad": {
-        "valor": 0.3333333333333333,
-        "origem": "misto"
-      },
-      "besu": {
-        "valor": 0.5,
-        "origem": "misto"
-      },
-      "canton": {
-        "valor": 0.8333333333333334,
+        "valor": 0.6666666666666666,
         "origem": "misto"
       }
     },
@@ -152,18 +120,10 @@
         "origem": "medido"
       },
       "fuji": {
-        "valor": 0.7864905377552932,
+        "valor": 0.8351156428749067,
         "origem": "medido"
       },
       "monad": {
-        "valor": 0.9417744050964962,
-        "origem": "medido"
-      },
-      "besu": {
-        "valor": 0.8505714821060522,
-        "origem": "medido"
-      },
-      "canton": {
         "valor": 1.0,
         "origem": "medido"
       }
@@ -174,18 +134,10 @@
         "origem": "medido"
       },
       "fuji": {
-        "valor": 0.9019771943081548,
+        "valor": 0.9063276367699635,
         "origem": "medido"
       },
       "monad": {
-        "valor": 0.995199922980046,
-        "origem": "medido"
-      },
-      "besu": {
-        "valor": 1.0,
-        "origem": "medido"
-      },
-      "canton": {
         "valor": 1.0,
         "origem": "medido"
       }
@@ -201,14 +153,6 @@
       },
       "monad": {
         "valor": 1.0,
-        "origem": "declarado"
-      },
-      "besu": {
-        "valor": 1.0,
-        "origem": "declarado"
-      },
-      "canton": {
-        "valor": 0.0,
         "origem": "declarado"
       }
     }
@@ -226,34 +170,18 @@
       "monad": {
         "valor": 1.0,
         "origem": "declarado"
-      },
-      "besu": {
-        "valor": 1.0,
-        "origem": "declarado"
-      },
-      "canton": {
-        "valor": 0.5,
-        "origem": "declarado"
       }
     },
     "C2-M2": {
       "sepolia": {
-        "valor": 0.0,
+        "valor": 1.0,
         "origem": "medido"
       },
       "fuji": {
-        "valor": 0.0,
+        "valor": 1.0,
         "origem": "medido"
       },
       "monad": {
-        "valor": 0.0,
-        "origem": "medido"
-      },
-      "besu": {
-        "valor": 0.0,
-        "origem": "medido"
-      },
-      "canton": {
         "valor": 1.0,
         "origem": "medido"
       }
@@ -270,14 +198,6 @@
       "monad": {
         "valor": 0.0,
         "origem": "declarado"
-      },
-      "besu": {
-        "valor": 0.5,
-        "origem": "declarado"
-      },
-      "canton": {
-        "valor": 1.0,
-        "origem": "declarado"
       }
     },
     "C4-M1": {
@@ -286,18 +206,10 @@
         "origem": "medido"
       },
       "fuji": {
-        "valor": 0.9019771943081548,
+        "valor": 0.9063276367699635,
         "origem": "medido"
       },
       "monad": {
-        "valor": 0.995199922980046,
-        "origem": "medido"
-      },
-      "besu": {
-        "valor": 1.0,
-        "origem": "medido"
-      },
-      "canton": {
         "valor": 1.0,
         "origem": "medido"
       }
@@ -314,24 +226,16 @@
       "monad": {
         "valor": null,
         "origem": "pendente"
-      },
-      "besu": {
-        "valor": null,
-        "origem": "pendente"
-      },
-      "canton": {
-        "valor": null,
-        "origem": "pendente"
       }
     }
   },
   "pontuacao": {
     "sepolia": {
-      "minimo": 48.58666666666667,
-      "maximo": 48.58666666666667,
+      "minimo": 58.51333333333334,
+      "maximo": 58.51333333333334,
       "contribuicao_conhecida": {
         "C1": 29.78,
-        "C2": 9.926666666666668,
+        "C2": 19.853333333333335,
         "C3": 0.0,
         "C4": 0.0,
         "C5": 8.88
@@ -340,53 +244,27 @@
       "completo": true
     },
     "fuji": {
-      "minimo": 75.23068747862787,
-      "maximo": 75.23068747862787,
+      "minimo": 85.99330828612939,
+      "maximo": 85.99330828612939,
       "contribuicao_conhecida": {
         "C1": 29.78,
-        "C2": 9.926666666666668,
-        "C3": 12.410820685778527,
-        "C4": 14.233200126182682,
+        "C2": 19.853333333333335,
+        "C3": 13.178124844566028,
+        "C4": 14.301850108230024,
         "C5": 8.88
       },
       "pendentes": [],
       "completo": true
     },
     "monad": {
-      "minimo": 79.1521215637145,
-      "maximo": 79.1521215637145,
+      "minimo": 90.07333333333334,
+      "maximo": 90.07333333333334,
       "contribuicao_conhecida": {
         "C1": 29.78,
-        "C2": 9.926666666666668,
-        "C3": 14.86120011242271,
-        "C4": 15.704254784625126,
-        "C5": 8.88
-      },
-      "pendentes": [],
-      "completo": true
-    },
-    "besu": {
-      "minimo": 82.7520179876335,
-      "maximo": 82.7520179876335,
-      "contribuicao_conhecida": {
-        "C1": 29.78,
-        "C2": 14.89,
-        "C3": 13.422017987633502,
-        "C4": 15.78,
-        "C5": 8.88
-      },
-      "pendentes": [],
-      "completo": true
-    },
-    "canton": {
-      "minimo": 86.15666666666667,
-      "maximo": 86.15666666666667,
-      "contribuicao_conhecida": {
-        "C1": 29.78,
-        "C2": 24.816666666666666,
+        "C2": 19.853333333333335,
         "C3": 15.78,
         "C4": 15.78,
-        "C5": 0.0
+        "C5": 8.88
       },
       "pendentes": [],
       "completo": true
@@ -396,15 +274,11 @@
     {
       "cenario": "Base",
       "pontos": {
-        "sepolia": 48.58666666666667,
-        "fuji": 75.23068747862787,
-        "monad": 79.1521215637145,
-        "besu": 82.7520179876335,
-        "canton": 86.15666666666667
+        "sepolia": 58.51333333333334,
+        "fuji": 85.99330828612939,
+        "monad": 90.07333333333334
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -414,33 +288,25 @@
     {
       "cenario": "S1 pesos iguais",
       "pontos": {
-        "sepolia": 46.66666666666667,
-        "fuji": 80.43602130793563,
-        "monad": 85.40615322819752,
-        "besu": 87.01142964212104,
-        "canton": 76.66666666666667
+        "sepolia": 53.333333333333336,
+        "fuji": 88.16219892623074,
+        "monad": 93.33333333333334
       },
       "ordem": [
-        "besu",
         "monad",
         "fuji",
-        "canton",
         "sepolia"
       ],
-      "primeiro_mudou": true
+      "primeiro_mudou": false
     },
     {
       "cenario": "S2 C1 +50%",
       "pontos": {
-        "sepolia": 55.249949226796645,
-        "fuji": 78.44084557283304,
-        "monad": 81.85405306268126,
-        "besu": 84.98739488870528,
-        "canton": 87.95079351263527
+        "sepolia": 63.89009777468303,
+        "fuji": 87.80860674221375,
+        "monad": 91.35985145211362
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -450,15 +316,11 @@
     {
       "cenario": "S2 C1 −50%",
       "pontos": {
-        "sepolia": 39.59190067755454,
-        "fuji": 70.89729465236502,
-        "monad": 75.50478388404946,
-        "besu": 79.73448241996653,
-        "canton": 83.73477460541261
+        "sepolia": 51.255238319038114,
+        "fuji": 83.54283666564373,
+        "monad": 88.33666235851643
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -468,15 +330,11 @@
     {
       "cenario": "S2 C2 +50%",
       "pontos": {
-        "sepolia": 46.60980067891026,
-        "fuji": 69.80069702494664,
-        "monad": 73.21390451479488,
-        "besu": 78.5072834777905,
-        "canton": 85.79075637566368
+        "sepolia": 59.570023500739836,
+        "fuji": 83.48853246827056,
+        "monad": 87.03977717817043
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -486,33 +344,25 @@
     {
       "cenario": "S2 C2 −50%",
       "pontos": {
-        "sepolia": 51.255238319038114,
-        "fuji": 82.5606322938486,
-        "monad": 87.16812152553305,
-        "besu": 88.4819856510792,
-        "canton": 86.6506090157835
+        "sepolia": 57.0869071397799,
+        "fuji": 89.37450548638552,
+        "monad": 94.16833117925822
       },
       "ordem": [
-        "besu",
         "monad",
-        "canton",
         "fuji",
         "sepolia"
       ],
-      "primeiro_mudou": true
+      "primeiro_mudou": false
     },
     {
       "cenario": "S2 C3 +50%",
       "pontos": {
-        "sepolia": 45.0335217968919,
-        "fuji": 75.48067274216066,
-        "monad": 80.25092373707096,
-        "besu": 82.92059225271132,
-        "canton": 87.16903018506505
+        "sepolia": 54.23425093459388,
+        "fuji": 85.81181824859803,
+        "monad": 90.79927086229802
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -522,15 +372,11 @@
     {
       "cenario": "S2 C3 −50%",
       "pontos": {
-        "sepolia": 52.748525313936234,
-        "fuji": 74.9378755137755,
-        "monad": 77.86507600423748,
-        "besu": 82.55456410141868,
-        "canton": 84.97086816487533
+        "sepolia": 63.52549487931097,
+        "fuji": 86.2058906349434,
+        "monad": 89.22303043462527
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -540,15 +386,11 @@
     {
       "cenario": "S2 C4 +50%",
       "pontos": {
-        "sepolia": 45.0335217968919,
-        "fuji": 76.32522712180852,
-        "monad": 80.64162476228293,
-        "besu": 84.01336359962323,
-        "canton": 87.16903018506505
+        "sepolia": 54.23425093459388,
+        "fuji": 86.33259184377087,
+        "monad": 90.79927086229802
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -558,15 +400,11 @@
     {
       "cenario": "S2 C4 −50%",
       "pontos": {
-        "sepolia": 52.748525313936234,
-        "fuji": 73.94863469279832,
-        "monad": 77.40744128911295,
-        "besu": 81.27458255089947,
-        "canton": 84.97086816487533
+        "sepolia": 63.52549487931097,
+        "fuji": 85.59589971991572,
+        "monad": 89.22303043462527
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -576,33 +414,25 @@
     {
       "cenario": "S2 C5 +50%",
       "pontos": {
-        "sepolia": 50.77237329248054,
-        "fuji": 76.28369157279575,
-        "monad": 80.03841589784997,
-        "besu": 83.48527191462419,
-        "canton": 82.49393591216646
+        "sepolia": 60.27703306523682,
+        "fuji": 86.5887670299975,
+        "monad": 90.49534022724372
       },
       "ordem": [
-        "besu",
-        "canton",
         "monad",
         "fuji",
         "sepolia"
       ],
-      "primeiro_mudou": true
+      "primeiro_mudou": false
     },
     {
       "cenario": "S2 C5 −50%",
       "pontos": {
-        "sepolia": 46.19785126273197,
-        "fuji": 74.07983202033056,
-        "monad": 78.18346752167697,
-        "besu": 81.95062577190613,
-        "canton": 90.15976001116228
+        "sepolia": 56.585740198130324,
+        "fuji": 85.34251599636814,
+        "monad": 89.61211106460165
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -612,15 +442,11 @@
     {
       "cenario": "S3 sem C1",
       "pontos": {
-        "sepolia": 26.78249311687079,
-        "fuji": 64.72612856540569,
-        "monad": 70.31062598079535,
-        "besu": 75.43722299577543,
-        "canton": 80.28576853697902
+        "sepolia": 40.9190164245704,
+        "fuji": 80.05313056982253,
+        "monad": 85.8634766923004
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -631,32 +457,24 @@
       "cenario": "S3 sem C2",
       "pontos": {
         "sepolia": 55.05553973227001,
-        "fuji": 92.99917518080493,
-        "monad": 98.58367259619457,
-        "besu": 96.64200795732484,
-        "canton": 87.35403019082882
+        "fuji": 94.18965387752215,
+        "monad": 100.0
       },
       "ordem": [
         "monad",
-        "besu",
         "fuji",
-        "canton",
         "sepolia"
       ],
-      "primeiro_mudou": true
+      "primeiro_mudou": false
     },
     {
       "cenario": "S3 sem C3",
       "pontos": {
-        "sepolia": 57.690176521807956,
-        "fuji": 74.59020041896146,
-        "monad": 76.33688132426002,
-        "besu": 82.32011398717644,
-        "canton": 83.562890841447
+        "sepolia": 69.47676719702366,
+        "fuji": 86.4583037776815,
+        "monad": 88.21340932478428
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -666,15 +484,11 @@
     {
       "cenario": "S3 sem C4",
       "pontos": {
-        "sepolia": 57.690176521807956,
-        "fuji": 72.42636826459889,
-        "monad": 75.33586651518567,
-        "besu": 79.52032532371585,
-        "canton": 83.562890841447
+        "sepolia": 69.47676719702366,
+        "fuji": 85.12403013286554,
+        "monad": 88.21340932478428
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -684,15 +498,11 @@
     {
       "cenario": "S3 sem C5",
       "pontos": {
-        "sepolia": 43.576236464735146,
-        "fuji": 72.81682120130364,
-        "monad": 77.12041435877359,
-        "besu": 81.07113475376812,
-        "canton": 94.5529704419081
+        "sepolia": 54.470295580918936,
+        "fuji": 84.62830145536587,
+        "monad": 89.10594088381622
       },
       "ordem": [
-        "canton",
-        "besu",
         "monad",
         "fuji",
         "sepolia"
@@ -702,14 +512,14 @@
   ],
   "alternativas": [
     {
-      "descricao": "Custo por transação da Canton a definir (modelo de tráfego, INTER-6), em vez de zero como no sandbox",
+      "descricao": "Custo da Ethereum com o gas das regras atuais da mainnet (pré-Glamsterdam, medido na Fuji), em vez do gas medido na Sepolia",
       "pontos": {
         "sepolia": {
-          "minimo": 48.58666666666667,
-          "maximo": 48.58666666666667,
+          "minimo": 58.51333333333334,
+          "maximo": 58.51333333333334,
           "contribuicao_conhecida": {
             "C1": 29.78,
-            "C2": 9.926666666666668,
+            "C2": 19.853333333333335,
             "C3": 0.0,
             "C4": 0.0,
             "C5": 8.88
@@ -718,125 +528,27 @@
           "completo": true
         },
         "fuji": {
-          "minimo": 75.23068747862787,
-          "maximo": 75.23068747862787,
+          "minimo": 82.24150743389922,
+          "maximo": 82.24150743389922,
           "contribuicao_conhecida": {
             "C1": 29.78,
-            "C2": 9.926666666666668,
-            "C3": 12.410820685778527,
-            "C4": 14.233200126182682,
+            "C2": 19.853333333333335,
+            "C3": 13.178124844566028,
+            "C4": 10.550049255999859,
             "C5": 8.88
           },
           "pendentes": [],
           "completo": true
         },
         "monad": {
-          "minimo": 79.1521215637145,
-          "maximo": 79.1521215637145,
+          "minimo": 90.07333333333334,
+          "maximo": 90.07333333333334,
           "contribuicao_conhecida": {
             "C1": 29.78,
-            "C2": 9.926666666666668,
-            "C3": 14.86120011242271,
-            "C4": 15.704254784625126,
-            "C5": 8.88
-          },
-          "pendentes": [],
-          "completo": true
-        },
-        "besu": {
-          "minimo": 82.7520179876335,
-          "maximo": 82.7520179876335,
-          "contribuicao_conhecida": {
-            "C1": 29.78,
-            "C2": 14.89,
-            "C3": 13.422017987633502,
-            "C4": 15.78,
-            "C5": 8.88
-          },
-          "pendentes": [],
-          "completo": true
-        },
-        "canton": {
-          "minimo": 70.37666666666667,
-          "maximo": 86.15666666666667,
-          "contribuicao_conhecida": {
-            "C1": 29.78,
-            "C2": 24.816666666666666,
-            "C3": 15.78,
-            "C4": 0.0,
-            "C5": 0.0
-          },
-          "pendentes": [
-            "C4"
-          ],
-          "completo": false
-        }
-      }
-    },
-    {
-      "descricao": "Custo da Ethereum com o gas das regras atuais da mainnet (pré-Glamsterdam), em vez do gas medido na Sepolia",
-      "pontos": {
-        "sepolia": {
-          "minimo": 48.58666666666667,
-          "maximo": 48.58666666666667,
-          "contribuicao_conhecida": {
-            "C1": 29.78,
-            "C2": 9.926666666666668,
-            "C3": 0.0,
-            "C4": 0.0,
-            "C5": 8.88
-          },
-          "pendentes": [],
-          "completo": true
-        },
-        "fuji": {
-          "minimo": 71.27305807937665,
-          "maximo": 71.27305807937665,
-          "contribuicao_conhecida": {
-            "C1": 29.78,
-            "C2": 9.926666666666668,
-            "C3": 12.410820685778527,
-            "C4": 10.275570726931456,
-            "C5": 8.88
-          },
-          "pendentes": [],
-          "completo": true
-        },
-        "monad": {
-          "minimo": 78.95832048039762,
-          "maximo": 78.95832048039762,
-          "contribuicao_conhecida": {
-            "C1": 29.78,
-            "C2": 9.926666666666668,
-            "C3": 14.86120011242271,
-            "C4": 15.510453701308242,
-            "C5": 8.88
-          },
-          "pendentes": [],
-          "completo": true
-        },
-        "besu": {
-          "minimo": 82.7520179876335,
-          "maximo": 82.7520179876335,
-          "contribuicao_conhecida": {
-            "C1": 29.78,
-            "C2": 14.89,
-            "C3": 13.422017987633502,
-            "C4": 15.78,
-            "C5": 8.88
-          },
-          "pendentes": [],
-          "completo": true
-        },
-        "canton": {
-          "minimo": 86.15666666666667,
-          "maximo": 86.15666666666667,
-          "contribuicao_conhecida": {
-            "C1": 29.78,
-            "C2": 24.816666666666666,
+            "C2": 19.853333333333335,
             "C3": 15.78,
             "C4": 15.78,
-            "C5": 0.0
+            "C5": 8.88
           },
           "pendentes": [],
           "completo": true
@@ -847,9 +559,7 @@
   "origem_por_rede": {
     "sepolia": "testnet",
     "fuji": "testnet",
-    "monad": "testnet",
-    "besu": "local",
-    "canton": "local"
+    "monad": "testnet"
   },
   "detalhes": {
     "sepolia": {
@@ -1078,158 +788,6 @@
       "complexidade": {
         "versao": "solidity",
         "m_total": 49
-      }
-    },
-    "besu": {
-      "latencia_t1": {
-        "n": 30,
-        "media": 1.9807000000000001,
-        "mediana": 1.9605000000000001,
-        "p95": 2.0604,
-        "maximo": 2.067,
-        "prop_ate_30s": 1.0
-      },
-      "latencia_t2_por_lote": {
-        "10": {
-          "n": 30,
-          "media": 1.9282,
-          "mediana": 1.95,
-          "p95": 1.953,
-          "maximo": 1.954,
-          "prop_ate_30s": 1.0
-        },
-        "25": {
-          "n": 75,
-          "media": 1.9457466666666672,
-          "mediana": 1.83,
-          "p95": 2.192,
-          "maximo": 2.193,
-          "prop_ate_30s": 1.0
-        },
-        "50": {
-          "n": 150,
-          "media": 1.8661666666666672,
-          "mediana": 1.766,
-          "p95": 2.12655,
-          "maximo": 2.129,
-          "prop_ate_30s": 1.0
-        }
-      },
-      "taxa_sucesso_t2": {
-        "n": 255,
-        "confirmadas": 255,
-        "falhas": {
-          "A": 0,
-          "B": 0,
-          "C": 0,
-          "D": 0,
-          "X": 0
-        },
-        "denominador": 255,
-        "taxa": 100.0
-      },
-      "taxa_por_lote": {
-        "10": 100.0,
-        "25": 100.0,
-        "50": 100.0
-      },
-      "custo": {
-        "coluna_gas": "gas_used",
-        "usd_por_funcao": {
-          "acceptOffer": 0.0,
-          "approve": 0.0,
-          "cancelOffer": 0.0,
-          "createOffer": 0.0
-        },
-        "gas_por_funcao": {
-          "acceptOffer": 155520.0,
-          "approve": 46337.0,
-          "cancelOffer": 51810.0,
-          "createOffer": 220312.5
-        },
-        "ciclos_completos": 30,
-        "ciclo_usd_medio": 0.0,
-        "ciclo_gas_medio": 422312.0
-      },
-      "complexidade": {
-        "versao": "solidity",
-        "m_total": 49
-      }
-    },
-    "canton": {
-      "latencia_t1": {
-        "n": 30,
-        "media": 0.3642666666666667,
-        "mediana": 0.3655,
-        "p95": 0.37265,
-        "maximo": 0.382,
-        "prop_ate_30s": 1.0
-      },
-      "latencia_t2_por_lote": {
-        "10": {
-          "n": 30,
-          "media": 0.3866666666666667,
-          "mediana": 0.388,
-          "p95": 0.4061,
-          "maximo": 0.409,
-          "prop_ate_30s": 1.0
-        },
-        "25": {
-          "n": 75,
-          "media": 0.5046266666666668,
-          "mediana": 0.503,
-          "p95": 0.6288,
-          "maximo": 0.641,
-          "prop_ate_30s": 1.0
-        },
-        "50": {
-          "n": 150,
-          "media": 0.7668333333333334,
-          "mediana": 0.7795000000000001,
-          "p95": 0.8705499999999999,
-          "maximo": 0.892,
-          "prop_ate_30s": 1.0
-        }
-      },
-      "taxa_sucesso_t2": {
-        "n": 255,
-        "confirmadas": 255,
-        "falhas": {
-          "A": 0,
-          "B": 0,
-          "C": 0,
-          "D": 0,
-          "X": 0
-        },
-        "denominador": 255,
-        "taxa": 100.0
-      },
-      "taxa_por_lote": {
-        "10": 100.0,
-        "25": 100.0,
-        "50": 100.0
-      },
-      "custo": {
-        "coluna_gas": "gas_used",
-        "usd_por_funcao": {
-          "acceptOffer": 0.0,
-          "approve": 0.0,
-          "cancelOffer": 0.0,
-          "createOffer": 0.0
-        },
-        "gas_por_funcao": {
-          "acceptOffer": NaN,
-          "approve": NaN,
-          "cancelOffer": NaN,
-          "createOffer": NaN
-        },
-        "ciclos_completos": 30,
-        "ciclo_usd_medio": 0.0,
-        "ciclo_gas_medio": 0.0
-      },
-      "complexidade": {
-        "versao": "daml",
-        "m_total": 24
       }
     }
   }

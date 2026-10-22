@@ -9,8 +9,7 @@
     "C1_taxa_sucesso": {
       "sepolia": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" },
       "fuji": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" },
-      "monad": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" },
-      "canton": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" }
+      "monad": { "valor": 100.0, "fonte": "hipótese de empate até o T2 rodar" }
     },
     "C4_M1_ciclo_usd": {}
   }
