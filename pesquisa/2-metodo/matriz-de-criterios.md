@@ -2,7 +2,7 @@
 
 **Projeto:** Protocolo de concessão de crédito interfinanceiro (Mockchain)
 **Trilha:** Pesquisa Acadêmica
-**Atualizado em:** 22/10/2026
+**Atualizado em:** 11/11/2026
 **Função deste arquivo:** fonte única das decisões da pesquisa. Quando algo for decidido ou mudar, atualize este arquivo primeiro e depois o paper.
 
 ---
@@ -13,7 +13,8 @@
 - Os detalhes de medição (testes, planilhas, falhas) estão em `pesquisa/2-metodo/roteiro-medicao.md`.
 - Os números medidos, o ranking atual e a sensibilidade estão em `pesquisa/3-resultados/resultados.md`, gerado pelos scripts de `benchmark/`.
 - As pesquisas exploratórias de setembro, que levaram à lista de redes, estão em `pesquisa/1-redes-candidatas/`.
-- O texto do artigo está em `paper/template_cotb2027.tex`. A versão preliminar em LaTeX, com os dados das três testnets, está em `artigo/artigo-alpha.tex` deste repositório.
+- `artigo/artigo-alpha.tex` é só uma versão base em LaTeX, de 22/10/2026, com os dados das três testnets. Fica como registro e não foi usada no artigo final, que foi escrito à parte, fora deste repositório.
+- Como os experimentos foram executados e como repeti-los: `benchmark/README.md`.
 - Cada afirmação técnica aponta uma fonte entre colchetes, como [R3]. Os links estão na seção 15.
 - Ao mudar algo: atualizar a data no topo e registrar a mudança na seção 14 (Histórico).
 
@@ -475,6 +476,7 @@ Template do COTB 2027, trilha de artigo completo.
 | 16/10/2026 | Coleta completa nas testnets Sepolia, Fuji e Monad; C5 confirmado nas três; achado do Glamsterdam na Sepolia |
 | 19/10/2026 | Custo de infraestrutura (C4-M2) levantado em `pesquisa/4-custo-infraestrutura/`; decisão de usá-lo só como informação descritiva, fora da pontuação |
 | 22/10/2026 | Lista fechada nas três redes (decisão F); seções 3, 7.2, 8, 8.1 e 10 atualizadas; Glamsterdam comparado com o gas da Fuji; achado da latência sob carga na Fuji; versão preliminar do artigo em `artigo/` |
+| 11/11/2026 | Repositório limpo: fica só a versão base do artigo (`artigo/artigo-alpha.tex`), não usada no artigo final; saem `entregas/`, `docs/` e `papers/`; documentação dos experimentos reescrita em `benchmark/README.md` |
 ---
 
 ## Glossário
