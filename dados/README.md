@@ -9,7 +9,9 @@ lê tudo o que está aqui e um valor alterado muda o ranking sem deixar rastro.
 | `preparo_<rede>_<data>.csv` | Transações da preparação do T2 (approve e criação das ofertas), fora da medição |
 | `metadados_<rede>_<data>.json` | Metadados da seção 6.2: RPC, máquina, contratos, contas, versão do cliente e janela da coleta |
 | `precos_referencia_<data>.json` | Amostras do preço do gas na mainnet e da cotação de cada token (C4-M1) |
-| `coleta_<rede>*.log` | Saída do terminal de cada coleta |
+| `coleta_<rede>.log` | Saída do terminal de cada coleta |
+| `precos_<data>.log` | Saída do terminal do amostrador de preços |
+| `implantacoes/<rede>.json` | Endereços dos contratos implantados para a coleta |
+| `implantacoes/broadcast/` | Registro do `forge` de cada implantação |
 
-`precos_referencia_2026-10-14.json` é de uma rodada anterior de preços; a análise usa só o arquivo
-mais recente.
+Como cada arquivo é produzido: [`../benchmark/README.md`](../benchmark/README.md). Significado das colunas: seções 6.1 e 6.2 de [`../pesquisa/2-metodo/roteiro-medicao.md`](../pesquisa/2-metodo/roteiro-medicao.md).
